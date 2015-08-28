@@ -81,4 +81,10 @@ public class APIFactoryTest {
         Assert.assertNotNull(actualBuildings);
         Assert.assertEquals(expectedBuildings,actualBuildings);
     }
+
+    @Test
+    public void TestFactoryWithTwentyBuildings() {
+        String jsonBuilding = readFixtureDataFromFile("buildings_20.json");
+        Assert.assertEquals(20,apiFactory.makeBuildingsFromJSON(jsonBuilding).size());
+    }
 }
