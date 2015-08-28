@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import it.unimi.unimiplaces.model.BaseEntity;
 import it.unimi.unimiplaces.model.Building;
@@ -17,7 +17,8 @@ public class APIFactory {
     Moshi moshiBuilder;
 
     public APIFactory(){
-        this.moshiBuilder = new Moshi.Builder().add(new CoordinatesJSONAdapter())
+        this.moshiBuilder = new Moshi.Builder()
+                .add(new CoordinatesJSONAdapter())
                 .build();
 
     }
@@ -33,9 +34,16 @@ public class APIFactory {
         return building;
     }
 
-    public ArrayList<BaseEntity> makeBuildingsFromJSON(String json){
-        ArrayList<BaseEntity> buildings = null;
-
-        return buildings;
+    public List<BaseEntity> makeBuildingsFromJSON(String json){
+        List<? extends BaseEntity> buildings;
+        List<BaseEntity> res = null;
+        JsonAdapter<BuildingsWrapper> jsonAdapter = moshiBuilder.adapter(BuildingsWrapper.class);
+        try {
+            buildings = (jsonAdapter.fromJson(json)).buildings;
+            res = (List<BaseEntity>)buildings;
+        }catch (IOException e){
+            System.out.println(e);
+        }
+        return res;
     }
 }
