@@ -1,4 +1,5 @@
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,11 +36,16 @@ public class APIFactoryTest {
         return contents;
     }
 
+
     @Test
     public void TestSingleBuildingFactory(){
         String jsonBuilding = readFixtureDataFromFile("building_single.json");
-        Building building = new Building("11020","Festa Del Perdono","via Festa del Perdono, 3, Milano, 20122");
-        building.setCoordinates(9.194568,45.460998);
-        org.junit.Assert.assertSame(building, this.apiFactory.makeBuildingFromJSON(jsonBuilding));
+        Building actual = new Building("11020","Festa Del Perdono","via Festa del Perdono, 3, Milano, 20122");
+        actual.setCoordinates(9.194568, 45.460998);
+
+        Building other = (Building) apiFactory.makeBuildingFromJSON(jsonBuilding);
+
+        Assert.assertNotNull(other);
+        Assert.assertEquals( actual,other );
     }
 }

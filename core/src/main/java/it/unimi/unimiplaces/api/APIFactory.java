@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import it.unimi.unimiplaces.model.BaseEntity;
 import it.unimi.unimiplaces.model.Building;
+import it.unimi.unimiplaces.model.CoordinatesJSONAdapter;
 
 /**
  * API object factory, provides an unique access point for BaseEntity objects creation
@@ -16,7 +17,9 @@ public class APIFactory {
     Moshi moshiBuilder;
 
     public APIFactory(){
-        this.moshiBuilder = new Moshi.Builder().build();
+        this.moshiBuilder = new Moshi.Builder().add(new CoordinatesJSONAdapter())
+                .build();
+
     }
 
     public BaseEntity makeBuildingFromJSON(String json){
