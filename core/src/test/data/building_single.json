@@ -3,13 +3,10 @@
   "address": "via Festa del Perdono, 3, Milano, 20122",
   "building_name": "Festa Del Perdono",
   "building_number": "1",
-  "coordinates": {
-    "coordinates": [
-      9.194568,
-      45.460998
-    ],
-    "type": "Point"
-  },
+  "coordinates": [
+    9.194568,
+    45.460998
+  ],
   "floors": [
     {
       "available_services": [
