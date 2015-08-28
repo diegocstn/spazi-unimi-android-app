@@ -1,0 +1,325 @@
+{
+  "buildings": [
+    {
+      "address": "via Festa del Perdono, 3, Milano, 20122",
+      "b_id": "11020",
+      "building_name": "Festa Del Perdono",
+      "building_number": "1",
+      "coordinates": [
+        9.194568,
+        45.460998
+      ],
+      "floors": [
+        {
+          "available_services": [
+            "Bagno",
+            "Vano Scala",
+            "Locale Tecnico",
+            "Locale Tecnico",
+            "Deposito Libri",
+            "Locale Tecnico",
+            "Bagno",
+            "Accesso",
+            "Deposito"
+          ],
+          "f_id": "-20",
+          "floor_name": "Secondo Interrato"
+        },
+        {
+          "available_services": [
+            "Sala Studio",
+            "Docce",
+            "Locale Tecnico",
+            "Accesso",
+            "Locale Tecnico",
+            "Spogliatoio",
+            "Accesso",
+            "Locale Ristoro/Mensa",
+            "Intercapedine",
+            "Bagno",
+            "Vano Scala",
+            "Locale Tecnico",
+            "Sala Studio",
+            "Bagno",
+            "Locale Tecnico",
+            "Bagno",
+            "Sala Riunioni",
+            "Locale Tecnico",
+            "Ufficio",
+            "Locale Pausa Personale",
+            "Deposito",
+            "Ascensore",
+            "Aula Informatica",
+            "Locale Tecnico"
+          ],
+          "f_id": "-10",
+          "floor_name": "Primo Interrato"
+        },
+        {
+          "available_services": [
+            "Aula Seminari - Magna - Lauree",
+            "Accesso",
+            "Locali Cooperative Librarie",
+            "Accesso",
+            "Accesso",
+            "Bagno",
+            "Vano Scala",
+            "Sala Regia Televisiva",
+            "Sala Studio",
+            "Bagno",
+            "Locale Supporto",
+            "Bagno",
+            "Locale Supporto",
+            "Sala Riunioni",
+            "Aula",
+            "Aula Seminari - Magna - Lauree",
+            "Informazioni",
+            "Ufficio",
+            "Locale Pausa Personale",
+            "Deposito",
+            "Biblioteca - Mediateca",
+            "Ascensore",
+            "Accesso",
+            "Studio",
+            "Locale Tecnico"
+          ],
+          "f_id": "0",
+          "floor_name": "Piano Terra"
+        },
+        {
+          "available_services": [
+            "Aula Seminari - Magna - Lauree",
+            "Bagno",
+            "Vano Scala",
+            "Ascensore",
+            "Aula",
+            "Sala Studio",
+            "Aula Seminari - Magna - Lauree",
+            "Accesso",
+            "Accesso",
+            "Ufficio",
+            "Locale Non Utilizzato",
+            "Bagno",
+            "Bagno",
+            "Locale Fotocopie",
+            "Accesso",
+            "Sala d'Attesa",
+            "Deposito",
+            "Sala Riunioni"
+          ],
+          "f_id": "10",
+          "floor_name": "Primo Piano"
+        },
+        {
+          "available_services": [
+            "Sala Studio",
+            "Accesso",
+            "Locale Fotocopie",
+            "Accesso",
+            "Bagno",
+            "Vano Scala",
+            "Deposito Libri",
+            "Sala Studio",
+            "Bagno",
+            "Locale Supporto",
+            "Locale Supporto",
+            "Bagno",
+            "Sala Riunioni",
+            "Aula Seminari - Magna - Lauree",
+            "Aula",
+            "Informazioni",
+            "Ufficio",
+            "Ascensore",
+            "Locale Non Utilizzato",
+            "Studio",
+            "Aula Informatica",
+            "Locale Tecnico"
+          ],
+          "f_id": "20",
+          "floor_name": "Secondo Piano"
+        },
+        {
+          "available_services": [
+            "Sala Studio",
+            "Informazioni",
+            "Bagno",
+            "Vano Scala",
+            "Aula",
+            "Informazioni",
+            "Accesso",
+            "Ufficio",
+            "Studio",
+            "Bagno",
+            "Locale Pausa Personale",
+            "Accesso",
+            "Biblioteca - Mediateca",
+            "Locale Tecnico"
+          ],
+          "f_id": "30",
+          "floor_name": "Terzo Piano"
+        },
+        {
+          "available_services": [
+            "Bagno",
+            "Vano Scala",
+            "Accesso",
+            "Ufficio",
+            "Studio",
+            "Bagno",
+            "Accesso",
+            "Biblioteca - Mediateca",
+            "Locale Tecnico"
+          ],
+          "f_id": "40",
+          "floor_name": "Quarto Piano"
+        }
+      ],
+      "l_b_id": "5809"
+    },
+    {
+      "address": "via Sant'Antonio, 5, Milano, 20122",
+      "b_id": "11120",
+      "building_name": "Sant'Antonio",
+      "building_number": "1",
+      "coordinates": [
+        9.193712,
+        45.461615
+      ],
+      "floors": [
+        {
+          "available_services": [
+            "Bagno",
+            "Bagno",
+            "Accesso",
+            "Aula",
+            "Accesso"
+          ],
+          "f_id": "0",
+          "floor_name": "Piano Terra"
+        },
+        {
+          "available_services": [
+            "Aula",
+            "Accesso"
+          ],
+          "f_id": "10",
+          "floor_name": "Primo Piano"
+        }
+      ],
+      "l_b_id": "5823"
+    },
+    {
+      "address": "Via Santa Sofia, 9/11, Milano, 20122",
+      "b_id": "11220",
+      "building_name": "Santa Sofia",
+      "building_number": "1",
+      "coordinates": [
+        9.191074,
+        45.456215
+      ],
+      "floors": [
+        {
+          "available_services": [
+            "Locale Tecnico",
+            "Ascensore",
+            "Locale Tecnico",
+            "Sala Server/Apparati di rete",
+            "Vano Scala",
+            "Accesso",
+            "Locale Tecnico",
+            "Deposito",
+            "Locale Tecnico"
+          ],
+          "f_id": "-10",
+          "floor_name": "Primo Interrato"
+        },
+        {
+          "available_services": [
+            "Ascensore",
+            "Bagno",
+            "Vano Scala",
+            "Accesso",
+            "Ufficio",
+            "Bagno",
+            "Bagno",
+            "Accesso",
+            "Sala d'Attesa",
+            "Deposito",
+            "Sala Riunioni"
+          ],
+          "f_id": "0",
+          "floor_name": "Piano Terra"
+        },
+        {
+          "available_services": [
+            "Vano Scala"
+          ],
+          "f_id": "05",
+          "floor_name": "Mezzanino Piano Terra"
+        },
+        {
+          "available_services": [
+            "Ascensore",
+            "Bagno",
+            "Vano Scala",
+            "Aula",
+            "Bagno",
+            "Bagno",
+            "Accesso",
+            "Locale Tecnico"
+          ],
+          "f_id": "20",
+          "floor_name": "Secondo Piano"
+        },
+        {
+          "available_services": [
+            "Ascensore",
+            "Bagno",
+            "Vano Scala",
+            "Aula",
+            "Ufficio",
+            "Bagno",
+            "Bagno",
+            "Aula Informatica",
+            "Accesso",
+            "Cella/Magazzino Refrigerato",
+            "Locale Tecnico"
+          ],
+          "f_id": "30",
+          "floor_name": "Terzo Piano"
+        },
+        {
+          "available_services": [
+            "Ascensore",
+            "Bagno",
+            "Vano Scala",
+            "Aula",
+            "Ufficio",
+            "Bagno",
+            "Bagno",
+            "Accesso",
+            "Locale Tecnico"
+          ],
+          "f_id": "40",
+          "floor_name": "Quarto Piano"
+        },
+        {
+          "available_services": [
+            "Ascensore",
+            "Bagno",
+            "Vano Scala",
+            "Aula",
+            "Bagno",
+            "Studio",
+            "Bagno",
+            "Accesso",
+            "Sala Riunioni"
+          ],
+          "f_id": "50",
+          "floor_name": "Quinto Piano"
+        }
+      ],
+      "l_b_id": "5824"
+    }
+  ]
+}
