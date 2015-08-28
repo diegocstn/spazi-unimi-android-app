@@ -1,11 +1,10 @@
 package it.unimi.unimiplaces.model;
 
 public class Building extends BaseEntity {
-    String b_id;
-    String building_name;
-    String address;
-    double latitude;
-    double longitude;
+    public String b_id;
+    public String building_name;
+    public String address;
+    public Coordinates coordinates;
 
     public Building(String b_id, String building_name, String address){
         this.b_id           = b_id;
@@ -13,9 +12,32 @@ public class Building extends BaseEntity {
         this.address        = address;
     }
 
-    public void setCoordinates(double latitude, double longitude){
-        this.latitude   = latitude;
-        this.longitude  = longitude;
+    public void setCoordinates(double lat, double lng){
+        this.coordinates = new Coordinates(lat,lng);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Building)) return false;
+
+        Building building = (Building) o;
+
+        if (!b_id.equals(building.b_id)) return false;
+        if (building_name != null ? !building_name.equals(building.building_name) : building.building_name != null)
+            return false;
+        if (address != null ? !address.equals(building.address) : building.address != null)
+            return false;
+        return !(coordinates != null ? !coordinates.equals(building.coordinates) : building.coordinates != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = b_id.hashCode();
+        result = 31 * result + (building_name != null ? building_name.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (coordinates != null ? coordinates.hashCode() : 0);
+        return result;
+    }
 }
