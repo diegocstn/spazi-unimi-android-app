@@ -1,19 +1,33 @@
 package it.unimi.unimiplaces.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Building extends BaseEntity {
     public String b_id;
     public String building_name;
     public String address;
     public Coordinates coordinates;
+    private List<Floor> floors;
 
     public Building(String b_id, String building_name, String address){
         this.b_id           = b_id;
         this.building_name  = building_name;
         this.address        = address;
+        this.floors         = new ArrayList<Floor>();
     }
+
 
     public void setCoordinates(double lat, double lng){
         this.coordinates = new Coordinates(lat,lng);
+    }
+
+    public int numOfFloors(){
+        if( this.floors != null ) {
+            return this.floors.size();
+        }else{
+            return 0;
+        }
     }
 
     @Override
