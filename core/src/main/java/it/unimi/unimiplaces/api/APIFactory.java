@@ -4,10 +4,10 @@ import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import it.unimi.unimiplaces.model.BaseEntity;
 import it.unimi.unimiplaces.model.Building;
-import it.unimi.unimiplaces.model.CoordinatesJSONAdapter;
 
 /**
  * API object factory, provides an unique access point for BaseEntity objects creation
@@ -31,5 +31,11 @@ public class APIFactory {
             System.out.println(e);
         }
         return building;
+    }
+
+    public ArrayList<BaseEntity> makeBuildingsFromJSON(String json){
+        ArrayList<BaseEntity> buildings = null;
+
+        return buildings;
     }
 }
