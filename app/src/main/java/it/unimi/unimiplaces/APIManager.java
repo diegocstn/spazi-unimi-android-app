@@ -1,9 +1,8 @@
 package it.unimi.unimiplaces;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
@@ -18,13 +17,13 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
  */
 public class APIManager {
 
-    private FragmentActivity context;
+    private Context context;
     private APIFactory apiFactory;
     private static final String APIBaseURL = "http://spazi.srv.di.unimi.it/api/v1.0/";
     private ProgressDialog progressDialog;
     private APIDelegateInterface delegate;
 
-    public APIManager(AppCompatActivity context){
+    public APIManager(Context context){
         this.apiFactory     = new APIFactory();
         this.context        = context;
         this.progressDialog = new ProgressDialog( this.context , ProgressDialog.STYLE_SPINNER );
