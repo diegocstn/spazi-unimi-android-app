@@ -1,4 +1,4 @@
-package it.unimi.unimiplaces.api;
+package it.unimi.unimiplaces.core.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;

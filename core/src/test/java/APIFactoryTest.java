@@ -5,9 +5,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unimi.unimiplaces.api.APIFactory;
-import it.unimi.unimiplaces.model.BaseEntity;
-import it.unimi.unimiplaces.model.Building;
+import it.unimi.unimiplaces.core.api.APIFactory;
+import it.unimi.unimiplaces.core.model.BaseEntity;
+import it.unimi.unimiplaces.core.model.Building;
 
 
 /**

@@ -2,8 +2,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.unimi.unimiplaces.api.APIFactory;
-import it.unimi.unimiplaces.model.Building;
+import it.unimi.unimiplaces.core.api.APIFactory;
+import it.unimi.unimiplaces.core.model.Building;
 
 /**
  * Building class tests

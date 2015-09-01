@@ -5,7 +5,7 @@ import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.Rule;
 import org.junit.Test;
 
-import it.unimi.unimiplaces.api.APIRequest;
+import it.unimi.unimiplaces.core.api.APIRequest;
 
 public class APIRequestMakerTest extends TestCase {
 

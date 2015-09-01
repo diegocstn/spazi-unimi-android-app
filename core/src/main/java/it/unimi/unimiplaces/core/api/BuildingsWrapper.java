@@ -1,8 +1,8 @@
-package it.unimi.unimiplaces.api;
+package it.unimi.unimiplaces.core.api;
 
 import java.util.List;
 
-import it.unimi.unimiplaces.model.Building;
+import it.unimi.unimiplaces.core.model.Building;
 
 /**
  * Buildings JSON Adapter

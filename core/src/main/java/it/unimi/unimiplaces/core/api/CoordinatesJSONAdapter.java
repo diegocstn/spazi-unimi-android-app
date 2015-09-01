@@ -1,8 +1,8 @@
-package it.unimi.unimiplaces.api;
+package it.unimi.unimiplaces.core.api;
 
 import com.squareup.moshi.FromJson;
 
-import it.unimi.unimiplaces.model.Coordinates;
+import it.unimi.unimiplaces.core.model.Coordinates;
 
 /**
  * JSON Adapter used by Moshi to convert coordinates object from JSON

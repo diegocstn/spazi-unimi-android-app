@@ -1,4 +1,4 @@
-package it.unimi.unimiplaces.model;
+package it.unimi.unimiplaces.core.model;
 
 import java.util.ArrayList;
 import java.util.List;
