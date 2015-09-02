@@ -4,9 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="it.unimi.unimiplaces.BuildingsFragment">
+
+    <RelativeLayout
+        android:id="@+id/buildings_controls"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/abc_action_button_min_height_material"
+        android:layout_alignParentStart="true"></RelativeLayout>
     <fragment
         android:name="it.unimi.unimiplaces.BuildingsListFragment"
         android:id="@+id/buildings_list_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/buildings_controls"/>
+
 </RelativeLayout>
