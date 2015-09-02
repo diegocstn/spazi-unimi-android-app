@@ -27,6 +27,7 @@ public class APIManager {
         this.apiFactory     = new APIFactory();
         this.context        = context;
         this.progressDialog = new ProgressDialog( this.context , ProgressDialog.STYLE_SPINNER );
+        this.progressDialog.setMessage(this.context.getResources().getString(R.string.progress_loading));
     }
 
     private void executeAPIRequest(String endpoint){
