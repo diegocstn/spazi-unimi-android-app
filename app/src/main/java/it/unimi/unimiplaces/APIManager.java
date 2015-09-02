@@ -23,6 +23,8 @@ public class APIManager {
     private ProgressDialog progressDialog;
     private APIDelegateInterface delegate;
 
+    private APIRequestIdentifier currentAPIRequest;
+
     public APIManager(Context context){
         this.apiFactory     = new APIFactory();
         this.context        = context;
@@ -37,23 +39,35 @@ public class APIManager {
         this.delegate.apiRequestStart();
 
         APIAsyncTask apiAsyncTask = new APIAsyncTask();
-        apiAsyncTask.execute(new APIRequest(APIBaseURL+endpoint));
+        apiAsyncTask.execute(new APIRequest(APIBaseURL + endpoint));
     }
 
     private void requestExecuted(String result){
-        //TODO how to switch JSON parsing methods?
-        List<BaseEntity> entities = this.apiFactory.makeBuildingsFromJSON(result);
+        List<BaseEntity> entities = null;
+
+        switch ( this.currentAPIRequest ){
+            case BUILDINGS:
+                entities = this.apiFactory.makeBuildingsFromJSON(result);
+        }
+
         this.delegate.apiRequestEnd(entities);
         this.progressDialog.hide();
     }
 
     public void buildings(APIDelegateInterface delegate){
-        this.delegate = delegate;
+        this.delegate           = delegate;
+        this.currentAPIRequest  = APIRequestIdentifier.BUILDINGS;
         this.executeAPIRequest("buildings/");
     }
 
 
-    private class APIAsyncTask extends AsyncTask<APIRequest,Void,String>{
+    private enum APIRequestIdentifier{
+        BUILDINGS,
+        AVAILABLE_SERVICES
+    }
+
+
+    private class APIAsyncTask extends AsyncTask<it.unimi.unimiplaces.core.api.APIRequest,Void,String>{
 
         @Override
         protected String doInBackground(APIRequest... requests){
