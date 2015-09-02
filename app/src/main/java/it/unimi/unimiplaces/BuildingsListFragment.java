@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import it.unimi.unimiplaces.core.api.APIDelegateInterface;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 
@@ -20,7 +19,7 @@ import it.unimi.unimiplaces.core.model.Building;
  * A fragment representing a list of buildings.
  *
  */
-public class BuildingsListFragment extends ListFragment implements APIDelegateInterface {
+public class BuildingsListFragment extends ListFragment{
 
     private List<BaseEntity> model;
 
@@ -36,22 +35,15 @@ public class BuildingsListFragment extends ListFragment implements APIDelegateIn
     public BuildingsListFragment() {
     }
 
+
+    public void setModel(List<BaseEntity> model){
+        this.model = model;
+        setListAdapter(new BuildingsListAdapter(getActivity(), this.model));
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        APIManager apiManager = new APIManager(getActivity());
-        apiManager.buildings(this);
-    }
-
-    @Override
-    public void apiRequestStart() {
-
-    }
-
-    @Override
-    public void apiRequestEnd(List<BaseEntity> results) {
-        this.model = results;
-        setListAdapter(new BuildingsListAdapter(getActivity(),this.model));
     }
 
     @Override
@@ -69,6 +61,16 @@ public class BuildingsListFragment extends ListFragment implements APIDelegateIn
         super.onListItemClick(l, v, position, id);
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        this.setListShown(true);
+    }
+
+    /**
+     * Custom list adapter for buildings list
+     *
+     */
 
     private class BuildingsListAdapter extends ArrayAdapter<BaseEntity> {
         private final Activity context;
