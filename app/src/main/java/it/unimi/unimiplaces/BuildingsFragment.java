@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.Serializable;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
@@ -18,6 +19,8 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     private BuildingsListFragment buildingsListFragment;
     private APIManager apiManager;
 
+    final static String MODEL_KEY = "model";
+
     public BuildingsFragment() {
         // Required empty public constructor
     }
@@ -26,6 +29,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.apiManager = new APIManager(getActivity());
+
     }
 
     @Override
@@ -38,8 +42,20 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         buildingsListFragment = (BuildingsListFragment) getFragmentManager().findFragmentById(R.id.buildings_list_fragment);
-        apiManager.buildings(this);
+
+        if( savedInstanceState != null ) {
+            this.model = (List) savedInstanceState.getSerializable(MODEL_KEY);
+            if (this.model == null) {
+                apiManager.buildings(this);
+            }else{
+                buildingsListFragment.setModel(this.model);
+            }
+        }else{
+            apiManager.buildings(this);
+        }
     }
+
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -49,6 +65,12 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(MODEL_KEY,(Serializable)this.model);
+        super.onSaveInstanceState(outState);
     }
 
 
