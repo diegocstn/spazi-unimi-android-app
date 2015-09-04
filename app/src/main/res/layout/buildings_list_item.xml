@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/abc_list_item_padding_horizontal_material"
     android:paddingRight="@dimen/abc_list_item_padding_horizontal_material"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingTop="@dimen/abc_list_item_padding_horizontal_material"
+    android:paddingBottom="@dimen/abc_list_item_padding_horizontal_material">
 
     <TextView
         android:layout_width="fill_parent"

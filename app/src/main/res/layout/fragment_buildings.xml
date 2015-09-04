@@ -8,8 +8,23 @@
     <RelativeLayout
         android:id="@+id/buildings_controls"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/abc_action_button_min_height_material"
-        android:layout_alignParentStart="true"></RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:paddingTop="@dimen/abc_action_bar_default_padding_material"
+        android:paddingBottom="@dimen/abc_action_bar_default_padding_material"
+        android:paddingLeft="@dimen/abc_list_item_padding_horizontal_material"
+        android:paddingRight="@dimen/abc_list_item_padding_horizontal_material">
+        <ToggleButton
+            android:id="@+id/buildings_view_mode"
+            android:background="@drawable/building_view_mode"
+            android:textOn=""
+            android:textOff=""
+            android:textSize="@dimen/abc_text_size_button_material"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
     <fragment
         android:name="it.unimi.unimiplaces.BuildingsListFragment"
         android:id="@+id/buildings_list_fragment"
