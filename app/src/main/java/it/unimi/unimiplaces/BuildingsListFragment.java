@@ -19,7 +19,7 @@ import it.unimi.unimiplaces.core.model.Building;
  * A fragment representing a list of buildings.
  *
  */
-public class BuildingsListFragment extends ListFragment{
+public class BuildingsListFragment extends ListFragment implements PresenterInterface {
 
     private List<BaseEntity> model;
 
@@ -36,6 +36,7 @@ public class BuildingsListFragment extends ListFragment{
     }
 
 
+    @Override
     public void setModel(List<BaseEntity> model){
         this.model = model;
         setListAdapter(new BuildingsListAdapter(getActivity(), this.model));
