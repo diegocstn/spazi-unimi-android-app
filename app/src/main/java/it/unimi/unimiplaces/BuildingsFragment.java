@@ -23,6 +23,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     private BuildingsMapFragment buildingsMapFragment;
     private ToggleButton buildingsModeView;
     private APIManager apiManager;
+    private BuildingsModeView defaultBuildingModeView = BuildingsModeView.BUILDINGS_MODE_VIEW_LIST;
 
     private enum BuildingsModeView{
         BUILDINGS_MODE_VIEW_LIST,
@@ -51,10 +52,48 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        buildingsListFragment   = (BuildingsListFragment) getFragmentManager().findFragmentById(R.id.buildings_list_fragment);
-        buildingsMapFragment   = (BuildingsMapFragment) getFragmentManager().findFragmentById(R.id.buildings_map_fragment);
-        buildingsModeView       = (ToggleButton) view.findViewById(R.id.buildings_view_mode);
+        this.initialize(view, savedInstanceState);
+    }
 
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(MODEL_KEY,(Serializable)this.model);
+        super.onSaveInstanceState(outState);
+    }
+
+    private void initialize(View view, Bundle savedInstanceState){
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
+        switch ( defaultBuildingModeView) {
+            case BUILDINGS_MODE_VIEW_LIST:
+                buildingsListFragment = new BuildingsListFragment();
+                buildingsMapFragment = null;
+                fragmentTransaction.add(R.id.buildings_container,buildingsListFragment);
+                break;
+
+            case BUILDINGS_MODE_VIEW_MAP:
+                buildingsMapFragment = new BuildingsMapFragment();
+                buildingsListFragment = null;
+                fragmentTransaction.add(R.id.buildings_container,buildingsMapFragment);
+                break;
+        }
+        fragmentTransaction.commit();
+
+        /* initialize toggle button */
+        buildingsModeView       = (ToggleButton) view.findViewById(R.id.buildings_view_mode);
         buildingsModeView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -79,36 +118,22 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
         }
     }
 
-
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(MODEL_KEY,(Serializable)this.model);
-        super.onSaveInstanceState(outState);
-    }
-
     private void changeViewMode(BuildingsModeView mode){
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 
         switch (mode){
             case BUILDINGS_MODE_VIEW_LIST:
-                fragmentTransaction.show(buildingsListFragment);
-                fragmentTransaction.hide(buildingsMapFragment);
+                if( buildingsListFragment == null ){
+                    buildingsListFragment = new BuildingsListFragment();
+                }
+                fragmentTransaction.replace(R.id.buildings_container, buildingsListFragment);
                 break;
             case BUILDINGS_MODE_VIEW_MAP:
-                fragmentTransaction.show(buildingsMapFragment);
-                fragmentTransaction.hide(buildingsListFragment);
+                if( buildingsMapFragment == null ){
+                    buildingsMapFragment = new BuildingsMapFragment();
+                }
+                fragmentTransaction.replace(R.id.buildings_container, buildingsMapFragment);
                 break;
         }
 

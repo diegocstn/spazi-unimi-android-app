@@ -25,16 +25,8 @@
             android:layout_alignParentStart="false"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
-    <fragment
-        android:name="it.unimi.unimiplaces.BuildingsListFragment"
-        android:id="@+id/buildings_list_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/buildings_controls"/>
-
-    <fragment
-        android:name="it.unimi.unimiplaces.BuildingsMapFragment"
-        android:id="@+id/buildings_map_fragment"
+    <FrameLayout
+        android:id="@+id/buildings_container"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/buildings_controls"/>
