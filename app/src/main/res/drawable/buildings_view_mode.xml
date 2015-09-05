@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true" android:drawable="@drawable/ic_map_black" />
-    <item android:state_checked="false" android:drawable="@drawable/ic_list_black" />
+    <item android:state_checked="true" android:drawable="@drawable/ic_map_black">
+        <color android:color="@color/colorGrayControls"/>
+    </item>
+    <item android:state_checked="false" android:drawable="@drawable/ic_list_black">
+        <color android:color="@color/colorGrayControls"/>
+    </item>
 </selector>
