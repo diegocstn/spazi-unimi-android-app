@@ -2,10 +2,13 @@ package it.unimi.unimiplaces;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +20,14 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
 
     private List<BaseEntity> model;
     private BuildingsListFragment buildingsListFragment;
+    private BuildingsMapFragment buildingsMapFragment;
+    private ToggleButton buildingsModeView;
     private APIManager apiManager;
+
+    private enum BuildingsModeView{
+        BUILDINGS_MODE_VIEW_LIST,
+        BUILDINGS_MODE_VIEW_MAP
+    }
 
     final static String MODEL_KEY = "model";
 
@@ -41,7 +51,21 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        buildingsListFragment = (BuildingsListFragment) getFragmentManager().findFragmentById(R.id.buildings_list_fragment);
+        buildingsListFragment   = (BuildingsListFragment) getFragmentManager().findFragmentById(R.id.buildings_list_fragment);
+        buildingsMapFragment   = (BuildingsMapFragment) getFragmentManager().findFragmentById(R.id.buildings_map_fragment);
+        buildingsModeView       = (ToggleButton) view.findViewById(R.id.buildings_view_mode);
+
+        buildingsModeView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    changeViewMode(BuildingsModeView.BUILDINGS_MODE_VIEW_MAP);
+                }else{
+                    changeViewMode(BuildingsModeView.BUILDINGS_MODE_VIEW_LIST);
+
+                }
+            }
+        });
 
         if( savedInstanceState != null ) {
             this.model = (List) savedInstanceState.getSerializable(MODEL_KEY);
@@ -71,6 +95,24 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     public void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(MODEL_KEY,(Serializable)this.model);
         super.onSaveInstanceState(outState);
+    }
+
+    private void changeViewMode(BuildingsModeView mode){
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+
+        switch (mode){
+            case BUILDINGS_MODE_VIEW_LIST:
+                fragmentTransaction.show(buildingsListFragment);
+                fragmentTransaction.hide(buildingsMapFragment);
+                break;
+            case BUILDINGS_MODE_VIEW_MAP:
+                fragmentTransaction.show(buildingsMapFragment);
+                fragmentTransaction.hide(buildingsListFragment);
+                break;
+        }
+
+        fragmentTransaction.commit();
     }
 
 
