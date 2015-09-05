@@ -16,7 +16,7 @@
         android:paddingRight="@dimen/abc_list_item_padding_horizontal_material">
         <ToggleButton
             android:id="@+id/buildings_view_mode"
-            android:background="@drawable/building_view_mode"
+            android:background="@drawable/buildings_view_mode"
             android:textOn=""
             android:textOff=""
             android:textSize="@dimen/abc_text_size_button_material"
