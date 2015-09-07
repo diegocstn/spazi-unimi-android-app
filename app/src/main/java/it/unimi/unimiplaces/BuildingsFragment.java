@@ -23,7 +23,8 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     private BuildingsMapFragment buildingsMapFragment;
     private ToggleButton buildingsModeView;
     private APIManager apiManager;
-    private BuildingsModeView defaultBuildingModeView = BuildingsModeView.BUILDINGS_MODE_VIEW_LIST;
+    private final BuildingsModeView defaultBuildingModeView = BuildingsModeView.BUILDINGS_MODE_VIEW_LIST;
+    private PresenterInterface currentModeView;
 
     private enum BuildingsModeView{
         BUILDINGS_MODE_VIEW_LIST,
@@ -75,22 +76,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
 
     private void initialize(View view, Bundle savedInstanceState){
 
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-
-        switch ( defaultBuildingModeView) {
-            case BUILDINGS_MODE_VIEW_LIST:
-                buildingsListFragment = new BuildingsListFragment();
-                buildingsMapFragment = null;
-                fragmentTransaction.add(R.id.buildings_container,buildingsListFragment);
-                break;
-
-            case BUILDINGS_MODE_VIEW_MAP:
-                buildingsMapFragment = new BuildingsMapFragment();
-                buildingsListFragment = null;
-                fragmentTransaction.add(R.id.buildings_container,buildingsMapFragment);
-                break;
-        }
-        fragmentTransaction.commit();
+        changeViewMode(defaultBuildingModeView);
 
         /* initialize toggle button */
         buildingsModeView       = (ToggleButton) view.findViewById(R.id.buildings_view_mode);
@@ -111,7 +97,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
             if (this.model == null) {
                 apiManager.buildings(this);
             }else{
-                buildingsListFragment.setModel(this.model);
+                buildingsListFragment.setModel(getActivity(), this.model);
             }
         }else{
             apiManager.buildings(this);
@@ -127,17 +113,24 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
                 if( buildingsListFragment == null ){
                     buildingsListFragment = new BuildingsListFragment();
                 }
+                currentModeView = buildingsListFragment;
                 fragmentTransaction.replace(R.id.buildings_container, buildingsListFragment);
                 break;
             case BUILDINGS_MODE_VIEW_MAP:
                 if( buildingsMapFragment == null ){
                     buildingsMapFragment = new BuildingsMapFragment();
                 }
+                currentModeView = buildingsMapFragment;
                 fragmentTransaction.replace(R.id.buildings_container, buildingsMapFragment);
                 break;
         }
 
         fragmentTransaction.commit();
+
+        /* set model for the current mode */
+        if( this.model != null ){
+            currentModeView.setModel(getActivity(),this.model);
+        }
     }
 
 
@@ -150,7 +143,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     @Override
     public void apiRequestEnd(List<BaseEntity> results) {
         this.model = results;
-        buildingsListFragment.setModel(this.model);
+        currentModeView.setModel(getActivity(),this.model);
     }
 
 }

@@ -37,9 +37,9 @@ public class BuildingsListFragment extends ListFragment implements PresenterInte
 
 
     @Override
-    public void setModel(List<BaseEntity> model){
+    public void setModel(Activity activity, List<BaseEntity> model){
         this.model = model;
-        setListAdapter(new BuildingsListAdapter(getActivity(), this.model));
+        setListAdapter(new BuildingsListAdapter(activity, this.model));
     }
 
     @Override
