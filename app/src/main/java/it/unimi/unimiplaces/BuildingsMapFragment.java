@@ -11,10 +11,16 @@ import android.view.ViewGroup;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.model.BaseEntity;
+import it.unimi.unimiplaces.core.model.Building;
 
 
 /**
@@ -24,6 +30,7 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
 
     private GoogleMap map;
     private List<BaseEntity> model;
+    private List<Marker> markers;
 
     public BuildingsMapFragment() {
         // Required empty public constructor
@@ -83,7 +90,22 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
         }
     }
 
-    private void placeBuildingsMarker(){
+    private MarkerOptions markerOptionsForBuilding(Building building){
+        MarkerOptions markerOptions;
+        markerOptions = new MarkerOptions();
+        markerOptions.position( new LatLng(building.coordinates.lat,building.coordinates.lng));
+        markerOptions.title(building.building_name);
+        markerOptions.snippet(building.address);
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_building_marker));
 
+        return markerOptions;
+    }
+
+    private void placeBuildingsMarker(){
+        markers = new ArrayList<>();
+        for (BaseEntity entity : this.model) {
+            Building building = (Building) entity;
+            markers.add(map.addMarker(markerOptionsForBuilding(building)));
+        }
     }
 }
