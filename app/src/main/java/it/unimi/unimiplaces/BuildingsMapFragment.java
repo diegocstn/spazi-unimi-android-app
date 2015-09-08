@@ -84,9 +84,8 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.buildings_map);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.remove(mapFragment);
+        fragmentTransaction.remove(getFragmentManager().findFragmentById(R.id.buildings_map));
         fragmentTransaction.commit();
     }
 
@@ -95,6 +94,18 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
         if( model!=null ){
             this.placeBuildingsMarker();
         }
+
+
+        map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                LatLngBounds.Builder markerBounds = new LatLngBounds.Builder();
+                for( Marker marker:markers ){
+                    markerBounds.include(marker.getPosition());
+                }
+                map.animateCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(),10));
+            }
+        });
 
     }
 
@@ -110,19 +121,10 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
     }
 
     private void placeBuildingsMarker(){
-        LatLngBounds.Builder markerBounds = new LatLngBounds.Builder();
-        Marker marker;
         markers = new ArrayList<>();
-
         for (BaseEntity entity : this.model) {
             Building building = (Building) entity;
-            marker = map.addMarker(markerOptionsForBuilding(building));
-            markers.add(marker);
-
-            markerBounds.include(marker.getPosition());
+            markers.add(map.addMarker(markerOptionsForBuilding(building)));
         }
-
-        map.moveCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(),10));
-
     }
 }
