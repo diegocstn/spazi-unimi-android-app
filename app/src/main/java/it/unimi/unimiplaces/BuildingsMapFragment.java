@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -31,6 +33,11 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
     private GoogleMap map;
     private List<BaseEntity> model;
     private List<Marker> markers;
+
+    /* Map init configuration */
+    private int mapZoomDefault          = 13;
+    private double mapCenterLatitude    = 9.1843412;
+    private double mapCenterLongitude   = 45.4687535;
 
     public BuildingsMapFragment() {
         // Required empty public constructor
@@ -88,6 +95,7 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
         if( model!=null ){
             this.placeBuildingsMarker();
         }
+
     }
 
     private MarkerOptions markerOptionsForBuilding(Building building){
@@ -102,10 +110,19 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
     }
 
     private void placeBuildingsMarker(){
+        LatLngBounds.Builder markerBounds = new LatLngBounds.Builder();
+        Marker marker;
         markers = new ArrayList<>();
+
         for (BaseEntity entity : this.model) {
             Building building = (Building) entity;
-            markers.add(map.addMarker(markerOptionsForBuilding(building)));
+            marker = map.addMarker(markerOptionsForBuilding(building));
+            markers.add(marker);
+
+            markerBounds.include(marker.getPosition());
         }
+
+        map.moveCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(),10));
+
     }
 }
