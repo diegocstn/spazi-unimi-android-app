@@ -76,6 +76,14 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
 
     private void initialize(View view, Bundle savedInstanceState){
 
+        buildingsMapFragment    = new BuildingsMapFragment();
+        buildingsListFragment   = new BuildingsListFragment();
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.buildings_container,buildingsMapFragment);
+        fragmentTransaction.add(R.id.buildings_container,buildingsListFragment);
+        fragmentTransaction.commit();
+
         changeViewMode(defaultBuildingModeView);
 
         /* initialize toggle button */
@@ -98,6 +106,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
                 apiManager.buildings(this);
             }else{
                 buildingsListFragment.setModel(getActivity(), this.model);
+                buildingsMapFragment.setModel(getActivity(),this.model);
             }
         }else{
             apiManager.buildings(this);
@@ -110,18 +119,14 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
 
         switch (mode){
             case BUILDINGS_MODE_VIEW_LIST:
-                if( buildingsListFragment == null ){
-                    buildingsListFragment = new BuildingsListFragment();
-                }
                 currentModeView = buildingsListFragment;
-                fragmentTransaction.replace(R.id.buildings_container, buildingsListFragment);
+                fragmentTransaction.detach(buildingsMapFragment);
+                fragmentTransaction.attach(buildingsListFragment);
                 break;
             case BUILDINGS_MODE_VIEW_MAP:
-                if( buildingsMapFragment == null ){
-                    buildingsMapFragment = new BuildingsMapFragment();
-                }
                 currentModeView = buildingsMapFragment;
-                fragmentTransaction.replace(R.id.buildings_container, buildingsMapFragment);
+                fragmentTransaction.detach(buildingsListFragment);
+                fragmentTransaction.attach(buildingsMapFragment);
                 break;
         }
 
@@ -143,7 +148,8 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     @Override
     public void apiRequestEnd(List<BaseEntity> results) {
         this.model = results;
-        currentModeView.setModel(getActivity(),this.model);
+        buildingsListFragment.setModel(getActivity(),this.model);
+        buildingsMapFragment.setModel(getActivity(),this.model);
     }
 
 }
