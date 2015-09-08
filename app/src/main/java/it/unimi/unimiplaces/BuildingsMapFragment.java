@@ -44,12 +44,10 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
     }
 
     @Override
-    public void setModel(Activity activity, List<BaseEntity> model){
-        this.model = model;
-        if( this.map != null ){
-            this.placeBuildingsMarker();
-        }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,6 +87,14 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void setModel(Activity activity, List<BaseEntity> model){
+        this.model = model;
+        if( this.map != null ){
+            this.placeBuildingsMarker();
+        }
+    }
+
     private void initMap(GoogleMap googleMap){
         map = googleMap;
         if( model!=null ){
@@ -103,7 +109,7 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
                 for( Marker marker:markers ){
                     markerBounds.include(marker.getPosition());
                 }
-                map.animateCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(),10));
+                map.animateCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(), 10));
             }
         });
 
