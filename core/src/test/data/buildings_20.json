@@ -2,6 +2,35 @@
   "buildings": [
     {
       "address": "via Festa del Perdono, 3, Milano, 20122",
+      "available_services": [
+        "Sala Studio",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Locale Fotocopie",
+        "Aula Informatica",
+        "Locale Supporto",
+        "Locale Non Utilizzato",
+        "Accesso",
+        "Locali Cooperative Librarie",
+        "Studio",
+        "Aula Seminari - Magna - Lauree",
+        "Vano Scala",
+        "Deposito",
+        "Intercapedine",
+        "Locale Ristoro/Mensa",
+        "Sala Regia Televisiva",
+        "Informazioni",
+        "Docce",
+        "Deposito Libri",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Biblioteca - Mediateca",
+        "Bagno",
+        "Sala d'Attesa",
+        "Ascensore",
+        "Sala Riunioni"
+      ],
       "b_id": "11020",
       "building_name": "Festa Del Perdono",
       "building_number": "1",
@@ -9,478 +38,37 @@
         9.194568,
         45.460998
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Bagno",
-            "Vano Scala",
-            "Locale Tecnico",
-            "Locale Tecnico",
-            "Deposito Libri",
-            "Locale Tecnico",
-            "Bagno",
-            "Accesso",
-            "Deposito"
-          ],
-          "f_id": "-20",
-          "floor_name": "Secondo Interrato"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Docce",
-            "Locale Tecnico",
-            "Accesso",
-            "Locale Tecnico",
-            "Spogliatoio",
-            "Accesso",
-            "Locale Ristoro/Mensa",
-            "Intercapedine",
-            "Bagno",
-            "Vano Scala",
-            "Locale Tecnico",
-            "Sala Studio",
-            "Bagno",
-            "Locale Tecnico",
-            "Bagno",
-            "Sala Riunioni",
-            "Locale Tecnico",
-            "Ufficio",
-            "Locale Pausa Personale",
-            "Deposito",
-            "Ascensore",
-            "Aula Informatica",
-            "Locale Tecnico"
-          ],
-          "f_id": "-10",
-          "floor_name": "Primo Interrato"
-        },
-        {
-          "available_services": [
-            "Aula Seminari - Magna - Lauree",
-            "Accesso",
-            "Locali Cooperative Librarie",
-            "Accesso",
-            "Accesso",
-            "Bagno",
-            "Vano Scala",
-            "Sala Regia Televisiva",
-            "Sala Studio",
-            "Bagno",
-            "Locale Supporto",
-            "Bagno",
-            "Locale Supporto",
-            "Sala Riunioni",
-            "Aula",
-            "Aula Seminari - Magna - Lauree",
-            "Informazioni",
-            "Ufficio",
-            "Locale Pausa Personale",
-            "Deposito",
-            "Biblioteca - Mediateca",
-            "Ascensore",
-            "Accesso",
-            "Studio",
-            "Locale Tecnico"
-          ],
-          "f_id": "0",
-          "floor_name": "Piano Terra"
-        },
-        {
-          "available_services": [
-            "Aula Seminari - Magna - Lauree",
-            "Bagno",
-            "Vano Scala",
-            "Ascensore",
-            "Aula",
-            "Sala Studio",
-            "Aula Seminari - Magna - Lauree",
-            "Accesso",
-            "Accesso",
-            "Ufficio",
-            "Locale Non Utilizzato",
-            "Bagno",
-            "Bagno",
-            "Locale Fotocopie",
-            "Accesso",
-            "Sala d'Attesa",
-            "Deposito",
-            "Sala Riunioni"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Accesso",
-            "Locale Fotocopie",
-            "Accesso",
-            "Bagno",
-            "Vano Scala",
-            "Deposito Libri",
-            "Sala Studio",
-            "Bagno",
-            "Locale Supporto",
-            "Locale Supporto",
-            "Bagno",
-            "Sala Riunioni",
-            "Aula Seminari - Magna - Lauree",
-            "Aula",
-            "Informazioni",
-            "Ufficio",
-            "Ascensore",
-            "Locale Non Utilizzato",
-            "Studio",
-            "Aula Informatica",
-            "Locale Tecnico"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Informazioni",
-            "Bagno",
-            "Vano Scala",
-            "Aula",
-            "Informazioni",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Locale Pausa Personale",
-            "Accesso",
-            "Biblioteca - Mediateca",
-            "Locale Tecnico"
-          ],
-          "f_id": "30",
-          "floor_name": "Terzo Piano"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Biblioteca - Mediateca",
-            "Locale Tecnico"
-          ],
-          "f_id": "40",
-          "floor_name": "Quarto Piano"
-        }
-      ],
       "l_b_id": "5809"
     },
     {
-      "address": "via Sant'Antonio, 5, Milano, 20122",
-      "b_id": "11120",
-      "building_name": "Sant'Antonio",
-      "building_number": "1",
-      "coordinates": [
-        9.193712,
-        45.461615
-      ],
-      "floors": [
-        {
-          "available_services": [
-            "Bagno",
-            "Bagno",
-            "Accesso",
-            "Aula",
-            "Accesso"
-          ],
-          "f_id": "0",
-          "floor_name": "Piano Terra"
-        },
-        {
-          "available_services": [
-            "Aula",
-            "Accesso"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        }
-      ],
-      "l_b_id": "5823"
-    },
-    {
-      "address": "Via Santa Sofia, 9/11, Milano, 20122",
-      "b_id": "11220",
-      "building_name": "Santa Sofia",
-      "building_number": "1",
-      "coordinates": [
-        9.191074,
-        45.456215
-      ],
-      "floors": [
-        {
-          "available_services": [
-            "Locale Tecnico",
-            "Ascensore",
-            "Locale Tecnico",
-            "Sala Server/Apparati di rete",
-            "Vano Scala",
-            "Accesso",
-            "Locale Tecnico",
-            "Deposito",
-            "Locale Tecnico"
-          ],
-          "f_id": "-10",
-          "floor_name": "Primo Interrato"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Ufficio",
-            "Bagno",
-            "Bagno",
-            "Accesso",
-            "Sala d'Attesa",
-            "Deposito",
-            "Sala Riunioni"
-          ],
-          "f_id": "0",
-          "floor_name": "Piano Terra"
-        },
-        {
-          "available_services": [
-            "Vano Scala"
-          ],
-          "f_id": "05",
-          "floor_name": "Mezzanino Piano Terra"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Aula",
-            "Bagno",
-            "Bagno",
-            "Accesso",
-            "Locale Tecnico"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Aula",
-            "Ufficio",
-            "Bagno",
-            "Bagno",
-            "Aula Informatica",
-            "Accesso",
-            "Cella/Magazzino Refrigerato",
-            "Locale Tecnico"
-          ],
-          "f_id": "30",
-          "floor_name": "Terzo Piano"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Aula",
-            "Ufficio",
-            "Bagno",
-            "Bagno",
-            "Accesso",
-            "Locale Tecnico"
-          ],
-          "f_id": "40",
-          "floor_name": "Quarto Piano"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Aula",
-            "Bagno",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Sala Riunioni"
-          ],
-          "f_id": "50",
-          "floor_name": "Quinto Piano"
-        }
-      ],
-      "l_b_id": "5824"
-    },
-    {
-      "address": "Piazza Sant'Alessandro, 1, Milano, 20123",
-      "b_id": "11310",
-      "building_name": "Sant'Alessandro",
-      "building_number": "1",
-      "coordinates": [
-        9.186581,
-        45.461263
-      ],
-      "floors": [
-        {
-          "available_services": [
-            "Ascensore",
-            "Vano Scala",
-            "Locale Tecnico",
-            "Deposito Libri",
-            "Accesso",
-            "Locale Tecnico",
-            "Accesso",
-            "Locale Tecnico"
-          ],
-          "f_id": "-20",
-          "floor_name": "Secondo Interrato"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Locale Tecnico",
-            "Locale Tecnico",
-            "Aula",
-            "Locale Tecnico",
-            "Deposito Libri",
-            "Accesso",
-            "Ufficio",
-            "Locale Tecnico",
-            "Studio",
-            "Locale Tecnico",
-            "Locale Supporto",
-            "Bagno",
-            "Accesso",
-            "Locale Supporto",
-            "Deposito",
-            "Biblioteca - Mediateca",
-            "Locale Tecnico"
-          ],
-          "f_id": "-10",
-          "floor_name": "Primo Interrato"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Informazioni",
-            "Aula Seminari - Magna - Lauree",
-            "Aula",
-            "Biblioteca - Mediateca",
-            "Accesso",
-            "Accesso",
-            "Ufficio",
-            "Locale Supporto",
-            "Studio",
-            "Bagno",
-            "Aula Informatica",
-            "Accesso",
-            "Accesso",
-            "Locale Supporto",
-            "Deposito"
-          ],
-          "f_id": "0",
-          "floor_name": "Piano Terra"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Aula Seminari - Magna - Lauree",
-            "Deposito Libri",
-            "Accesso",
-            "Studio",
-            "Bagno",
-            "Accesso"
-          ],
-          "f_id": "05",
-          "floor_name": "Mezzanino Piano Terra"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Aula Seminari - Magna - Lauree",
-            "Aula",
-            "Accesso",
-            "Accesso",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Locale Supporto",
-            "Deposito",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Vano Scala"
-          ],
-          "f_id": "15",
-          "floor_name": "Mezzanino/Rialzato Primo Piano"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Locale Supporto",
-            "Bagno",
-            "Accesso",
-            "Sala d'Attesa",
-            "Deposito",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Deposito Libri",
-            "Accesso",
-            "Locale Tecnico",
-            "Studio",
-            "Bagno",
-            "Locale Fotocopie",
-            "Accesso",
-            "Locale Supporto",
-            "Deposito"
-          ],
-          "f_id": "200",
-          "floor_name": "Mansarda / Sottotetto"
-        }
-      ],
-      "l_b_id": "5804"
-    },
-    {
       "address": "via Conservatorio 7, Milano, 20122",
+      "available_services": [
+        "Sala Studio",
+        "Spogliatoio",
+        "Locale Fotocopie",
+        "Aula Informatica",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Locale Non Utilizzato",
+        "Accesso",
+        "Sconosciuto",
+        "Locali Cooperative Librarie",
+        "Studio",
+        "Aula Seminari - Magna - Lauree",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Locale Ristoro/Mensa",
+        "Informazioni",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Biblioteca - Mediateca",
+        "Bagno",
+        "Sala d'Attesa",
+        "Ascensore",
+        "Sala Server/Apparati di rete"
+      ],
       "b_id": "11510",
       "building_name": "Conservatorio (Edificio 1)",
       "building_number": "1",
@@ -488,588 +76,114 @@
         9.202667,
         45.465887
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Intercapedine",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Locale Tecnico",
-            "Locale Tecnico",
-            "Sala Studio",
-            "Accesso",
-            "Bagno",
-            "Locali Cooperative Librarie",
-            "Locale Supporto",
-            "Spogliatoio",
-            "Bagno",
-            "Accesso",
-            "Deposito",
-            "Laboratorio di Ricerca",
-            "Locale Tecnico"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Locale Ristoro/Mensa",
-            "Aula Seminari - Magna - Lauree",
-            "Ascensore",
-            "Vano Scala",
-            "Intercapedine",
-            "Informazioni",
-            "Aula",
-            "Bagno",
-            "Sala Studio",
-            "Accesso",
-            "Ufficio",
-            "Bagno",
-            "Accesso",
-            "Locale Supporto",
-            "Biblioteca - Mediateca",
-            "Accesso",
-            "Bagno",
-            "Accesso",
-            "Sala d'Attesa",
-            "Deposito"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Intercapedine",
-            "Sala Studio",
-            "Bagno",
-            "Vano Scala",
-            "Ascensore",
-            "Locale Non Utilizzato",
-            "Ufficio",
-            "Accesso",
-            "Bagno",
-            "Locale Supporto",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Deposito"
-          ],
-          "f_id": "05",
-          "floor_name": "Mezzanino Piano Terra"
-        },
-        {
-          "available_services": [
-            "Sconosciuto",
-            "Intercapedine",
-            "Ascensore",
-            "Vano Scala",
-            "Sala Studio",
-            "Aula Seminari - Magna - Lauree",
-            "Aula",
-            "Bagno",
-            "Sala Server/Apparati di rete",
-            "Accesso",
-            "Accesso",
-            "Accesso",
-            "Ufficio",
-            "Bagno",
-            "Studio",
-            "Locale Supporto",
-            "Bagno",
-            "Accesso",
-            "Deposito"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Locale Tecnico",
-            "Ascensore",
-            "Intercapedine",
-            "Sala Studio",
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Locale Non Utilizzato",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Deposito"
-          ],
-          "f_id": "15",
-          "floor_name": "Mezzanino/Rialzato Primo Piano"
-        },
-        {
-          "available_services": [
-            "Sconosciuto",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Intercapedine",
-            "Aula Seminari - Magna - Lauree",
-            "Accesso",
-            "Accesso",
-            "Ufficio",
-            "Bagno",
-            "Studio",
-            "Bagno",
-            "Accesso"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        },
-        {
-          "available_services": [
-            "Intercapedine",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Aula Informatica",
-            "Locale Fotocopie",
-            "Accesso",
-            "Deposito",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "30",
-          "floor_name": "Terzo Piano"
-        }
-      ],
       "l_b_id": "5814"
     },
     {
-      "address": "via Passione, 15, Milano, 20122",
-      "b_id": "11520",
-      "building_name": "Passione (Edificio 2)",
-      "building_number": "2",
-      "coordinates": [
-        9.202328,
-        45.465199
+      "address": "Via Golgi, 19, Milano, 20133",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Camera Oscura",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Locale Fotocopie",
+        "Aula Informatica",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Accesso",
+        "Studio",
+        "Aula Seminari - Magna - Lauree",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Locale Ristoro/Mensa",
+        "Camera Termostatata",
+        "Informazioni",
+        "Docce",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Locale Travaso",
+        "Bagno",
+        "Ascensore",
+        "Sala Riunioni"
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Intercapedine",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Locale Tecnico",
-            "Deposito Libri",
-            "Accesso",
-            "Ufficio",
-            "Biblioteca - Mediateca",
-            "Spogliatoio",
-            "Bagno",
-            "Locale Pausa Personale",
-            "Accesso",
-            "Deposito",
-            "Locale Tecnico"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Intercapedine",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Sala Server/Apparati di rete",
-            "Accesso",
-            "Aula",
-            "Accesso",
-            "Ufficio",
-            "Bagno",
-            "Biblioteca - Mediateca",
-            "Bagno",
-            "Aula Informatica",
-            "Accesso",
-            "Deposito"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Sconosciuto",
-            "Intercapedine",
-            "Bagno",
-            "Ascensore",
-            "Vano Scala",
-            "Aula Seminari - Magna - Lauree",
-            "Accesso",
-            "Ufficio",
-            "Bagno",
-            "Studio",
-            "Bagno",
-            "Aula Informatica",
-            "Accesso"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Aula Seminari - Magna - Lauree",
-            "Accesso",
-            "Accesso",
-            "Ufficio",
-            "Bagno",
-            "Studio",
-            "Bagno",
-            "Locale Fotocopie",
-            "Accesso",
-            "Laboratorio di Ricerca"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Sala Server/Apparati di rete",
-            "Accesso",
-            "Accesso",
-            "Ufficio",
-            "Sottotetto",
-            "Studio",
-            "Spogliatoio",
-            "Bagno",
-            "Accesso"
-          ],
-          "f_id": "30",
-          "floor_name": "Terzo Piano"
-        }
-      ],
-      "l_b_id": "5815"
-    },
-    {
-      "address": "via Conservatorio, 7, Milano, 20122",
-      "b_id": "11530",
-      "building_name": "Conservatorio (Edificio 4)",
-      "building_number": "4",
-      "coordinates": [
-        9.202394,
-        45.465391
-      ],
-      "floors": [
-        {
-          "available_services": [
-            "Intercapedine",
-            "Accesso",
-            "Deposito Libri",
-            "Accesso",
-            "Locale Tecnico"
-          ],
-          "f_id": "-10",
-          "floor_name": "Primo Interrato"
-        },
-        {
-          "available_services": [
-            "Intercapedine",
-            "Sala Studio",
-            "Vano Scala",
-            "Accesso"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Intercapedine",
-            "Bagno",
-            "Vano Scala",
-            "Aula",
-            "Accesso",
-            "Bagno"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Intercapedine",
-            "Vano Scala"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        }
-      ],
-      "l_b_id": "5574"
-    },
-    {
-      "address": "via Conservatorio, 7, Milano, 20122",
-      "b_id": "11540",
-      "building_name": "Conservatorio (Edificio 3)",
-      "building_number": "3",
-      "coordinates": [
-        9.202038,
-        45.465454
-      ],
-      "floors": [
-        {
-          "available_services": [
-            "Locale Tecnico",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Bagno",
-            "Deposito"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Bagno",
-            "Bagno",
-            "Vano Scala"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Locale Tecnico",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Aula",
-            "Bagno",
-            "Ufficio",
-            "Bagno",
-            "Deposito"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Locale Tecnico",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Sala Server/Apparati di rete",
-            "Accesso",
-            "Ufficio",
-            "Bagno",
-            "Accesso",
-            "Locale Tecnico"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        }
-      ],
-      "l_b_id": "5520"
-    },
-    {
-      "address": "via Livorno, 1, Milano, 20122",
-      "b_id": "11550",
-      "building_name": "Livorno",
-      "building_number": "6",
-      "coordinates": [
-        9.203803,
-        45.465728
-      ],
-      "floors": [
-        {
-          "available_services": [
-            "Intercapedine",
-            "Locale Tecnico",
-            "Bagno",
-            "Sala Server/Apparati di rete",
-            "Vano Scala",
-            "Deposito Libri",
-            "Locale Tecnico",
-            "Bagno",
-            "Accesso",
-            "Deposito"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Vano Scala",
-            "Aula",
-            "Accesso",
-            "Accesso",
-            "Bagno",
-            "Studio",
-            "Bagno",
-            "Accesso"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Vano Scala",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Locale Tecnico"
-          ],
-          "f_id": "05",
-          "floor_name": "Mezzanino Piano Terra"
-        },
-        {
-          "available_services": [
-            "Sconosciuto",
-            "Bagno",
-            "Vano Scala",
-            "Aula Seminari - Magna - Lauree",
-            "Accesso",
-            "Studio",
-            "Biblioteca - Mediateca",
-            "Bagno",
-            "Accesso",
-            "Deposito"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso"
-          ],
-          "f_id": "100",
-          "floor_name": "Decimo Piano"
-        }
-      ],
-      "l_b_id": "5818"
-    },
-    {
-      "address": "Via Celoria, 2, Milano, 20133",
-      "b_id": "21010",
-      "building_name": "Agraria Edificio 1",
+      "b_id": "25010",
+      "building_name": "Golgi",
       "building_number": "1",
       "coordinates": [
-        9.227454,
-        45.476662
+        9.234208,
+        45.475377
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Intercapedine",
-            "Ascensore",
-            "Locale Tecnico",
-            "Vano Scala",
-            "Bagno",
-            "Sala Server/Apparati di rete",
-            "Aula",
-            "Locale Supporto",
-            "Sala Studio",
-            "Accesso",
-            "Locale Supporto",
-            "Bagno",
-            "Aula Informatica",
-            "Locale Pausa Personale",
-            "Accesso",
-            "Deposito",
-            "Laboratorio Didattico",
-            "Locale Tecnico"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Aula Seminari - Magna - Lauree",
-            "Informazioni",
-            "Vano Scala",
-            "Ascensore",
-            "Bagno",
-            "Appartamento di Servizio",
-            "Accesso",
-            "Ufficio",
-            "Locali Cooperative Librarie",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Deposito",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Sala Riunioni"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso"
-          ],
-          "f_id": "200",
-          "floor_name": "Mansarda / Sottotetto"
-        }
+      "l_b_id": "5560"
+    },
+    {
+      "address": "Piazza Indro Montanelli, 1, Sesto San Giovanni, 20099",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Sala Studio",
+        "Parcheggio Coperto/Garage",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Locale Fotocopie",
+        "Aula Informatica",
+        "Locale Centro Stampa",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Locale Non Utilizzato",
+        "Accesso",
+        "Studio",
+        "Aula Seminari - Magna - Lauree",
+        "Vano Scala",
+        "Deposito",
+        "Sala Regia Televisiva",
+        "Informazioni",
+        "Docce",
+        "Ufficio",
+        "Biblioteca - Mediateca",
+        "Locale Tecnico",
+        "Aula",
+        "Bagno",
+        "Ascensore",
+        "Sala Server/Apparati di rete",
+        "Sala Riunioni"
       ],
-      "l_b_id": "5701"
+      "b_id": "35510",
+      "building_name": "Sesto San Giovanni",
+      "building_number": "1",
+      "coordinates": [
+        9.232942,
+        45.521837
+      ],
+      "l_b_id": "5570"
     },
     {
       "address": "Via Celoria, 2, Milano, 20133",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Sala Studio",
+        "Camera Oscura",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Locale Non Utilizzato",
+        "Accesso",
+        "Sconosciuto",
+        "Studio",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Stabulario",
+        "Camera Termostatata",
+        "Informazioni",
+        "Docce",
+        "Ufficio",
+        "Biblioteca - Mediateca",
+        "Aula",
+        "Locale Tecnico",
+        "Bagno",
+        "Camera Fredda"
+      ],
       "b_id": "21030",
       "building_name": "Agraria Edificio 3",
       "building_number": "3",
@@ -1077,104 +191,31 @@
         9.227756,
         45.476098
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Laboratorio di Ricerca",
-            "Locale Tecnico",
-            "Accesso",
-            "Accesso",
-            "Camera Termostatata",
-            "Laboratorio di Ricerca",
-            "Intercapedine",
-            "Bagno",
-            "Vano Scala",
-            "Deposito",
-            "Locale Supporto",
-            "Stabulario",
-            "Locale Tecnico",
-            "Locale Supporto",
-            "Bagno",
-            "Deposito",
-            "Deposito",
-            "Locale Tecnico",
-            "Camera Fredda",
-            "Laboratorio di Ricerca",
-            "Studio",
-            "Camera Oscura"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Sconosciuto",
-            "Intercapedine",
-            "Bagno",
-            "Docce",
-            "Vano Scala",
-            "Locale Supporto",
-            "Aula",
-            "Informazioni",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Ufficio",
-            "Locale Non Utilizzato",
-            "Studio",
-            "Spogliatoio",
-            "Bagno",
-            "Camera Termostatata",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Laboratorio Didattico",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Vano Scala",
-            "Aula"
-          ],
-          "f_id": "05",
-          "floor_name": "Mezzanino Piano Terra"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Informazioni",
-            "Bagno",
-            "Vano Scala",
-            "Docce",
-            "Locale Supporto",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Ufficio",
-            "Studio",
-            "Locale Supporto",
-            "Bagno",
-            "Locale Pausa Personale",
-            "Deposito",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Accesso"
-          ],
-          "f_id": "15",
-          "floor_name": "Mezzanino/Rialzato Primo Piano"
-        }
-      ],
       "l_b_id": "5703"
     },
     {
       "address": "Via Celoria, 2, Milano, 20133",
+      "available_services": [
+        "Locale Non Utilizzato",
+        "Sala Riunioni",
+        "Bagno",
+        "Studio",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Deposito Libri",
+        "Ascensore",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Locale Supporto",
+        "Ufficio",
+        "Laboratorio di Ricerca",
+        "Aula",
+        "Locale Tecnico",
+        "Accesso",
+        "Camera Fredda",
+        "Biblioteca - Mediateca"
+      ],
       "b_id": "21040",
       "building_name": "Agraria Edificio 4",
       "building_number": "4",
@@ -1182,164 +223,29 @@
         9.227773,
         45.475697
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Laboratorio di Ricerca",
-            "Ascensore",
-            "Intercapedine",
-            "Vano Scala",
-            "Accesso",
-            "Locale Supporto",
-            "Locale Tecnico",
-            "Deposito",
-            "Deposito",
-            "Laboratorio di Ricerca",
-            "Camera Fredda",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Locale Tecnico",
-            "Studio",
-            "Deposito",
-            "Deposito",
-            "Locale Supporto",
-            "Laboratorio di Ricerca",
-            "Laboratorio di Ricerca",
-            "Locale Tecnico"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Deposito",
-            "Locale Tecnico",
-            "Aula",
-            "Locale Supporto",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Spogliatoio",
-            "Bagno",
-            "Laboratorio di Ricerca",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Biblioteca - Mediateca",
-            "Deposito"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Bagno",
-            "Accesso",
-            "Deposito"
-          ],
-          "f_id": "05",
-          "floor_name": "Mezzanino Piano Terra"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Locale Tecnico",
-            "Locale Supporto",
-            "Aula",
-            "Deposito",
-            "Deposito Libri",
-            "Accesso",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Locale Non Utilizzato",
-            "Bagno",
-            "Studio",
-            "Bagno",
-            "Locale Pausa Personale",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Sala Riunioni",
-            "Deposito"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        }
-      ],
       "l_b_id": "5704"
     },
     {
       "address": "Via Celoria, 2, Milano, 20133",
-      "b_id": "21050",
-      "building_name": "Agraria Edificio 5",
-      "building_number": "5",
-      "coordinates": [
-        9.227983,
-        45.475076
+      "available_services": [
+        "Camera Speciale",
+        "Bagno",
+        "Ambulatorio",
+        "Studio",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Docce",
+        "Cella/Magazzino Refrigerato",
+        "Stalla",
+        "Vano Scala",
+        "Deposito",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Aula",
+        "Locale Tecnico",
+        "Accesso",
+        "Sottotetto"
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Locale Tecnico",
-            "Locale Tecnico",
-            "Vano Scala",
-            "Accesso",
-            "Accesso",
-            "Deposito"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Laboratorio di Ricerca",
-            "Intercapedine",
-            "Bagno",
-            "Vano Scala",
-            "Locale Supporto",
-            "Aula",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Locale Supporto",
-            "Bagno",
-            "Locale Fotocopie",
-            "Accesso",
-            "Deposito",
-            "Laboratorio di Ricerca",
-            "Locale Tecnico"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Vano Scala",
-            "Docce",
-            "Locale Supporto",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Laboratorio di Ricerca",
-            "Studio",
-            "Bagno",
-            "Deposito",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        }
-      ],
-      "l_b_id": "5705"
-    },
-    {
-      "address": "Via Celoria, 2, Milano, 20133",
       "b_id": "21060",
       "building_name": "Agraria Edificio 6",
       "building_number": "6",
@@ -1347,53 +253,31 @@
         9.227536,
         45.474979
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Ambulatorio",
-            "Vano Scala"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Docce",
-            "Bagno",
-            "Vano Scala",
-            "Aula",
-            "Locale Supporto",
-            "Accesso",
-            "Locale Tecnico",
-            "Spogliatoio",
-            "Bagno",
-            "Camera Speciale",
-            "Cella/Magazzino Refrigerato",
-            "Stalla"
-          ],
-          "f_id": "0",
-          "floor_name": "Piano Terra"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Sottotetto",
-            "Laboratorio di Ricerca",
-            "Studio",
-            "Locale Supporto",
-            "Bagno",
-            "Locale Pausa Personale",
-            "Deposito",
-            "Accesso"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        }
-      ],
       "l_b_id": "5706"
     },
     {
       "address": "Via Colombo, 62, Milano, 20133",
+      "available_services": [
+        "Camera Fredda",
+        "Bagno",
+        "Camera Termostatata",
+        "Sala Studio",
+        "Studio",
+        "Spogliatoio",
+        "Informazioni",
+        "Deposito Libri",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Locale Supporto",
+        "Ufficio",
+        "Laboratorio di Ricerca",
+        "Aula",
+        "Locale Tecnico",
+        "Accesso",
+        "Locale Non Utilizzato",
+        "Biblioteca - Mediateca"
+      ],
       "b_id": "21070",
       "building_name": "Colombo C",
       "building_number": "7",
@@ -1401,277 +285,36 @@
         9.226931,
         45.475065
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Intercapedine",
-            "Locale Tecnico",
-            "Bagno",
-            "Vano Scala",
-            "Locale Supporto",
-            "Aula",
-            "Accesso",
-            "Locale Tecnico",
-            "Bagno",
-            "Camera Termostatata",
-            "Accesso",
-            "Deposito",
-            "Laboratorio di Ricerca",
-            "Locale Tecnico"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Informazioni",
-            "Bagno",
-            "Laboratorio di Ricerca",
-            "Vano Scala",
-            "Locale Supporto",
-            "Aula",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Ufficio",
-            "Bagno",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Laboratorio di Ricerca"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Locale Non Utilizzato",
-            "Deposito",
-            "Accesso",
-            "Vano Scala",
-            "Spogliatoio"
-          ],
-          "f_id": "05",
-          "floor_name": "Mezzanino Piano Terra"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Laboratorio di Ricerca",
-            "Vano Scala",
-            "Locale Supporto",
-            "Aula",
-            "Locale Supporto",
-            "Locale Non Utilizzato",
-            "Locale Tecnico",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Vano Scala",
-            "Laboratorio di Ricerca",
-            "Locale Supporto",
-            "Deposito Libri",
-            "Sala Studio",
-            "Camera Fredda",
-            "Locale Non Utilizzato",
-            "Laboratorio di Ricerca",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Deposito",
-            "Deposito"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        },
-        {
-          "available_services": [
-            "Vano Scala"
-          ],
-          "f_id": "30",
-          "floor_name": "Terzo Piano"
-        }
-      ],
       "l_b_id": "5707"
     },
     {
-      "address": "Via Celoria, 2, Milano, 20133",
-      "b_id": "21090",
-      "building_name": "Agraria Edificio 9",
-      "building_number": "9",
-      "coordinates": [
-        9.227216,
-        45.475708
-      ],
-      "floors": [
-        {
-          "available_services": [
-            "Intercapedine",
-            "Deposito",
-            "Biblioteca - Mediateca",
-            "Vano Scala",
-            "Locale Tecnico",
-            "Locale Supporto",
-            "Deposito",
-            "Bagno",
-            "Sala Riunioni",
-            "Deposito Libri",
-            "Sala Studio",
-            "Camera Fredda",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Ufficio",
-            "Bagno",
-            "Camera Termostatata",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Locale Supporto",
-            "Laboratorio di Ricerca"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Docce",
-            "Sala Server/Apparati di rete",
-            "Locale Supporto",
-            "Aula",
-            "Vano Scala",
-            "Camera Fredda",
-            "Informazioni",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Locale Supporto",
-            "Laboratorio di Ricerca",
-            "Deposito"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Locale Supporto",
-            "Accesso",
-            "Serra",
-            "Camera Fredda",
-            "Locale Non Utilizzato",
-            "Accesso",
-            "Sottotetto",
-            "Studio",
-            "Bagno",
-            "Locale Supporto",
-            "Accesso",
-            "Locale Supporto",
-            "Laboratorio Didattico",
-            "Laboratorio di Ricerca",
-            "Deposito"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        }
-      ],
-      "l_b_id": "5709"
-    },
-    {
-      "address": "Via Celoria, 2, Milano, 20133",
-      "b_id": "21100",
-      "building_name": "Agraria Edificio 10",
-      "building_number": "10",
-      "coordinates": [
-        9.227203,
-        45.476087
-      ],
-      "floors": [
-        {
-          "available_services": [
-            "Sconosciuto",
-            "Docce",
-            "Accesso",
-            "Locale Tecnico",
-            "Camera Termostatata",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Intercapedine",
-            "Bagno",
-            "Vano Scala",
-            "Locale Supporto",
-            "Deposito Libri",
-            "Locale Tecnico",
-            "Bagno",
-            "Sala Riunioni",
-            "Deposito",
-            "Laboratorio di Ricerca",
-            "Locale Tecnico",
-            "Camera Fredda",
-            "Locale Non Utilizzato",
-            "Laboratorio di Ricerca",
-            "Aula Informatica",
-            "Camera Oscura"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Docce",
-            "Vano Scala",
-            "Bagno",
-            "Aula",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Deposito",
-            "Biblioteca - Mediateca",
-            "Locale Supporto"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Vano Scala",
-            "Accesso",
-            "Informazioni",
-            "Ufficio",
-            "Accesso",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Biblioteca - Mediateca",
-            "Laboratorio Didattico"
-          ],
-          "f_id": "100",
-          "floor_name": "Decimo Piano"
-        }
-      ],
-      "l_b_id": "5710"
-    },
-    {
       "address": "Via Mangiagalli, 25, Milano, 20133",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Sala Studio",
+        "Camera Oscura",
+        "Spogliatoio",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Accesso",
+        "Studio",
+        "Intercapedine",
+        "Deposito",
+        "Vano Scala",
+        "Camera Termostatata",
+        "Informazioni",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Officina",
+        "Locale Travaso",
+        "Bagno",
+        "Sala d'Attesa",
+        "Ascensore",
+        "Camera Fredda",
+        "Sala Server/Apparati di rete",
+        "Sala Riunioni"
+      ],
       "b_id": "21500",
       "building_name": "Colombo M",
       "building_number": "1",
@@ -1679,329 +322,36 @@
         9.226917,
         45.474489
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Locale Tecnico",
-            "Intercapedine",
-            "Locale Tecnico",
-            "Vano Scala",
-            "Locale Tecnico",
-            "Ascensore",
-            "Locale Tecnico",
-            "Accesso",
-            "Locale Tecnico",
-            "Locale Tecnico",
-            "Locale Tecnico",
-            "Accesso",
-            "Locale Tecnico",
-            "Deposito",
-            "Locale Tecnico"
-          ],
-          "f_id": "-10",
-          "floor_name": "Primo Interrato"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Deposito",
-            "Locale Tecnico",
-            "Aula",
-            "Locale Tecnico",
-            "Sala Server/Apparati di rete",
-            "Sala Studio",
-            "Accesso",
-            "Bagno",
-            "Accesso",
-            "Locale Supporto",
-            "Bagno",
-            "Locale Travaso",
-            "Accesso",
-            "Laboratorio Didattico",
-            "Deposito",
-            "Locale Tecnico"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Ascensore",
-            "Bagno",
-            "Deposito",
-            "Vano Scala",
-            "Locale Supporto",
-            "Aula",
-            "Informazioni",
-            "Sala Studio",
-            "Accesso",
-            "Bagno",
-            "Ufficio",
-            "Accesso",
-            "Deposito",
-            "Locale Tecnico",
-            "Bagno",
-            "Accesso",
-            "Deposito",
-            "Laboratorio Didattico",
-            "Deposito",
-            "Locale Tecnico"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Intercapedine",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Sala Riunioni",
-            "Locale Supporto",
-            "Laboratorio di Ricerca",
-            "Sala d'Attesa",
-            "Camera Fredda",
-            "Accesso",
-            "Ufficio",
-            "Laboratorio di Ricerca",
-            "Locale Supporto",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Deposito",
-            "Laboratorio Didattico",
-            "Locale Tecnico"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Sala Riunioni",
-            "Sala d'Attesa",
-            "Ascensore",
-            "Vano Scala",
-            "Deposito",
-            "Locale Supporto",
-            "Bagno",
-            "Accesso",
-            "Ufficio",
-            "Bagno",
-            "Studio",
-            "Bagno",
-            "Laboratorio di Ricerca",
-            "Accesso",
-            "Deposito",
-            "Laboratorio di Ricerca",
-            "Locale Tecnico"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Laboratorio di Ricerca",
-            "Accesso",
-            "Spogliatoio",
-            "Camera Termostatata",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Bagno",
-            "Vano Scala",
-            "Deposito",
-            "Locale Supporto",
-            "Locale Tecnico",
-            "Bagno",
-            "Deposito",
-            "Locale Supporto",
-            "Locale Tecnico",
-            "Ufficio",
-            "Ascensore",
-            "Camera Fredda",
-            "Laboratorio di Ricerca",
-            "Laboratorio di Ricerca",
-            "Studio",
-            "Camera Oscura",
-            "Sala d'Attesa",
-            "Locale Tecnico"
-          ],
-          "f_id": "30",
-          "floor_name": "Terzo Piano"
-        },
-        {
-          "available_services": [
-            "Laboratorio di Ricerca",
-            "Accesso",
-            "Spogliatoio",
-            "Accesso",
-            "Camera Termostatata",
-            "Laboratorio di Ricerca",
-            "Bagno",
-            "Vano Scala",
-            "Deposito",
-            "Locale Supporto",
-            "Bagno",
-            "Locale Supporto",
-            "Bagno",
-            "Deposito",
-            "Locale Tecnico",
-            "Deposito",
-            "Ascensore",
-            "Camera Fredda",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Laboratorio di Ricerca",
-            "Studio",
-            "Officina",
-            "Locale Tecnico"
-          ],
-          "f_id": "40",
-          "floor_name": "Quarto Piano"
-        },
-        {
-          "available_services": [
-            "Locale Supporto",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Deposito",
-            "Accesso",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Deposito",
-            "Laboratorio di Ricerca",
-            "Sala Riunioni",
-            "Deposito"
-          ],
-          "f_id": "50",
-          "floor_name": "Quinto Piano"
-        }
-      ],
       "l_b_id": "5719"
     },
     {
       "address": "Via Celoria, 10, Milano, 20133",
-      "b_id": "22010",
-      "building_name": "Veterinaria Edificio V1",
-      "building_number": "1",
-      "coordinates": [
-        9.229047,
-        45.476665
+      "available_services": [
+        "Laboratorio Didattico",
+        "Sala Studio",
+        "Camera Oscura",
+        "Locale Pausa Personale",
+        "Spogliatoio",
+        "Cella/Magazzino Refrigerato",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Accesso",
+        "Studio",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Sala Operatoria",
+        "Docce",
+        "Deposito Libri",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Biblioteca - Mediateca",
+        "Locale Preparazioni Cliniche",
+        "Bagno",
+        "Camera Fredda",
+        "Sala Server/Apparati di rete"
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Docce",
-            "Laboratorio di Ricerca",
-            "Locale Tecnico",
-            "Accesso",
-            "Locale Tecnico",
-            "Locale Tecnico",
-            "Accesso",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Cella/Magazzino Refrigerato",
-            "Intercapedine",
-            "Bagno",
-            "Vano Scala",
-            "Locale Supporto",
-            "Deposito Libri",
-            "Stabulario",
-            "Sala Studio",
-            "Locale Tecnico",
-            "Bagno",
-            "Deposito",
-            "Locale Supporto",
-            "Locale Pausa Personale",
-            "Ascensore",
-            "Locale Tecnico",
-            "Camera Fredda",
-            "Laboratorio di Ricerca",
-            "Accesso",
-            "Studio",
-            "Aula Informatica",
-            "Locale Tecnico"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Ascensore",
-            "Docce",
-            "Bagno",
-            "Vano Scala",
-            "Locale Supporto",
-            "Aula",
-            "Informazioni",
-            "Appartamento di Servizio",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Aula Informatica",
-            "Locale Pausa Personale",
-            "Accesso",
-            "Locale Supporto",
-            "Laboratorio di Ricerca",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Aula Seminari - Magna - Lauree",
-            "Bagno",
-            "Vano Scala",
-            "Ascensore",
-            "Locale Supporto",
-            "Laboratorio di Ricerca",
-            "Camera Fredda",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso",
-            "Locale Supporto",
-            "Camera Termostatata",
-            "Sala Riunioni",
-            "Deposito"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Ascensore",
-            "Bagno",
-            "Vano Scala",
-            "Informazioni",
-            "Camera Fredda",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Bagno",
-            "Accesso"
-          ],
-          "f_id": "20",
-          "floor_name": "Secondo Piano"
-        }
-      ],
-      "l_b_id": "5726"
-    },
-    {
-      "address": "Via Celoria, 10, Milano, 20133",
       "b_id": "22040",
       "building_name": "Veterinaria Edificio V4",
       "building_number": "4",
@@ -2009,83 +359,383 @@
         9.229526,
         45.475956
       ],
-      "floors": [
-        {
-          "available_services": [
-            "Intercapedine",
-            "Locale Tecnico",
-            "Bagno",
-            "Vano Scala",
-            "Laboratorio di Ricerca",
-            "Locale Supporto",
-            "Locale Tecnico",
-            "Locale Tecnico",
-            "Camera Fredda",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Accesso",
-            "Locale Tecnico",
-            "Studio",
-            "Bagno",
-            "Camera Oscura",
-            "Accesso",
-            "Locale Pausa Personale",
-            "Laboratorio di Ricerca",
-            "Laboratorio Didattico"
-          ],
-          "f_id": "-05",
-          "floor_name": "Seminterrato"
-        },
-        {
-          "available_services": [
-            "Sala Studio",
-            "Bagno",
-            "Laboratorio di Ricerca",
-            "Sala Server/Apparati di rete",
-            "Vano Scala",
-            "Aula",
-            "Deposito Libri",
-            "Camera Fredda",
-            "Accesso",
-            "Ufficio",
-            "Studio",
-            "Locale Supporto",
-            "Spogliatoio",
-            "Bagno",
-            "Sala Operatoria",
-            "Locale Preparazioni Cliniche",
-            "Accesso",
-            "Locale Supporto",
-            "Deposito",
-            "Cella/Magazzino Refrigerato"
-          ],
-          "f_id": "03",
-          "floor_name": "Rialzato Piano Terra"
-        },
-        {
-          "available_services": [
-            "Bagno",
-            "Laboratorio di Ricerca",
-            "Docce",
-            "Locale Supporto",
-            "Aula",
-            "Vano Scala",
-            "Deposito Libri",
-            "Accesso",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Studio",
-            "Spogliatoio",
-            "Bagno",
-            "Accesso",
-            "Laboratorio di Ricerca",
-            "Biblioteca - Mediateca"
-          ],
-          "f_id": "10",
-          "floor_name": "Primo Piano"
-        }
-      ],
       "l_b_id": "5729"
+    },
+    {
+      "address": "Via Celoria, 10, Milano, 20133",
+      "available_services": [
+        "Locale Preparazioni Cliniche",
+        "Bagno",
+        "Sala d'Attesa",
+        "Ambulatorio",
+        "Studio",
+        "Spogliatoio",
+        "Informazioni",
+        "Sala Terapia",
+        "Sala Operatoria",
+        "Cella/Magazzino Refrigerato",
+        "Appartamento di Servizio",
+        "Deposito Libri",
+        "Vano Scala",
+        "Deposito",
+        "Ufficio",
+        "Locale Supporto",
+        "Biblioteca - Mediateca",
+        "Aula",
+        "Accesso"
+      ],
+      "b_id": "22050",
+      "building_name": "Veterinaria Edificio V8",
+      "building_number": "8",
+      "coordinates": [
+        9.229631,
+        45.475469
+      ],
+      "l_b_id": "5731"
+    },
+    {
+      "address": "Via Celoria, 10, Milano, 20133",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Sala Studio",
+        "Camera Oscura",
+        "Spogliatoio",
+        "Spazio Espositivo/Museale",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Accesso",
+        "Sconosciuto",
+        "Studio",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Sala Regia Televisiva",
+        "Informazioni",
+        "Docce",
+        "Ufficio",
+        "Biblioteca - Mediateca",
+        "Aula",
+        "Locale Tecnico",
+        "Bagno",
+        "Camera Fredda"
+      ],
+      "b_id": "22100",
+      "building_name": "Veterinaria Edificio V18",
+      "building_number": "18",
+      "coordinates": [
+        9.228619,
+        45.475971
+      ],
+      "l_b_id": "5734"
+    },
+    {
+      "address": "Via Celoria, 10, Milano, 20133",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Biblioteca - Mediateca",
+        "Sottotetto",
+        "Bagno",
+        "Studio",
+        "Camera Oscura",
+        "Spogliatoio",
+        "Cella/Magazzino Refrigerato",
+        "Docce",
+        "Intercapedine",
+        "Vano Scala",
+        "Ufficio",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Aula",
+        "Locale Tecnico",
+        "Stabulario",
+        "Camera Fredda",
+        "Accesso"
+      ],
+      "b_id": "22110",
+      "building_name": "Veterinaria Edificio V20",
+      "building_number": "20",
+      "coordinates": [
+        9.228633,
+        45.476342
+      ],
+      "l_b_id": "5735"
+    },
+    {
+      "address": "Via Pascal, 36, Milano, 20133",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Sala Studio",
+        "Camera Oscura",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Cella/Magazzino Refrigerato",
+        "Aula Informatica",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Accesso",
+        "Studio",
+        "Intercapedine",
+        "Deposito",
+        "Vano Scala",
+        "Stabulario",
+        "Camera Termostatata",
+        "Informazioni",
+        "Docce",
+        "Sala Operatoria",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Biblioteca - Mediateca",
+        "Bagno",
+        "Ascensore",
+        "Camera Fredda"
+      ],
+      "b_id": "32510",
+      "building_name": "Pascal",
+      "building_number": "1",
+      "coordinates": [
+        9.234972,
+        45.478453
+      ],
+      "l_b_id": "5778"
+    },
+    {
+      "address": "Via Mangiagalli, 37, Milano, 20133",
+      "available_services": [
+        "Sala Studio",
+        "Ambulatorio",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Ambulatorio Radiografico",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Locale Non Utilizzato",
+        "Accesso",
+        "Sconosciuto",
+        "Studio",
+        "Aula Seminari - Magna - Lauree",
+        "Vano Scala",
+        "Deposito",
+        "Informazioni",
+        "Docce",
+        "Ufficio",
+        "Biblioteca - Mediateca",
+        "Aula",
+        "Locale Tecnico",
+        "Sala Autoptica",
+        "Bagno",
+        "Sala d'Attesa",
+        "Appartamento di Servizio",
+        "Ascensore",
+        "Sala Riunioni"
+      ],
+      "b_id": "27010",
+      "building_name": "Mangiagalli 37",
+      "building_number": "1",
+      "coordinates": [
+        9.229398,
+        45.474615
+      ],
+      "l_b_id": "5781"
+    },
+    {
+      "address": "Via Mangiagalli, 31, Milano, 20133",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Sala Studio",
+        "Camera Oscura",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Cella/Magazzino Refrigerato",
+        "Aula Informatica",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Accesso",
+        "Sconosciuto",
+        "Studio",
+        "Vano Scala",
+        "Deposito",
+        "Locale Ristoro/Mensa",
+        "Informazioni",
+        "Deposito Libri",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Biblioteca - Mediateca",
+        "Locale Preparazioni Cliniche",
+        "Bagno",
+        "Ascensore",
+        "Camera Fredda",
+        "Sala Riunioni"
+      ],
+      "b_id": "28010",
+      "building_name": "Mangiagalli 31",
+      "building_number": "1",
+      "coordinates": [
+        9.228289,
+        45.474471
+      ],
+      "l_b_id": "5782"
+    },
+    {
+      "address": "Via Saldini, 50, Milano, 20133",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Sottotetto",
+        "Sala Studio",
+        "Ambulatorio",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Cella/Magazzino Refrigerato",
+        "Locale Fotocopie",
+        "Aula Informatica",
+        "Ambulatorio Radiografico",
+        "Spazio Espositivo/Museale",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Accesso",
+        "Studio",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Informazioni",
+        "Docce",
+        "Deposito Libri",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Biblioteca - Mediateca",
+        "Bagno",
+        "Sala d'Attesa",
+        "Ascensore",
+        "Camera Fredda",
+        "Sala Server/Apparati di rete",
+        "Sala Riunioni"
+      ],
+      "b_id": "31110",
+      "building_name": "Matematica",
+      "building_number": "1",
+      "coordinates": [
+        9.227552,
+        45.473898
+      ],
+      "l_b_id": "5784"
+    },
+    {
+      "address": "Via Mangiagalli, 32, Milano, 20133",
+      "available_services": [
+        "Laboratorio Didattico",
+        "Sala Studio",
+        "Ambulatorio",
+        "Camera Oscura",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Locale Fotocopie",
+        "Cella/Magazzino Refrigerato",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Accesso",
+        "Studio",
+        "Aula Seminari - Magna - Lauree",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Stabulario",
+        "Informazioni",
+        "Docce",
+        "Deposito Libri",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Biblioteca - Mediateca",
+        "Officina",
+        "Bagno",
+        "Sala d'Attesa",
+        "Appartamento di Servizio",
+        "Ascensore",
+        "Camera Fredda",
+        "Sottotetto",
+        "Sala Riunioni"
+      ],
+      "b_id": "31120",
+      "building_name": "Mangiagalli 32",
+      "building_number": "2",
+      "coordinates": [
+        9.22881,
+        45.473753
+      ],
+      "l_b_id": "5785"
+    },
+    {
+      "address": "Via Vanvitelli, 32, Milano, 20129",
+      "available_services": [
+        "Spogliatoio",
+        "Cella/Magazzino Refrigerato",
+        "Locale Fotocopie",
+        "Locale Supporto",
+        "Laboratorio di Ricerca",
+        "Locale Non Utilizzato",
+        "Accesso",
+        "Studio",
+        "Aula Seminari - Magna - Lauree",
+        "Vano Scala",
+        "Deposito",
+        "Locale Ristoro/Mensa",
+        "Stabulario",
+        "Camera Termostatata",
+        "Deposito Libri",
+        "Ufficio",
+        "Aula",
+        "Locale Tecnico",
+        "Sala Autoptica",
+        "Bagno",
+        "Sala d'Attesa",
+        "Sottotetto",
+        "Sala Riunioni"
+      ],
+      "b_id": "32110",
+      "building_name": "Vanvitelli",
+      "building_number": "1",
+      "coordinates": [
+        9.221711,
+        45.47262
+      ],
+      "l_b_id": "5792"
+    },
+    {
+      "address": "via Passione, 15, Milano, 20122",
+      "available_services": [
+        "Sala Studio",
+        "Spogliatoio",
+        "Locale Pausa Personale",
+        "Locale Fotocopie",
+        "Aula Informatica",
+        "Laboratorio di Ricerca",
+        "Accesso",
+        "Sconosciuto",
+        "Studio",
+        "Aula Seminari - Magna - Lauree",
+        "Intercapedine",
+        "Vano Scala",
+        "Deposito",
+        "Deposito Libri",
+        "Ufficio",
+        "Biblioteca - Mediateca",
+        "Locale Tecnico",
+        "Aula",
+        "Bagno",
+        "Ascensore",
+        "Sottotetto",
+        "Sala Server/Apparati di rete"
+      ],
+      "b_id": "11520",
+      "building_name": "Passione (Edificio 2)",
+      "building_number": "2",
+      "coordinates": [
+        9.202328,
+        45.465199
+      ],
+      "l_b_id": "5815"
     }
   ]
 }
