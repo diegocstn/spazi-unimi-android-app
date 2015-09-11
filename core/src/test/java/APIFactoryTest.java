@@ -71,4 +71,10 @@ public class APIFactoryTest {
         String jsonBuilding = TestHelpers.readFixtureDataFromFile("buildings_20.json");
         Assert.assertEquals(20,apiFactory.makeBuildingsFromJSON(jsonBuilding).size());
     }
+
+    @Test
+    public void TestFactoryAvailableServices(){
+        String jsonBuilding = TestHelpers.readFixtureDataFromFile("services.json");
+        Assert.assertEquals(55,apiFactory.makeAvailableServicesFromJSON(jsonBuilding).size());
+    }
 }

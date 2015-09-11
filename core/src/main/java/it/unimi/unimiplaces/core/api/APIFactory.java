@@ -45,4 +45,19 @@ public class APIFactory {
         }
         return res;
     }
+
+    private static class BuildingsAvailableServices{
+        List <String> services;
+    }
+
+    public List<String> makeAvailableServicesFromJSON(String json){
+        List<String> services = null;
+        JsonAdapter<BuildingsAvailableServices> jsonAdapter = moshiBuilder.adapter(BuildingsAvailableServices.class);
+        try{
+            services = (jsonAdapter.fromJson(json)).services;
+        }catch (IOException e){
+            System.out.println(e);
+        }
+        return services;
+    }
 }
