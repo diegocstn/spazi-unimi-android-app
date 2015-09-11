@@ -33,6 +33,10 @@ public class APIFactory {
         return building;
     }
 
+    private static class BuildingsWrapper {
+        public List<Building> buildings;
+    }
+
     public List<BaseEntity> makeBuildingsFromJSON(String json){
         List<? extends BaseEntity> buildings;
         List<BaseEntity> res = null;
