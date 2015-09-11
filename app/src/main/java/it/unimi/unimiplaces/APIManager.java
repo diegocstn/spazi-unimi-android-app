@@ -32,10 +32,12 @@ public class APIManager {
         this.progressDialog.setMessage(this.context.getResources().getString(R.string.progress_loading));
     }
 
-    private void executeAPIRequest(String endpoint){
+    private void executeAPIRequest(String endpoint,Boolean showProgress){
         // show progress dialog and alert the delegate object
         // that the async task is processing in background
-        this.progressDialog.show();
+        if( showProgress ) {
+            this.progressDialog.show();
+        }
         this.delegate.apiRequestStart();
 
         APIAsyncTask apiAsyncTask = new APIAsyncTask();
@@ -57,7 +59,13 @@ public class APIManager {
     public void buildings(APIDelegateInterface delegate){
         this.delegate           = delegate;
         this.currentAPIRequest  = APIRequestIdentifier.BUILDINGS;
-        this.executeAPIRequest("buildings/");
+        this.executeAPIRequest("buildings/",true);
+    }
+
+    public void availableServices(APIDelegateInterface delegate){
+        this.delegate           = delegate;
+        this.currentAPIRequest  = APIRequestIdentifier.AVAILABLE_SERVICES;
+        this.executeAPIRequest("available-services/",false);
     }
 
 
