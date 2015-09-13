@@ -22,6 +22,7 @@ import it.unimi.unimiplaces.core.model.Building;
 public class BuildingsListFragment extends ListFragment implements PresenterInterface {
 
     private List<BaseEntity> model;
+    private BuildingsListAdapter buildingsListAdapter;
 
     public static BuildingsListFragment newInstance() {
         BuildingsListFragment fragment = new BuildingsListFragment();
@@ -39,7 +40,15 @@ public class BuildingsListFragment extends ListFragment implements PresenterInte
     @Override
     public void setModel(Activity activity, List<BaseEntity> model){
         this.model = model;
-        setListAdapter(new BuildingsListAdapter(activity, this.model));
+        if( this.buildingsListAdapter == null ){
+            this.buildingsListAdapter = new BuildingsListAdapter(activity, model);
+            setListAdapter(this.buildingsListAdapter);
+        }else{
+            this.buildingsListAdapter.clear();
+            this.buildingsListAdapter.addAll(model);
+            this.buildingsListAdapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override

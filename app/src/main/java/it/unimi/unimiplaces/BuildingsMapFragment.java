@@ -127,7 +127,17 @@ public class BuildingsMapFragment extends Fragment implements PresenterInterface
     }
 
     private void placeBuildingsMarker(){
-        markers = new ArrayList<>();
+
+        /* remove all marker if needed */
+        if( markers != null ){
+            for (Marker marker : markers){
+                marker.remove();
+            }
+            markers.clear();
+        }else{
+            markers = new ArrayList<>();
+        }
+
         for (BaseEntity entity : this.model) {
             Building building = (Building) entity;
             markers.add(map.addMarker(markerOptionsForBuilding(building)));

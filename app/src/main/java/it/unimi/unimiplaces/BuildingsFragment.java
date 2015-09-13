@@ -173,11 +173,6 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
         }
 
         fragmentTransaction.commit();
-
-        /* set model for the current mode */
-        if( this.model != null ){
-            currentModeView.setModel(getActivity(), this.model);
-        }
     }
 
     private void startAvailableServicesRequest(){
@@ -215,7 +210,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
     }
 
     private void filterBuildingsByService(int index){
-        
+
     }
 
 
