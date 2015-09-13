@@ -5,4 +5,5 @@
     <string name="progress_loading">Loading</string>
     <string name="buildings_view_mode_map">Map</string>
     <string name="buildings_view_mode_list">List</string>
+    <string name="filter_by">Filter by</string>
 </resources>

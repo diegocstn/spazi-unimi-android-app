@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
+import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
 import it.unimi.unimiplaces.core.api.APIFactory;
 import it.unimi.unimiplaces.core.api.APIRequest;
 import it.unimi.unimiplaces.core.model.BaseEntity;
@@ -23,8 +24,6 @@ public class APIManager {
     private ProgressDialog progressDialog;
     private APIDelegateInterface delegate;
 
-    private APIRequestIdentifier currentAPIRequest;
-
     public APIManager(Context context){
         this.apiFactory     = new APIFactory();
         this.context        = context;
@@ -32,7 +31,7 @@ public class APIManager {
         this.progressDialog.setMessage(this.context.getResources().getString(R.string.progress_loading));
     }
 
-    private void executeAPIRequest(String endpoint,Boolean showProgress){
+    private void executeAPIRequest(String endpoint,APIRequest.APIRequestIdentifier identifier,boolean showProgress){
         // show progress dialog and alert the delegate object
         // that the async task is processing in background
         if( showProgress ) {
@@ -41,52 +40,50 @@ public class APIManager {
         this.delegate.apiRequestStart();
 
         APIAsyncTask apiAsyncTask = new APIAsyncTask();
-        apiAsyncTask.execute(new APIRequest(APIBaseURL + endpoint));
+        apiAsyncTask.execute(new APIRequest(APIBaseURL + endpoint,identifier));
     }
 
-    private void requestExecuted(String result){
+    private void requestExecuted(String result,APIRequest.APIRequestIdentifier requestIdentifier){
         List<BaseEntity> entities = null;
 
-        switch ( this.currentAPIRequest ){
+        switch ( requestIdentifier ){
             case BUILDINGS:
                 entities = this.apiFactory.makeBuildingsFromJSON(result);
+                this.delegate.apiRequestEnd(entities);
+                this.progressDialog.hide();
+                break;
+            case AVAILABLE_SERVICES:
+                APIDelegateInterfaceExtended extendedDelegate = (APIDelegateInterfaceExtended) this.delegate;
+                extendedDelegate.apiServiceAvailableRequestEnd(this.apiFactory.makeAvailableServicesFromJSON(result));
+                break;
         }
-
-        this.delegate.apiRequestEnd(entities);
-        this.progressDialog.hide();
     }
 
     public void buildings(APIDelegateInterface delegate){
         this.delegate           = delegate;
-        this.currentAPIRequest  = APIRequestIdentifier.BUILDINGS;
-        this.executeAPIRequest("buildings/",true);
+        this.executeAPIRequest("buildings/", APIRequest.APIRequestIdentifier.BUILDINGS,true);
     }
 
-    public void availableServices(APIDelegateInterface delegate){
+    public void availableServices(APIDelegateInterfaceExtended delegate,String lang){
         this.delegate           = delegate;
-        this.currentAPIRequest  = APIRequestIdentifier.AVAILABLE_SERVICES;
-        this.executeAPIRequest("available-services/",false);
-    }
-
-
-    private enum APIRequestIdentifier{
-        BUILDINGS,
-        AVAILABLE_SERVICES
+        this.executeAPIRequest("available-services/"+lang+"/", APIRequest.APIRequestIdentifier.AVAILABLE_SERVICES,false);
     }
 
 
     private class APIAsyncTask extends AsyncTask<it.unimi.unimiplaces.core.api.APIRequest,Void,String>{
 
+        APIRequest request;
+
         @Override
         protected String doInBackground(APIRequest... requests){
-            APIRequest request = requests[0];
+            request = requests[0];
             request.exec();
             return request.getResponse();
         }
 
         @Override
         protected void onPostExecute(String s) {
-            requestExecuted(s);
+            requestExecuted(s,request.requestType);
         }
 
     }

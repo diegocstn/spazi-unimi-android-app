@@ -7,24 +7,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Spinner;
 import android.widget.ToggleButton;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-import it.unimi.unimiplaces.core.api.APIDelegateInterface;
+import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
+import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 
-public class BuildingsFragment extends Fragment implements APIDelegateInterface {
+public class BuildingsFragment extends Fragment implements APIDelegateInterfaceExtended {
 
     private List<BaseEntity> model;
+    private List<BaseEntity> availableServices;
     private BuildingsListFragment buildingsListFragment;
     private BuildingsMapFragment buildingsMapFragment;
     private ToggleButton buildingsModeView;
+    private Button filterButton;
+    private Spinner filterSpinner;
     private APIManager apiManager;
     private final BuildingsModeView defaultBuildingModeView = BuildingsModeView.BUILDINGS_MODE_VIEW_LIST;
     private PresenterInterface currentModeView;
+
 
     private enum BuildingsModeView{
         BUILDINGS_MODE_VIEW_LIST,
@@ -32,6 +43,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
     }
 
     final static String MODEL_KEY = "model";
+    final static String AVAILABLE_SERVICE_KEY = "services";
 
     public BuildingsFragment() {
         // Required empty public constructor
@@ -70,7 +82,8 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(MODEL_KEY,(Serializable)this.model);
+        outState.putSerializable(MODEL_KEY, (Serializable) this.model);
+        outState.putSerializable(AVAILABLE_SERVICE_KEY,(Serializable)this.availableServices);
         super.onSaveInstanceState(outState);
     }
 
@@ -78,6 +91,9 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
 
         buildingsMapFragment    = new BuildingsMapFragment();
         buildingsListFragment   = new BuildingsListFragment();
+
+        filterButton    = (Button) view.findViewById(R.id.buildings_filter);
+        filterSpinner   = (Spinner) view.findViewById(R.id.buildings_filter_spinner);
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.buildings_container,buildingsMapFragment);
@@ -93,25 +109,51 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     changeViewMode(BuildingsModeView.BUILDINGS_MODE_VIEW_MAP);
-                }else{
+                } else {
                     changeViewMode(BuildingsModeView.BUILDINGS_MODE_VIEW_LIST);
 
                 }
             }
         });
 
+        /* initialize filter button and spinner */
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( filterSpinner.getVisibility()==View.GONE ){
+                    filterSpinner.performClick();
+                }else{
+                    filterSpinner.setVisibility(View.GONE);
+                }
+            }
+        });
+
         if( savedInstanceState != null ) {
-            this.model = (List) savedInstanceState.getSerializable(MODEL_KEY);
+            this.model              = (List) savedInstanceState.getSerializable(MODEL_KEY);
+            this.availableServices  = (List) savedInstanceState.getSerializable(AVAILABLE_SERVICE_KEY);
+
+            /* init model */
             if (this.model == null) {
                 apiManager.buildings(this);
             }else{
                 buildingsListFragment.setModel(getActivity(), this.model);
                 buildingsMapFragment.setModel(getActivity(),this.model);
             }
+
+            /* init available services */
+            if( this.availableServices == null ){
+                this.startAvailableServicesRequest();
+            }else{
+                this.initAvailableServices();
+            }
+
+
         }else{
             apiManager.buildings(this);
+            this.startAvailableServicesRequest();
         }
     }
+
 
     private void changeViewMode(BuildingsModeView mode){
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -134,8 +176,46 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
 
         /* set model for the current mode */
         if( this.model != null ){
-            currentModeView.setModel(getActivity(),this.model);
+            currentModeView.setModel(getActivity(), this.model);
         }
+    }
+
+    private void startAvailableServicesRequest(){
+        String lang = Locale.getDefault().getLanguage();
+        this.apiManager.availableServices(this, lang);
+    }
+
+    private void initAvailableServices(){
+        List <String> servicesLabel = new ArrayList<>();
+
+        servicesLabel.add("All");
+
+        for (BaseEntity service : this.availableServices){
+            servicesLabel.add( ((AvailableService)service).key );
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getActivity(),
+                R.layout.support_simple_spinner_dropdown_item,
+                servicesLabel);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        this.filterSpinner.setAdapter(adapter);
+
+        this.filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                filterSpinner.setPrompt("");
+                filterBuildingsByService(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                filterSpinner.setPrompt("");
+            }
+        });
+    }
+
+    private void filterBuildingsByService(int index){
+        
     }
 
 
@@ -151,5 +231,12 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterface 
         buildingsListFragment.setModel(getActivity(),this.model);
         buildingsMapFragment.setModel(getActivity(),this.model);
     }
+
+    @Override
+    public void apiServiceAvailableRequestEnd(List<BaseEntity> results){
+        this.availableServices = results;
+        this.initAvailableServices();
+    }
+
 
 }
