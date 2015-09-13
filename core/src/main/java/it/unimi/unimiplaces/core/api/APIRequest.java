@@ -10,13 +10,22 @@ import java.net.URL;
 /**
  * APIRequest
  */
+
 public class APIRequest {
+
+    public enum APIRequestIdentifier{
+        BUILDINGS,
+        AVAILABLE_SERVICES
+    }
+
     private URL url;
     private String response;
+    public APIRequestIdentifier requestType;
 
-    public APIRequest(String url){
+    public APIRequest(String url,APIRequestIdentifier identifier){
 
-        this.response = null;
+        this.response       = null;
+        this.requestType    = identifier;
         try {
             this.url = new URL(url);
         }catch (MalformedURLException e){

@@ -14,7 +14,7 @@ public class APIRequestMakerTest extends TestCase {
 
     @Test
     public void testNotFoundRequest(){
-        APIRequest requestMaker = new APIRequest("http://istotallyanawesome404.com");
+        APIRequest requestMaker = new APIRequest("http://istotallyanawesome404.com", APIRequest.APIRequestIdentifier.AVAILABLE_SERVICES);
         String response = requestMaker.getResponse();
         assertTrue(requestMaker.is404());
         assertNull(response);
@@ -22,7 +22,7 @@ public class APIRequestMakerTest extends TestCase {
 
     @Test
     public void testRequest(){
-        APIRequest requestMaker = new APIRequest("http://google.com");
+        APIRequest requestMaker = new APIRequest("http://google.com", APIRequest.APIRequestIdentifier.BUILDINGS);
         String response = requestMaker.getResponse();
         assertFalse(requestMaker.is404());
         assertNotNull(response);
