@@ -5,6 +5,8 @@ import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
 import java.util.List;
+
+import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 
@@ -51,17 +53,17 @@ public class APIFactory {
     }
 
     private static class BuildingsAvailableServices{
-        List <String> services;
+        List <AvailableService> services;
     }
 
-    public List<String> makeAvailableServicesFromJSON(String json){
-        List<String> services = null;
+    public List<BaseEntity> makeAvailableServicesFromJSON(String json){
+        List<? extends BaseEntity> services = null;
         JsonAdapter<BuildingsAvailableServices> jsonAdapter = moshiBuilder.adapter(BuildingsAvailableServices.class);
         try{
             services = (jsonAdapter.fromJson(json)).services;
         }catch (IOException e){
             System.out.println(e);
         }
-        return services;
+        return (List<BaseEntity>)services;
     }
 }

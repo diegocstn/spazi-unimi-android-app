@@ -1,60 +1,239 @@
 {
   "services":
   [
-    "Sala Terapia",
-    "Ascensore",
-    "Sala Server/Apparati di rete",
-    "Camera Oscura",
-    "Intercapedine",
-    "Ambulatorio TAC",
-    "Sala Autoptica",
-    "Informazioni",
-    "Camera Fredda",
-    "Biblioteca - Mediateca",
-    "Appartamento di Servizio",
-    "Locale Pausa Personale",
-    "Locale Centro Stampa",
-    "Locale Preparazioni Cliniche",
-    "Accesso",
-    "Camera Termostatata",
-    "Sala Studio",
-    "Sottotetto",
-    "Locale Tecnico",
-    "Laboratorio Didattico",
-    "Deposito",
-    "Locale Travaso",
-    "Locali Cooperative Librarie",
-    "Aula Informatica",
-    "Foresteria",
-    "Laboratorio di Ricerca",
-    "Stalla",
-    "Locale Fotocopie",
-    "Sala Regia Televisiva",
-    "Sala Riunioni",
-    "Deposito Libri",
-    "Locale Non Utilizzato",
-    "Parcheggio Coperto/Garage",
-    "Docce",
-    "Ufficio",
-    "Vano Scala",
-    "Accettazione Animali",
-    "Bagno",
-    "Ambulatorio",
-    "Spogliatoio",
-    "Locale Supporto",
-    "Sala Operatoria",
-    "Sconosciuto",
-    "Spazio Espositivo/Museale",
-    "Studio",
-    "Camera Speciale",
-    "Ambulatorio Radiografico",
-    "Cella/Magazzino Refrigerato",
-    "Aula",
-    "Serra",
-    "Officina",
-    "Aula Seminari - Magna - Lauree",
-    "Sala d'Attesa",
-    "Stabulario",
-    "Locale Ristoro/Mensa"
+    {
+      "key":
+      "Aula Seminari - Magna - Lauree",
+      "label":
+      "Aula Seminari - Magna - Lauree"
+    },
+    {
+      "key":
+      "Biblioteca - Mediateca",
+      "label":
+      "Biblioteca - Mediateca"
+    },
+    {
+      "key":
+      "Deposito Libri",
+      "label":
+      "Deposito Libri"
+    },
+    {
+      "key":
+      "Informazioni",
+      "label":
+      "Informazioni"
+    },
+    {
+      "key":
+      "Sala Studio",
+      "label":
+      "Sala Studio"
+    },
+    {
+      "key":
+      "Laboratorio Didattico",
+      "label":
+      "Laboratorio Didattico"
+    },
+    {
+      "key":
+      "Aula",
+      "label":
+      "Aula"
+    },
+    {
+      "key":
+      "Locale Ristoro/Mensa",
+      "label":
+      "Locale Ristoro/Mensa"
+    },
+    {
+      "key":
+      "Sala Riunioni",
+      "label":
+      "Sala Riunioni"
+    },
+    {
+      "key":
+      "Bagno",
+      "label":
+      "Bagno"
+    },
+    {
+      "key":
+      "Sala Terapia",
+      "label":
+      "Sala Terapia"
+    },
+    {
+      "key":
+      "Sala Server/Apparati di rete",
+      "label":
+      "Sala Server/Apparati di rete"
+    },
+    {
+      "key":
+      "Camera Oscura",
+      "label":
+      "Camera Oscura"
+    },
+    {
+      "key":
+      "Ambulatorio",
+      "label":
+      "Ambulatorio"
+    },
+    {
+      "key":
+      "Ambulatorio TAC",
+      "label":
+      "Ambulatorio TAC"
+    },
+    {
+      "key":
+      "Sala Autoptica",
+      "label":
+      "Sala Autoptica"
+    },
+    {
+      "key":
+      "Camera Fredda",
+      "label":
+      "Camera Fredda"
+    },
+    {
+      "key":
+      "Appartamento di Servizio",
+      "label":
+      "Appartamento di Servizio"
+    },
+    {
+      "key":
+      "Locale Pausa Personale",
+      "label":
+      "Locale Pausa Personale"
+    },
+    {
+      "key":
+      "Locale Centro Stampa",
+      "label":
+      "Locale Centro Stampa"
+    },
+    {
+      "key":
+      "Locale Preparazioni Cliniche",
+      "label":
+      "Locale Preparazioni Cliniche"
+    },
+    {
+      "key":
+      "Camera Termostatata",
+      "label":
+      "Camera Termostatata"
+    },
+    {
+      "key":
+      "Locale Travaso",
+      "label":
+      "Locale Travaso"
+    },
+    {
+      "key":
+      "Locali Cooperative Librarie",
+      "label":
+      "Locali Cooperative Librarie"
+    },
+    {
+      "key":
+      "Aula Informatica",
+      "label":
+      "Aula Informatica"
+    },
+    {
+      "key":
+      "Foresteria",
+      "label":
+      "Foresteria"
+    },
+    {
+      "key":
+      "Laboratorio di Ricerca",
+      "label":
+      "Laboratorio di Ricerca"
+    },
+    {
+      "key":
+      "Stalla",
+      "label":
+      "Stalla"
+    },
+    {
+      "key":
+      "Accettazione Animali",
+      "label":
+      "Accettazione Animali"
+    },
+    {
+      "key":
+      "Locale Fotocopie",
+      "label":
+      "Locale Fotocopie"
+    },
+    {
+      "key":
+      "Parcheggio Coperto/Garage",
+      "label":
+      "Parcheggio Coperto/Garage"
+    },
+    {
+      "key":
+      "Docce",
+      "label":
+      "Docce"
+    },
+    {
+      "key":
+      "Serra",
+      "label":
+      "Serra"
+    },
+    {
+      "key":
+      "Spogliatoio",
+      "label":
+      "Spogliatoio"
+    },
+    {
+      "key":
+      "Sala Operatoria",
+      "label":
+      "Sala Operatoria"
+    },
+    {
+      "key":
+      "Spazio Espositivo/Museale",
+      "label":
+      "Spazio Espositivo/Museale"
+    },
+    {
+      "key":
+      "Ambulatorio Radiografico",
+      "label":
+      "Ambulatorio Radiografico"
+    },
+    {
+      "key":
+      "Sala d'Attesa",
+      "label":
+      "Sala d'Attesa"
+    },
+    {
+      "key":
+      "Stabulario",
+      "label":
+      "Stabulario"
+    }
   ]
 }

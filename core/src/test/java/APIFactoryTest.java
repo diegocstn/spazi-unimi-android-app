@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIFactory;
+import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 
@@ -73,8 +74,18 @@ public class APIFactoryTest {
     }
 
     @Test
+    public void TestFactoryAvailableServiceSingle(){
+        String jsonBuilding         = TestHelpers.readFixtureDataFromFile("services_single.json");
+        List<BaseEntity> services   = apiFactory.makeAvailableServicesFromJSON(jsonBuilding);
+        AvailableService service    = (AvailableService) services.get(0);
+        Assert.assertEquals(1,services.size());
+        Assert.assertEquals(service.key,"Aula Seminari - Magna - Lauree");
+        Assert.assertEquals(service.label,"Aula Seminari - Magna - Lauree");
+    }
+
+    @Test
     public void TestFactoryAvailableServices(){
         String jsonBuilding = TestHelpers.readFixtureDataFromFile("services.json");
-        Assert.assertEquals(55,apiFactory.makeAvailableServicesFromJSON(jsonBuilding).size());
+        Assert.assertEquals(39,apiFactory.makeAvailableServicesFromJSON(jsonBuilding).size());
     }
 }
