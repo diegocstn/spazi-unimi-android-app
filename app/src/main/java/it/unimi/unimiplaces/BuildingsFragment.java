@@ -34,7 +34,6 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
     private Spinner filterSpinner;
     private APIManager apiManager;
     private final BuildingsModeView defaultBuildingModeView = BuildingsModeView.BUILDINGS_MODE_VIEW_LIST;
-    private PresenterInterface currentModeView;
 
 
     private enum BuildingsModeView{
@@ -161,12 +160,10 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
 
         switch (mode){
             case BUILDINGS_MODE_VIEW_LIST:
-                currentModeView = buildingsListFragment;
                 fragmentTransaction.detach(buildingsMapFragment);
                 fragmentTransaction.attach(buildingsListFragment);
                 break;
             case BUILDINGS_MODE_VIEW_MAP:
-                currentModeView = buildingsMapFragment;
                 fragmentTransaction.detach(buildingsListFragment);
                 fragmentTransaction.attach(buildingsMapFragment);
                 break;
