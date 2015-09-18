@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -18,7 +19,9 @@ import org.mockito.stubbing.Answer;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
+import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
 import it.unimi.unimiplaces.core.api.APIRequest;
+import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 
@@ -34,6 +37,8 @@ public class APIManagerTest{
 
     @Mock
     APIDelegateInterface delegate;
+    @Mock
+    APIDelegateInterfaceExtended extendedDelegate;
 
     @Spy
     APIManager.APIAsyncTask apiAsyncTask;
@@ -44,26 +49,35 @@ public class APIManagerTest{
     @Captor
     ArgumentCaptor<List<BaseEntity>> entities;
 
-
-    @Test
-    public void testBuildings(){
-        APIManager apiManager   = new APIManager(context,apiAsyncTask);
-        apiAsyncTask.apiManager = apiManager;
-        apiAsyncTask.request    = Mockito.mock(APIRequest.class);
-        apiAsyncTask.request.requestType = APIRequest.APIRequestIdentifier.BUILDINGS;
+    APIManager apiManager;
 
 
+    public void mockAsyncTask(APIRequest.APIRequestIdentifier identifier, final String mockedResponse){
+        apiAsyncTask.request                = Mockito.mock(APIRequest.class);
+        apiAsyncTask.request.requestType    = identifier;
+        Mockito.when(apiAsyncTask.buildAPISyncTask(Mockito.any(APIManager.class))).thenReturn(apiAsyncTask);
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 APIManager.APIAsyncTask task = (APIManager.APIAsyncTask) invocation.getMock();
-                task.onPostExecute("{\"buildings\":[{\"b_id\":\"11020\",\"address\":\"via Festa del Perdono, 3, Milano, 20122\",\"building_name\":\"Festa Del Perdono\"}]}");
+                task.onPostExecute(mockedResponse);
                 return null;
             }
         }).when(apiAsyncTask).execute(Mockito.any(APIRequest.class));
+    }
 
+    @Before
+    public void setUp(){
+        apiManager              = new APIManager(context,apiAsyncTask);
+        apiAsyncTask.apiManager = apiManager;
         Mockito.when(context.getString(R.string.progress_loading)).thenReturn("Loading");
-        Mockito.when(apiAsyncTask.buildAPISyncTask(Mockito.any(APIManager.class))).thenReturn(apiAsyncTask);
+
+    }
+
+    @Test
+    public void testBuildings(){
+        String json = "{\"buildings\":[{\"b_id\":\"11020\",\"address\":\"via Festa del Perdono, 3, Milano, 20122\",\"building_name\":\"Festa Del Perdono\"}]}";
+        mockAsyncTask(APIRequest.APIRequestIdentifier.BUILDINGS,json);
 
         apiManager.buildings(delegate);
 
@@ -78,5 +92,28 @@ public class APIManagerTest{
     }
 
     @Test
-    public void testAvailableServices(){}
+    public void testAvailableServices(){
+        String json = "{\"services\":[ " +
+                "{\"key\":\"Aula Seminari - Magna - Lauree\"," +
+                "\"label\":\"Aula Seminari - Magna - Lauree\"}," +
+                "{\"key\":\"Biblioteca - Mediateca\"," +
+                "\"label\":\"Biblioteca - Mediateca\"}]}";
+
+        mockAsyncTask(APIRequest.APIRequestIdentifier.AVAILABLE_SERVICES,json);
+
+        apiManager.availableServices(extendedDelegate, "en");
+
+        Mockito.verify(extendedDelegate).apiRequestStart();
+        Mockito.verify(extendedDelegate).apiServiceAvailableRequestEnd(entities.capture());
+
+        Assert.assertEquals(
+                new AvailableService("Aula Seminari - Magna - Lauree", "Aula Seminari - Magna - Lauree"),
+                entities.getValue().get(0)
+        );
+
+        Assert.assertEquals(
+                new AvailableService("Biblioteca - Mediateca","Biblioteca - Mediateca"),
+                entities.getValue().get(1)
+        );
+    }
 }
