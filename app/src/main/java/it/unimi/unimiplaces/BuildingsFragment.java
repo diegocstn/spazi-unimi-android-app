@@ -51,7 +51,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.apiManager = new APIManager(getActivity());
+        this.apiManager = APIManager.APIManagerFactory.createAPIManager(getActivity());
 
     }
 
