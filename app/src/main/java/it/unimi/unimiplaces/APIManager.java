@@ -3,6 +3,7 @@ package it.unimi.unimiplaces;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.List;
 
@@ -23,13 +24,18 @@ public class APIManager {
     private static final String APIBaseURL = "http://spazi.srv.di.unimi.it/api/v1.0/";
     private ProgressDialog progressDialog;
     private APIDelegateInterface delegate;
+    private APIAsyncTask asyncTask;
 
-    public APIManager(Context context){
+    final static String LOG_TAG = "APIMANAGER";
+
+    public APIManager(Context context, APIAsyncTask asyncTask){
         this.apiFactory     = new APIFactory();
         this.context        = context;
         this.progressDialog = new ProgressDialog( this.context , ProgressDialog.STYLE_SPINNER );
-        this.progressDialog.setMessage(this.context.getResources().getString(R.string.progress_loading));
+        this.progressDialog.setMessage(this.context.getString(R.string.progress_loading));
+        this.asyncTask      = asyncTask;
     }
+
 
     private void executeAPIRequest(String endpoint,APIRequest.APIRequestIdentifier identifier,boolean showProgress){
         // show progress dialog and alert the delegate object
@@ -37,15 +43,20 @@ public class APIManager {
         if( showProgress ) {
             this.progressDialog.show();
         }
-        this.delegate.apiRequestStart();
+        try {
+            this.delegate.apiRequestStart();
+            APIAsyncTask apiAsyncTask = this.asyncTask.buildAPISyncTask(this);
+            apiAsyncTask.execute(new APIRequest(APIBaseURL + endpoint,identifier));
 
-        APIAsyncTask apiAsyncTask = new APIAsyncTask();
-        apiAsyncTask.execute(new APIRequest(APIBaseURL + endpoint,identifier));
+        }catch(Exception e) {
+            Log.e(LOG_TAG, e.getMessage());
+            this.progressDialog.hide();
+        }
+
     }
 
     private void requestExecuted(String result,APIRequest.APIRequestIdentifier requestIdentifier){
-        List<BaseEntity> entities = null;
-
+        List<BaseEntity> entities;
         switch ( requestIdentifier ){
             case BUILDINGS:
                 entities = this.apiFactory.makeBuildingsFromJSON(result);
@@ -60,19 +71,38 @@ public class APIManager {
     }
 
     public void buildings(APIDelegateInterface delegate){
+        Log.v(LOG_TAG,"Building API request");
         this.delegate           = delegate;
         this.executeAPIRequest("buildings/", APIRequest.APIRequestIdentifier.BUILDINGS,true);
     }
 
     public void availableServices(APIDelegateInterfaceExtended delegate,String lang){
+        Log.v(LOG_TAG,"Available service API request");
         this.delegate           = delegate;
         this.executeAPIRequest("available-services/"+lang+"/", APIRequest.APIRequestIdentifier.AVAILABLE_SERVICES,false);
     }
 
 
-    private class APIAsyncTask extends AsyncTask<it.unimi.unimiplaces.core.api.APIRequest,Void,String>{
+    static class APIManagerFactory{
+        public static APIManager createAPIManager(Context context){
+            return new APIManager(context,new APIAsyncTask());
+        }
+    }
+
+    static class APIAsyncTask extends AsyncTask<it.unimi.unimiplaces.core.api.APIRequest,Void,String>{
 
         APIRequest request;
+        APIManager apiManager;
+
+        public APIAsyncTask(){}
+
+        public APIAsyncTask buildAPISyncTask(APIManager apiManager){
+            return new APIAsyncTask(apiManager);
+        }
+
+        public APIAsyncTask(APIManager apiManager){
+            this.apiManager = apiManager;
+        }
 
         @Override
         protected String doInBackground(APIRequest... requests){
@@ -83,7 +113,7 @@ public class APIManager {
 
         @Override
         protected void onPostExecute(String s) {
-            requestExecuted(s,request.requestType);
+            this.apiManager.requestExecuted(s, request.requestType);
         }
 
     }
