@@ -45,6 +45,19 @@ public class APIFactoryTest {
     }
 
     @Test
+    public void TestFactoryWithOneBuilding(){
+        String jsonBuilding = TestHelpers.readFixtureDataFromFile("buildings_1.json");
+        List<BaseEntity> expectedBuildings = new ArrayList();
+        Building b1 = new Building("11020","Festa Del Perdono","via Festa del Perdono, 3, Milano, 20122");
+        b1.setCoordinates(9.194568, 45.460998);
+        expectedBuildings.add(b1);
+
+        List<BaseEntity> actualBuildings = apiFactory.makeBuildingsFromJSON(jsonBuilding);
+        Assert.assertNotNull(actualBuildings);
+        Assert.assertEquals(expectedBuildings, actualBuildings);
+    }
+
+    @Test
     public void TestFactoryWithThreeBuildings(){
         String jsonBuilding = TestHelpers.readFixtureDataFromFile("buildings_3.json");
         List<BaseEntity> expectedBuildings = new ArrayList();
