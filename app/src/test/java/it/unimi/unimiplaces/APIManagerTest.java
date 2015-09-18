@@ -88,7 +88,7 @@ public class APIManagerTest{
         Building buildingActual     = (Building) entities.getValue().get(0);
 
         Assert.assertEquals(buildingExpected.building_name,buildingActual.building_name);
-        Assert.assertEquals(buildingExpected.address,buildingActual.address);
+        Assert.assertEquals(buildingExpected.address, buildingActual.address);
     }
 
     @Test
@@ -115,5 +115,29 @@ public class APIManagerTest{
                 new AvailableService("Biblioteca - Mediateca","Biblioteca - Mediateca"),
                 entities.getValue().get(1)
         );
+    }
+
+    @Test
+    public void testAPIonErrorBuildings(){
+        String json = " ";
+        mockAsyncTask(APIRequest.APIRequestIdentifier.BUILDINGS,json);
+        apiManager.buildings(delegate);
+        Mockito.verify(delegate).apiRequestStart();
+        Mockito.verify(delegate).apiRequestError();
+        Mockito.verify(delegate).apiRequestEnd(entities.capture());
+
+        Assert.assertNull(entities.getValue());
+    }
+
+    @Test
+    public void testAPIonErrorAvailableServices(){
+        String json = " ";
+        mockAsyncTask(APIRequest.APIRequestIdentifier.AVAILABLE_SERVICES,json);
+        apiManager.availableServices(extendedDelegate, "en");
+        Mockito.verify(extendedDelegate).apiRequestStart();
+        Mockito.verify(extendedDelegate).apiRequestError();
+        Mockito.verify(extendedDelegate).apiServiceAvailableRequestEnd(entities.capture());
+
+        Assert.assertNull(entities.getValue());
     }
 }

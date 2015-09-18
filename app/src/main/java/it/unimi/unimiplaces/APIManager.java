@@ -60,12 +60,19 @@ public class APIManager {
         switch ( requestIdentifier ){
             case BUILDINGS:
                 entities = this.apiFactory.makeBuildingsFromJSON(result);
+                if( entities == null ){
+                    this.delegate.apiRequestError();
+                }
                 this.delegate.apiRequestEnd(entities);
                 this.progressDialog.hide();
                 break;
             case AVAILABLE_SERVICES:
                 APIDelegateInterfaceExtended extendedDelegate = (APIDelegateInterfaceExtended) this.delegate;
-                extendedDelegate.apiServiceAvailableRequestEnd(this.apiFactory.makeAvailableServicesFromJSON(result));
+                entities = this.apiFactory.makeAvailableServicesFromJSON(result);
+                if( entities == null ){
+                 extendedDelegate.apiRequestError();
+                }
+                extendedDelegate.apiServiceAvailableRequestEnd(entities);
                 break;
         }
     }

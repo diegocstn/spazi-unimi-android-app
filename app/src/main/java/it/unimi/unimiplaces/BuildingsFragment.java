@@ -230,5 +230,8 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
         this.initAvailableServices();
     }
 
+    @Override
+    public void apiRequestError() {
 
+    }
 }
