@@ -90,16 +90,16 @@ public class APIManager {
     }
 
 
-    static class APIManagerFactory{
+    public static class APIManagerFactory{
         public static APIManager createAPIManager(Context context){
             return new APIManager(context,new APIAsyncTask());
         }
     }
 
-    static class APIAsyncTask extends AsyncTask<it.unimi.unimiplaces.core.api.APIRequest,Void,String>{
+    public static class APIAsyncTask extends AsyncTask<it.unimi.unimiplaces.core.api.APIRequest,Void,String>{
 
-        APIRequest request;
-        APIManager apiManager;
+        public APIRequest request;
+        public APIManager apiManager;
 
         public APIAsyncTask(){}
 

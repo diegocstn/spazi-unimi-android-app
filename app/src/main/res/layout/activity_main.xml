@@ -3,10 +3,10 @@
     android:id="@+id/main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="it.unimi.unimiplaces.MainActivity">
+    tools:context="it.unimi.unimiplaces.activities.MainActivity">
     <fragment
         android:id="@+id/main_content_fragment"
-        android:name="it.unimi.unimiplaces.BuildingsFragment"
+        android:name="it.unimi.unimiplaces.fragments.BuildingsFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
 </RelativeLayout>

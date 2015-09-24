@@ -3,7 +3,7 @@
     android:id="@+id/buildings_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="it.unimi.unimiplaces.BuildingsFragment">
+    tools:context="it.unimi.unimiplaces.fragments.BuildingsFragment">
 
     <RelativeLayout
         android:id="@+id/buildings_controls"

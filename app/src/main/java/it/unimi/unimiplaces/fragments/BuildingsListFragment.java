@@ -1,4 +1,4 @@
-package it.unimi.unimiplaces;
+package it.unimi.unimiplaces.fragments;
 
 import android.app.Activity;
 import android.app.ListFragment;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import it.unimi.unimiplaces.PresenterInterface;
+import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 
@@ -92,7 +94,7 @@ public class BuildingsListFragment extends ListFragment implements PresenterInte
         }
 
         public BuildingsListAdapter(Activity context,List<BaseEntity> buildings){
-            super( context,R.layout.buildings_list_item , buildings );
+            super( context, R.layout.buildings_list_item , buildings );
             this.context    = context;
             this.buildings  = buildings;
         }

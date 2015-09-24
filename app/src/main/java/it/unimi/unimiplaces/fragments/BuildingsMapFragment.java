@@ -1,4 +1,4 @@
-package it.unimi.unimiplaces;
+package it.unimi.unimiplaces.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -21,6 +21,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unimi.unimiplaces.PresenterInterface;
+import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 

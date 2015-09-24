@@ -1,4 +1,4 @@
-package it.unimi.unimiplaces;
+package it.unimi.unimiplaces.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import it.unimi.unimiplaces.APIManager;
+import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
 import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
