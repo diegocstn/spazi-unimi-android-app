@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import it.unimi.unimiplaces.PresenterInterface;
+import it.unimi.unimiplaces.PresenterViewInterface;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
@@ -22,7 +22,7 @@ import it.unimi.unimiplaces.core.model.Building;
  * A fragment representing a list of buildings.
  *
  */
-public class BuildingsListFragment extends Fragment implements PresenterInterface,AbsListView.OnItemClickListener {
+public class BuildingsListFragment extends Fragment implements PresenterViewInterface,AbsListView.OnItemClickListener {
 
     private AbsListView mListView;
     private List<BaseEntity> model;

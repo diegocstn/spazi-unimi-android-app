@@ -1,13 +1,11 @@
 package it.unimi.unimiplaces.fragments;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -28,6 +26,7 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 public class BuildingsFragment extends Fragment implements APIDelegateInterfaceExtended {
 
     private List<BaseEntity> model;
+    private List<BaseEntity> filteredModel;
     private List<BaseEntity> availableServices;
     private BuildingsListFragment buildingsListFragment;
     private BuildingsMapFragment buildingsMapFragment;
@@ -36,7 +35,7 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
     private Spinner filterSpinner;
     private APIManager apiManager;
     private final BuildingsModeView defaultBuildingModeView = BuildingsModeView.BUILDINGS_MODE_VIEW_LIST;
-
+    private final int AVAILABLE_SERVICES_ALL = 0;
 
     private enum BuildingsModeView{
         BUILDINGS_MODE_VIEW_LIST,
@@ -72,11 +71,6 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
 
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
     }
@@ -86,6 +80,14 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
         outState.putSerializable(MODEL_KEY, (Serializable) this.model);
         outState.putSerializable(AVAILABLE_SERVICE_KEY,(Serializable)this.availableServices);
         super.onSaveInstanceState(outState);
+    }
+
+    public List<BaseEntity> getCurrentModel(){
+        if( this.filteredModel != null ){
+            return this.filteredModel;
+        }else{
+            return this.model;
+        }
     }
 
     private void initialize(View view, Bundle savedInstanceState){
@@ -182,34 +184,21 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
     private void initAvailableServices(){
         List <String> servicesLabel = new ArrayList<>();
 
-        servicesLabel.add("All");
+        servicesLabel.add(getString(R.string.available_service_all));
 
         for (BaseEntity service : this.availableServices){
             servicesLabel.add( ((AvailableService)service).key );
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getActivity(),
                 R.layout.support_simple_spinner_dropdown_item,
                 servicesLabel);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         this.filterSpinner.setAdapter(adapter);
-
-        this.filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                filterSpinner.setPrompt("");
-                filterBuildingsByService(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                filterSpinner.setPrompt("");
-            }
-        });
     }
 
-    private void filterBuildingsByService(int index){
-
+    public void filterBuildingsByService(int index){
+        this.apiManager.buildingsByAvailableService(this, (AvailableService) this.availableServices.get(index));
     }
 
 
@@ -221,9 +210,15 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
 
     @Override
     public void apiRequestEnd(List<BaseEntity> results) {
-        this.model = results;
-        buildingsListFragment.setModel(getActivity(),this.model);
-        buildingsMapFragment.setModel(getActivity(),this.model);
+
+        if( this.model == null ){
+            this.model = results;
+        }else{
+            this.filteredModel = results;
+        }
+
+        buildingsListFragment.setModel(getActivity(),this.getCurrentModel());
+        buildingsMapFragment.setModel(getActivity(),this.getCurrentModel());
     }
 
     @Override
