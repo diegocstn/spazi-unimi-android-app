@@ -72,6 +72,16 @@ public class BuildingsListFragment extends Fragment implements PresenterInterfac
             this.buildingsListAdapter.notifyDataSetChanged();
         }
 
+        if( this.model.size() == 0 ){
+            this.mListView.setVisibility(View.INVISIBLE);
+            this.emptyText.setText(R.string.no_results);
+            this.emptyText.setVisibility(View.VISIBLE);
+        }else{
+            this.mListView.setVisibility(View.VISIBLE);
+            this.emptyText.setText("");
+            this.emptyText.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     @Override

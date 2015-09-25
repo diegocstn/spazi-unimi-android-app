@@ -20,14 +20,10 @@ public class BuildingsListTest extends FragmentTest{
 
     private BuildingsListFragment buildingsListFragment;
 
-    public void setBuildingsAdapter(List<BaseEntity> buildings){
+    public void setBuildingsAdapter(final List<BaseEntity> buildings){
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                List<BaseEntity> buildings = new ArrayList<>();
-                buildings.add(new Building("0001", "Building1", "Building address 1"));
-                buildings.add(new Building("0002", "Building2", "Building address 2"));
-                buildings.add(new Building("0003", "Building3", "Building address 3"));
                 buildingsListFragment.setModel(activity, buildings);
             }
         });
@@ -71,7 +67,7 @@ public class BuildingsListTest extends FragmentTest{
         assertNotNull(listView);
         assertNotNull(textView);
 
-        assertEquals("Ops, no result :(",textView.getText());
+        assertEquals("Ops, no results :(",textView.getText());
         assertEquals(0, listView.getAdapter().getCount());
 
     }
