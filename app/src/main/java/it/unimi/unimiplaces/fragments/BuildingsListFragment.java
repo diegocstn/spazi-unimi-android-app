@@ -1,13 +1,14 @@
 package it.unimi.unimiplaces.fragments;
 
 import android.app.Activity;
-import android.app.ListFragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -21,10 +22,12 @@ import it.unimi.unimiplaces.core.model.Building;
  * A fragment representing a list of buildings.
  *
  */
-public class BuildingsListFragment extends ListFragment implements PresenterInterface {
+public class BuildingsListFragment extends Fragment implements PresenterInterface,AbsListView.OnItemClickListener {
 
+    private AbsListView mListView;
     private List<BaseEntity> model;
     private BuildingsListAdapter buildingsListAdapter;
+    private TextView emptyText;
 
     public static BuildingsListFragment newInstance() {
         BuildingsListFragment fragment = new BuildingsListFragment();
@@ -40,11 +43,29 @@ public class BuildingsListFragment extends ListFragment implements PresenterInte
 
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_buildings_list,container,false);
+
+        // Set the adapter
+        mListView   = (AbsListView) view.findViewById(android.R.id.list);
+        emptyText   = (TextView) view.findViewById(android.R.id.empty);
+
+        // Set OnItemClickListener so we can be notified on item clicks
+        mListView.setOnItemClickListener(this);
+
+        if( this.buildingsListAdapter != null ){
+            mListView.setAdapter(this.buildingsListAdapter);
+        }
+
+        return view;
+    }
+
+    @Override
     public void setModel(Activity activity, List<BaseEntity> model){
         this.model = model;
         if( this.buildingsListAdapter == null ){
             this.buildingsListAdapter = new BuildingsListAdapter(activity, model);
-            setListAdapter(this.buildingsListAdapter);
+            mListView.setAdapter(this.buildingsListAdapter);
         }else{
             this.buildingsListAdapter.clear();
             this.buildingsListAdapter.addAll(model);
@@ -69,15 +90,11 @@ public class BuildingsListFragment extends ListFragment implements PresenterInte
     }
 
     @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        this.setListShown(true);
-    }
+
 
     /**
      * Custom list adapter for buildings list
