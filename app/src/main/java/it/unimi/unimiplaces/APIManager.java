@@ -11,6 +11,7 @@ import it.unimi.unimiplaces.core.api.APIDelegateInterface;
 import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
 import it.unimi.unimiplaces.core.api.APIFactory;
 import it.unimi.unimiplaces.core.api.APIRequest;
+import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 
 /**
@@ -58,6 +59,7 @@ public class APIManager {
     private void requestExecuted(String result,APIRequest.APIRequestIdentifier requestIdentifier){
         List<BaseEntity> entities;
         switch ( requestIdentifier ){
+            case BUILDINGS_BY_SERVICES:
             case BUILDINGS:
                 entities = this.apiFactory.makeBuildingsFromJSON(result);
                 if( entities == null ){
@@ -87,6 +89,12 @@ public class APIManager {
         Log.v(LOG_TAG,"Available service API request");
         this.delegate           = delegate;
         this.executeAPIRequest("available-services/"+lang+"/", APIRequest.APIRequestIdentifier.AVAILABLE_SERVICES,false);
+    }
+
+    public void buildingsByAvailableService(APIDelegateInterface delegate, AvailableService service){
+        Log.v(LOG_TAG,"Building by available service API request");
+        this.delegate           = delegate;
+        this.executeAPIRequest("buildings/?service="+service.key, APIRequest.APIRequestIdentifier.BUILDINGS_BY_SERVICES,true);
     }
 
 

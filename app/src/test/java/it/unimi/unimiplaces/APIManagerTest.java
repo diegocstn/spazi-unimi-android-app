@@ -140,4 +140,21 @@ public class APIManagerTest{
 
         Assert.assertNull(entities.getValue());
     }
+
+    @Test
+    public void testBuildingsByAvailableServices(){
+        String json = "{\"buildings\":[{\"b_id\":\"11020\",\"address\":\"via Festa del Perdono, 3, Milano, 20122\",\"building_name\":\"Festa Del Perdono\"}]}";
+        mockAsyncTask(APIRequest.APIRequestIdentifier.BUILDINGS,json);
+
+        apiManager.buildingsByAvailableService(delegate, new AvailableService("key","value"));
+
+        Mockito.verify(delegate).apiRequestStart();
+        Mockito.verify(delegate).apiRequestEnd(entities.capture());
+
+        Building buildingExpected   = new Building("11020","Festa Del Perdono","via Festa del Perdono, 3, Milano, 20122");
+        Building buildingActual     = (Building) entities.getValue().get(0);
+
+        Assert.assertEquals(buildingExpected.building_name,buildingActual.building_name);
+        Assert.assertEquals(buildingExpected.address, buildingActual.address);
+    }
 }

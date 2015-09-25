@@ -15,7 +15,8 @@ public class APIRequest {
 
     public enum APIRequestIdentifier{
         BUILDINGS,
-        AVAILABLE_SERVICES
+        AVAILABLE_SERVICES,
+        BUILDINGS_BY_SERVICES
     }
 
     private URL url;
