@@ -90,7 +90,7 @@ public class BuildingsMapFragment extends Fragment implements PresenterViewInter
     }
 
     @Override
-    public void setModel(Activity activity, List<BaseEntity> model){
+    public void setModel(List<BaseEntity> model){
         this.model = model;
         if( this.map != null ){
             this.placeBuildingsMarker();

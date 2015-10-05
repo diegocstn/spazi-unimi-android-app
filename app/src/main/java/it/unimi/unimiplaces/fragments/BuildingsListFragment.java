@@ -61,10 +61,10 @@ public class BuildingsListFragment extends Fragment implements PresenterViewInte
     }
 
     @Override
-    public void setModel(Activity activity, List<BaseEntity> model){
+    public void setModel(List<BaseEntity> model){
         this.model = model;
         if( this.buildingsListAdapter == null ){
-            this.buildingsListAdapter = new BuildingsListAdapter(activity, model);
+            this.buildingsListAdapter = new BuildingsListAdapter(getActivity(), model);
             mListView.setAdapter(this.buildingsListAdapter);
         }else{
             this.buildingsListAdapter.clear();

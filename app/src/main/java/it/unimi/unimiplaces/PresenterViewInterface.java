@@ -1,7 +1,5 @@
 package it.unimi.unimiplaces;
 
-import android.app.Activity;
-
 import java.util.List;
 
 import it.unimi.unimiplaces.core.model.BaseEntity;
@@ -11,5 +9,5 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
  * Defines the API for presenter (fragment or activities)
  */
 public interface PresenterViewInterface {
-    void setModel( Activity activity, List<BaseEntity> model);
+    void setModel(List<BaseEntity> model);
 }

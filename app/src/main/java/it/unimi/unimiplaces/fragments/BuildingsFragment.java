@@ -139,8 +139,8 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
             if (this.model == null) {
                 apiManager.buildings(this);
             }else{
-                buildingsListFragment.setModel(getActivity(), this.model);
-                buildingsMapFragment.setModel(getActivity(),this.model);
+                buildingsListFragment.setModel(this.model);
+                buildingsMapFragment.setModel(this.model);
             }
 
             /* init available services */
@@ -217,8 +217,8 @@ public class BuildingsFragment extends Fragment implements APIDelegateInterfaceE
             this.filteredModel = results;
         }
 
-        buildingsListFragment.setModel(getActivity(),this.getCurrentModel());
-        buildingsMapFragment.setModel(getActivity(),this.getCurrentModel());
+        buildingsListFragment.setModel(this.getCurrentModel());
+        buildingsMapFragment.setModel(this.getCurrentModel());
     }
 
     @Override

@@ -24,7 +24,7 @@ public class BuildingsListTest extends FragmentTest{
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                buildingsListFragment.setModel(activity, buildings);
+                buildingsListFragment.setModel(buildings);
             }
         });
         getInstrumentation().waitForIdleSync();
