@@ -10,13 +10,17 @@ import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
 
+import java.util.List;
+
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.BuildingsPresenter;
+import it.unimi.unimiplaces.PresenterViewInterface;
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.views.BuildingsListView;
 import it.unimi.unimiplaces.views.BuildingsMapView;
 
-public class BuildingsFragment extends Fragment {
+public class BuildingsFragment extends Fragment implements PresenterViewInterface {
 
     private BuildingsPresenter presenter;
     private BuildingsListView buildingsListView;
@@ -54,14 +58,16 @@ public class BuildingsFragment extends Fragment {
         this.initialize();
     }
 
-
-
     @Override
     public void onDetach() {
         super.onDetach();
     }
 
-
+    @Override
+    public void setModel(List<BaseEntity> model) {
+        this.buildingsListView.setModel(model);
+        this.buildingsMapView.setModel(model);
+    }
 
     private void initialize(){
 
@@ -70,8 +76,8 @@ public class BuildingsFragment extends Fragment {
 
         presenter = new BuildingsPresenter(
                 APIManager.APIManagerFactory.createAPIManager(getActivity()),
-                buildingsListView,
-                buildingsMapView);
+                this
+                );
 
         presenter.initBuildings();
 

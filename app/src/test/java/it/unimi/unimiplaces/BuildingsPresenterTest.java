@@ -29,10 +29,7 @@ public class BuildingsPresenterTest {
     APIManager apiManager;
 
     @Mock
-    BuildingsListFragment buildingsListFragment;
-
-    @Mock
-    BuildingsMapFragment buildingsMapFragment;
+    PresenterViewInterface view;
 
     @Mock
     Activity activity;
@@ -42,7 +39,7 @@ public class BuildingsPresenterTest {
 
     @Before
     public void setUpTest(){
-        presenter = new BuildingsPresenter(apiManager,buildingsListFragment,buildingsMapFragment);
+        presenter = new BuildingsPresenter(apiManager,view);
     }
 
     @Test
@@ -61,8 +58,7 @@ public class BuildingsPresenterTest {
         presenter.initBuildings();
 
         Mockito.verify(apiManager).buildings(presenter);
-        Mockito.verify(buildingsMapFragment).setModel(model);
-        Mockito.verify(buildingsListFragment).setModel(model);
+        Mockito.verify(view).setModel(model);
 
     }
 
@@ -119,12 +115,10 @@ public class BuildingsPresenterTest {
         /* check filtering */
         presenter.buildingsByAvailableService(serviceS1);
         Mockito.verify(apiManager).buildingsByAvailableService(presenter, serviceS1);
-        Mockito.verify(buildingsListFragment).setModel(entitiesFiltered);
-        Mockito.verify(buildingsMapFragment).setModel(entitiesFiltered);
+        Mockito.verify(view).setModel(entitiesFiltered);
 
         presenter.buildingsByAvailableService(serviceAll);
-        Mockito.verify(buildingsListFragment).setModel(entitiesAll);
-        Mockito.verify(buildingsMapFragment).setModel(entitiesAll);
+        Mockito.verify(view).setModel(entitiesAll);
     }
 
 

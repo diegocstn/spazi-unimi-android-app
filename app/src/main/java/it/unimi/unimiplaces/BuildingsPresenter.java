@@ -12,8 +12,7 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 public class BuildingsPresenter implements APIDelegateInterfaceExtended{
 
     APIManager apiManager;
-    PresenterViewInterface listView;
-    PresenterViewInterface mapView;
+    PresenterViewInterface view;
 
     public static String BUILDINGS_ALL_KEY = "ALL";
 
@@ -21,10 +20,9 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
     private List<BaseEntity> modelFiltered;
     private List<BaseEntity> availableServices;
 
-    public BuildingsPresenter(APIManager apiManager,PresenterViewInterface list, PresenterViewInterface map){
+    public BuildingsPresenter(APIManager apiManager,PresenterViewInterface view){
         this.apiManager = apiManager;
-        this.listView   = list;
-        this.mapView    = map;
+        this.view       = view;
     }
 
     public void initBuildings(){
@@ -38,8 +36,7 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
 
     public void buildingsByAvailableService(AvailableService service){
         if( service.key == BUILDINGS_ALL_KEY && this.model!=null ){
-            this.mapView.setModel(this.model);
-            this.listView.setModel(this.model);
+            this.view.setModel(this.model);
         }
         apiManager.buildingsByAvailableService(this,service);
     }
@@ -58,8 +55,7 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
 
         this.modelFiltered  = results;
 
-        this.mapView.setModel(this.modelFiltered);
-        this.listView.setModel(this.modelFiltered);
+        this.view.setModel(this.modelFiltered);
     }
 
     @Override
