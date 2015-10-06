@@ -10,7 +10,7 @@ import java.util.List;
 
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
-import it.unimi.unimiplaces.fragments.BuildingsListFragment;
+import it.unimi.unimiplaces.views.BuildingsListView;
 
 /**
  * BuildingsListFragment test class
@@ -18,30 +18,30 @@ import it.unimi.unimiplaces.fragments.BuildingsListFragment;
 
 public class BuildingsListTest extends FragmentViewTest{
 
-    private BuildingsListFragment buildingsListFragment;
+    private BuildingsListView buildingsListView;
 
     public void setBuildingsAdapter(final List<BaseEntity> buildings){
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                buildingsListFragment.setModel(buildings);
+                buildingsListView.setModel(buildings);
             }
         });
         getInstrumentation().waitForIdleSync();
     }
 
     public ListView getListView(){
-        return (ListView) buildingsListFragment.getView().findViewById(android.R.id.list);
+        return (ListView) buildingsListView.findViewById(android.R.id.list);
     }
 
     public TextView getEmptyListText(){
-        return (TextView) buildingsListFragment.getView().findViewById(android.R.id.empty);
+        return (TextView) buildingsListView.findViewById(android.R.id.empty);
     }
 
     @Test
     public void testThreeBuildings(){
-        buildingsListFragment = new BuildingsListFragment();
-        this.prepareActivityWithFragment(buildingsListFragment);
+        buildingsListView = new BuildingsListView(this.activity);
+        this.prepareActivityWithView(buildingsListView);
 
         List<BaseEntity> buildings = new ArrayList<>();
         buildings.add(new Building("0001", "Building1", "Building address 1"));
@@ -57,8 +57,9 @@ public class BuildingsListTest extends FragmentViewTest{
 
     @Test
     public void testNoBuildings(){
-        buildingsListFragment = new BuildingsListFragment();
-        this.prepareActivityWithFragment(buildingsListFragment);
+        buildingsListView = new BuildingsListView(this.activity);
+        this.prepareActivityWithView(buildingsListView);
+
         List<BaseEntity> buildings = new ArrayList<>();
         setBuildingsAdapter(buildings);
 

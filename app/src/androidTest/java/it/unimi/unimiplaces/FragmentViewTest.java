@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.View;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,8 +27,13 @@ class FragmentViewTest extends ActivityInstrumentationTestCase2<TestActivity> {
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
     }
 
-    public void prepareActivityWithView(View v){
-        this.activity.setViewForTest(v);
+    public void prepareActivityWithView(final View v){
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.setViewForTest(v);
+            }
+        });
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
     }
 
