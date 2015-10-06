@@ -2,10 +2,12 @@ package it.unimi.unimiplaces.activities;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import it.unimi.unimiplaces.R;
 
@@ -16,12 +18,19 @@ import it.unimi.unimiplaces.R;
 public class TestActivity extends AppCompatActivity {
 
     Fragment fragment;
+    View view;
 
     public void setFragmentForTest(Fragment f){
         fragment = f;
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.add(R.id.test_activity_container,f);
         ft.commit();
+    }
+
+    public void setViewForTest(View v){
+        view = v;
+        RelativeLayout viewContainer = (RelativeLayout) findViewById(R.id.test_activity_view_container);
+        viewContainer.addView(v);
     }
 
     @Override

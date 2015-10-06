@@ -13,16 +13,21 @@ import it.unimi.unimiplaces.activities.TestActivity;
 
 
 @RunWith(AndroidJUnit4.class)
-class FragmentTest extends ActivityInstrumentationTestCase2<TestActivity> {
+class FragmentViewTest extends ActivityInstrumentationTestCase2<TestActivity> {
 
     TestActivity activity;
 
-    public FragmentTest(){
+    public FragmentViewTest(){
         super(TestActivity.class);
     }
 
     public void prepareActivityWithFragment(Fragment f){
         this.activity.setFragmentForTest(f);
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+    }
+
+    public void prepareActivityWithView(View v){
+        this.activity.setViewForTest(v);
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
     }
 

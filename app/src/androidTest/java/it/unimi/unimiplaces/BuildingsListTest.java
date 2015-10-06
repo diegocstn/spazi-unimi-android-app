@@ -16,7 +16,7 @@ import it.unimi.unimiplaces.fragments.BuildingsListFragment;
  * BuildingsListFragment test class
  */
 
-public class BuildingsListTest extends FragmentTest{
+public class BuildingsListTest extends FragmentViewTest{
 
     private BuildingsListFragment buildingsListFragment;
 

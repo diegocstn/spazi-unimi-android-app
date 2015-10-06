@@ -10,5 +10,9 @@
         android:id="@+id/test_activity_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:id="@+id/test_activity_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
