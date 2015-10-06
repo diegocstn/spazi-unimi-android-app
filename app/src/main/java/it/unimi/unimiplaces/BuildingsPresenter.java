@@ -3,6 +3,7 @@ package it.unimi.unimiplaces;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
+import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 
 /**
@@ -14,6 +15,12 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
     PresenterViewInterface listView;
     PresenterViewInterface mapView;
 
+    public static String BUILDINGS_ALL_KEY = "ALL";
+
+    private List<BaseEntity> model;
+    private List<BaseEntity> modelFiltered;
+    private List<BaseEntity> availableServices;
+
     public BuildingsPresenter(APIManager apiManager,PresenterViewInterface list, PresenterViewInterface map){
         this.apiManager = apiManager;
         this.listView   = list;
@@ -24,6 +31,19 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
         apiManager.buildings(this);
     }
 
+
+    public void initAvailableServices(String lang){
+        apiManager.availableServices(this, lang);
+    }
+
+    public void buildingsByAvailableService(AvailableService service){
+        if( service.key == BUILDINGS_ALL_KEY && this.model!=null ){
+            this.mapView.setModel(this.model);
+            this.listView.setModel(this.model);
+        }
+        apiManager.buildingsByAvailableService(this,service);
+    }
+
     @Override
     public void apiRequestError() {
 
@@ -31,8 +51,15 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
 
     @Override
     public void apiRequestEnd(List<BaseEntity> results) {
-        this.mapView.setModel(results);
-        this.listView.setModel(results);
+        /* model initialization*/
+        if( this.model==null ){
+            this.model = results;
+        }
+
+        this.modelFiltered  = results;
+
+        this.mapView.setModel(this.modelFiltered);
+        this.listView.setModel(this.modelFiltered);
     }
 
     @Override
@@ -42,6 +69,6 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
 
     @Override
     public void apiServiceAvailableRequestEnd(List<BaseEntity> results) {
-
+        this.availableServices = results;
     }
 }
