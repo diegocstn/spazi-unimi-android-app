@@ -13,7 +13,7 @@ import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.views.BuildingsListView;
 
 /**
- * BuildingsListFragment test class
+ * BuildingsListView test class
  */
 
 public class BuildingsListTest extends FragmentViewTest{

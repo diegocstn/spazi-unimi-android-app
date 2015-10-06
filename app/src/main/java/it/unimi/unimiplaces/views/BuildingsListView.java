@@ -41,7 +41,7 @@ public class BuildingsListView extends RelativeLayout implements PresenterViewIn
     }
 
     private void init(){
-        inflate(getContext(),R.layout.buildings_list,this);
+        inflate(getContext(),R.layout.view_buildings_list,this);
         this.listView = (AbsListView) findViewById(android.R.id.list);
         this.emptyText   = (TextView) findViewById(android.R.id.empty);
     }

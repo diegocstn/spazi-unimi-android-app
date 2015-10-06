@@ -1,7 +1,6 @@
 package it.unimi.unimiplaces.fragments;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +13,14 @@ import android.widget.ToggleButton;
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.BuildingsPresenter;
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.views.BuildingsListView;
+import it.unimi.unimiplaces.views.BuildingsMapView;
 
 public class BuildingsFragment extends Fragment {
 
     private BuildingsPresenter presenter;
-    private BuildingsListFragment buildingsListFragment;
-    private BuildingsMapFragment buildingsMapFragment;
+    private BuildingsListView buildingsListView;
+    private BuildingsMapView buildingsMapView;
     private ToggleButton buildingsModeView;
     private Button filterButton;
     private Spinner filterSpinner;
@@ -64,23 +65,18 @@ public class BuildingsFragment extends Fragment {
 
     private void initialize(){
 
-        buildingsMapFragment    = new BuildingsMapFragment();
-        buildingsListFragment   = new BuildingsListFragment();
+        this.buildingsListView = (BuildingsListView) view.findViewById(R.id.buildings_list_view);
+        this.buildingsMapView = (BuildingsMapView) view.findViewById(R.id.buildings_map_view);
 
         presenter = new BuildingsPresenter(
                 APIManager.APIManagerFactory.createAPIManager(getActivity()),
-                buildingsListFragment,
-                buildingsMapFragment);
+                buildingsListView,
+                buildingsMapView);
 
         presenter.initBuildings();
 
         filterButton    = (Button) view.findViewById(R.id.buildings_filter);
         filterSpinner   = (Spinner) view.findViewById(R.id.buildings_filter_spinner);
-
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.buildings_container, buildingsMapFragment);
-        fragmentTransaction.add(R.id.buildings_container, buildingsListFragment);
-        fragmentTransaction.commit();
 
         changeViewMode(defaultBuildingModeView);
 
@@ -101,21 +97,18 @@ public class BuildingsFragment extends Fragment {
 
 
     private void changeViewMode(BuildingsModeView mode){
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-
         switch (mode){
             case BUILDINGS_MODE_VIEW_LIST:
-                fragmentTransaction.detach(buildingsMapFragment);
-                fragmentTransaction.attach(buildingsListFragment);
+                buildingsListView.setVisibility(View.VISIBLE);
+                buildingsMapView.setVisibility(View.INVISIBLE);
+
                 break;
             case BUILDINGS_MODE_VIEW_MAP:
-                fragmentTransaction.detach(buildingsListFragment);
-                fragmentTransaction.attach(buildingsMapFragment);
+                buildingsMapView.setVisibility(View.VISIBLE);
+                buildingsListView.setVisibility(View.INVISIBLE);
                 break;
         }
 
-        fragmentTransaction.commit();
     }
 
 }

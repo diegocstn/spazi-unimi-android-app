@@ -1,12 +1,9 @@
-package it.unimi.unimiplaces.fragments;
+package it.unimi.unimiplaces.views;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,12 +23,12 @@ import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 
-
 /**
- * 
+ * BuildingsFragment child view used for map-mode representation of buildings
  */
-public class BuildingsMapFragment extends Fragment implements PresenterViewInterface {
+public class BuildingsMapView extends RelativeLayout implements PresenterViewInterface,OnMapReadyCallback {
 
+    private Context context;
     private GoogleMap map;
     private List<BaseEntity> model;
     private List<Marker> markers;
@@ -41,63 +38,28 @@ public class BuildingsMapFragment extends Fragment implements PresenterViewInter
     private double mapCenterLatitude    = 9.1843412;
     private double mapCenterLongitude   = 45.4687535;
 
-    public BuildingsMapFragment() {
-        // Required empty public constructor
+    public BuildingsMapView(Context context) {
+        super(context);
+        this.context = context;
+        this.init();
     }
+
+    public BuildingsMapView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.context = context;
+        this.init();
+    }
+
+
+    private void init(){
+        inflate(getContext(), R.layout.view_buildings_map, this);
+        MapFragment mapFragment = (MapFragment)((Activity)this.context).getFragmentManager().findFragmentById(R.id.buildings_map);
+        mapFragment.getMapAsync(this);
+    }
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_buildings_map, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.buildings_map);
-        mapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                initMap(googleMap);
-            }
-        });
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.remove(getFragmentManager().findFragmentById(R.id.buildings_map));
-        fragmentTransaction.commit();
-    }
-
-    @Override
-    public void setModel(List<BaseEntity> model){
-        this.model = model;
-        if( this.map != null ){
-            this.placeBuildingsMarker();
-        }
-    }
-
-    private void initMap(GoogleMap googleMap){
+    public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         if( model!=null ){
             this.placeBuildingsMarker();
@@ -108,14 +70,14 @@ public class BuildingsMapFragment extends Fragment implements PresenterViewInter
             @Override
             public void onMapLoaded() {
                 LatLngBounds.Builder markerBounds = new LatLngBounds.Builder();
-                for( Marker marker:markers ){
+                for (Marker marker : markers) {
                     markerBounds.include(marker.getPosition());
                 }
                 map.animateCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(), 10));
             }
         });
-
     }
+
 
     private MarkerOptions markerOptionsForBuilding(Building building){
         MarkerOptions markerOptions;
@@ -143,6 +105,14 @@ public class BuildingsMapFragment extends Fragment implements PresenterViewInter
         for (BaseEntity entity : this.model) {
             Building building = (Building) entity;
             markers.add(map.addMarker(markerOptionsForBuilding(building)));
+        }
+    }
+
+    @Override
+    public void setModel(List<BaseEntity> model){
+        this.model = model;
+        if( this.map != null ){
+            this.placeBuildingsMarker();
         }
     }
 }
