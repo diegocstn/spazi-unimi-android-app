@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import it.unimi.unimiplaces.PresenterViewInterface;
@@ -26,17 +26,17 @@ import it.unimi.unimiplaces.core.model.Building;
 /**
  * BuildingsFragment child view used for map-mode representation of buildings
  */
-public class BuildingsMapView extends RelativeLayout implements PresenterViewInterface,OnMapReadyCallback {
+public class BuildingsMapView extends RelativeLayout implements
+        PresenterViewInterface,
+        OnMapReadyCallback,
+        GoogleMap.OnInfoWindowClickListener{
 
     private Context context;
     private GoogleMap map;
     private List<BaseEntity> model;
-    private List<Marker> markers;
+    private HashMap<Marker,Integer> markers;
+    private PresenterViewInterface parentPresenter;
 
-    /* Map init configuration */
-    private int mapZoomDefault          = 13;
-    private double mapCenterLatitude    = 9.1843412;
-    private double mapCenterLongitude   = 45.4687535;
 
     public BuildingsMapView(Context context) {
         super(context);
@@ -65,24 +65,26 @@ public class BuildingsMapView extends RelativeLayout implements PresenterViewInt
             this.placeBuildingsMarker();
         }
 
-
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
                 LatLngBounds.Builder markerBounds = new LatLngBounds.Builder();
-                for (Marker marker : markers) {
+                for (Marker marker : markers.keySet()) {
                     markerBounds.include(marker.getPosition());
                 }
                 map.animateCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(), 10));
             }
         });
+
+        map.setOnInfoWindowClickListener(this);
+
     }
 
 
     private MarkerOptions markerOptionsForBuilding(Building building){
         MarkerOptions markerOptions;
         markerOptions = new MarkerOptions();
-        markerOptions.position( new LatLng(building.coordinates.lat,building.coordinates.lng));
+        markerOptions.position(new LatLng(building.coordinates.lat, building.coordinates.lng));
         markerOptions.title(building.building_name);
         markerOptions.snippet(building.address);
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_building_marker));
@@ -94,18 +96,23 @@ public class BuildingsMapView extends RelativeLayout implements PresenterViewInt
 
         /* remove all marker if needed */
         if( markers != null ){
-            for (Marker marker : markers){
+            for (Marker marker : markers.keySet()){
                 marker.remove();
             }
             markers.clear();
         }else{
-            markers = new ArrayList<>();
+            markers = new HashMap<>();
         }
 
-        for (BaseEntity entity : this.model) {
-            Building building = (Building) entity;
-            markers.add(map.addMarker(markerOptionsForBuilding(building)));
+        for (int i=0;i<this.model.size();i++) {
+            Building building = (Building) this.model.get(i);
+            markers.put(map.addMarker(markerOptionsForBuilding(building)),i);
         }
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        this.parentPresenter.onDetailActionListener(markers.get(marker));
     }
 
     @Override
@@ -115,4 +122,18 @@ public class BuildingsMapView extends RelativeLayout implements PresenterViewInt
             this.placeBuildingsMarker();
         }
     }
+
+    @Override
+    public void clearListeners(){
+        map.setOnMapLoadedCallback(null);
+        map.setOnInfoWindowClickListener(null);
+        this.parentPresenter = null;
+    }
+
+    @Override
+    public void setDetailActionListener(PresenterViewInterface listener){
+        this.parentPresenter = listener;
+    }
+    @Override
+    public void onDetailActionListener(int i) {}
 }

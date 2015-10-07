@@ -26,6 +26,8 @@
             android:name=".activities.TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
+        <activity android:name=".activities.BuildingDetailActivity" >
+        </activity>
     </application>
 
 </manifest>

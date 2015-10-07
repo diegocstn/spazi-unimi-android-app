@@ -105,7 +105,7 @@ public class BuildingsPresenterTest {
 
         presenter.initAvailableServices("en");
         Mockito.verify(apiManager).availableServices(presenter, "en");
-        Assert.assertArrayEquals(presenter.getAvailableServicesLabels(),expectedServices);
+        Assert.assertArrayEquals(presenter.getAvailableServicesLabels(), expectedServices);
     }
 
     @Test
@@ -149,6 +149,28 @@ public class BuildingsPresenterTest {
 
         presenter.buildingsByAvailableService(serviceAll);
         Mockito.verify(view).setModel(entitiesAll);
+    }
+
+    @Test
+    public void testDetailPayload(){
+        final List<BaseEntity> entities = new ArrayList<>();
+        BaseEntity target = new Building("b1", "Building 1", "address 1");
+        entities.add(target);
+        entities.add(new Building("b2", "Building 2", "address 2"));
+        entities.add(new Building("b3", "Building 3", "address 3"));
+
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                presenter.apiRequestEnd(entities);
+                return null;
+            }
+        }).when(apiManager).buildings(presenter);
+
+        presenter.initBuildings();
+        Mockito.verify(apiManager).buildings(presenter);
+        Assert.assertEquals(presenter.payloadForDetailAtIndex(0),target);
+
     }
 
 

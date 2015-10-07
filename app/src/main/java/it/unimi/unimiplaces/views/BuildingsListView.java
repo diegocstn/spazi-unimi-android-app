@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,13 +21,16 @@ import it.unimi.unimiplaces.core.model.Building;
 /**
  * BuildingsFragment child view used for list-mode representation of buildings
  */
-public class BuildingsListView extends RelativeLayout implements PresenterViewInterface {
+public class BuildingsListView extends RelativeLayout implements
+        PresenterViewInterface,
+        AdapterView.OnItemClickListener{
 
     private AbsListView listView;
     private List<BaseEntity> model;
     private BuildingsListAdapter buildingsListAdapter;
     private TextView emptyText;
     private Context context;
+    private PresenterViewInterface parentPresenter;
 
     public BuildingsListView(Context context) {
         super(context);
@@ -41,9 +45,16 @@ public class BuildingsListView extends RelativeLayout implements PresenterViewIn
     }
 
     private void init(){
-        inflate(getContext(),R.layout.view_buildings_list,this);
+        inflate(getContext(), R.layout.view_buildings_list, this);
         this.listView = (AbsListView) findViewById(android.R.id.list);
         this.emptyText   = (TextView) findViewById(android.R.id.empty);
+
+        this.listView.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        this.onDetailActionListener(position);
     }
 
     @Override
@@ -68,6 +79,21 @@ public class BuildingsListView extends RelativeLayout implements PresenterViewIn
             this.emptyText.setVisibility(View.INVISIBLE);
         }
 
+    }
+
+    @Override
+    public void clearListeners() {
+        this.listView.setOnItemClickListener(null);
+        this.parentPresenter = null;
+    }
+
+    @Override
+    public void setDetailActionListener(PresenterViewInterface listener){
+        this.parentPresenter = listener;
+    }
+    @Override
+    public void onDetailActionListener(int i) {
+        this.parentPresenter.onDetailActionListener(i);
     }
 
 

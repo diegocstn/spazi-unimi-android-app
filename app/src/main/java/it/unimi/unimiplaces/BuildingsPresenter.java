@@ -39,6 +39,7 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
     public void buildingsByAvailableService(AvailableService service){
         if( service.key == SERVICES_ALL_KEY && this.model!=null ){
             this.view.setModel(this.model);
+            return;
         }
         apiManager.buildingsByAvailableService(this, service);
     }
@@ -65,7 +66,8 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
     public void apiRequestEnd(List<BaseEntity> results) {
         /* model initialization*/
         if( this.model==null ){
-            this.model = results;
+            this.model = new ArrayList<>();
+            this.model.addAll(results);
         }
 
         this.modelFiltered  = results;
@@ -89,7 +91,6 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
     }
 
     /* Presenter methods */
-
     @Override
     public void init(String lang) {
         if( this.model==null ) {
@@ -101,8 +102,8 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
     }
 
     @Override
-    public void showDetailAtIndex(int index) {
-
+    public BaseEntity payloadForDetailAtIndex(int index) {
+        return this.modelFiltered.get(index);
     }
 
     @Override

@@ -10,4 +10,7 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
  */
 public interface PresenterViewInterface {
     void setModel(List<BaseEntity> model);
+    void setDetailActionListener(PresenterViewInterface listener);
+    void onDetailActionListener(int index);
+    void clearListeners();
 }

@@ -3,6 +3,7 @@ package it.unimi.unimiplaces.fragments;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,9 @@ import it.unimi.unimiplaces.Presenter;
 import it.unimi.unimiplaces.PresenterViewBuildings;
 import it.unimi.unimiplaces.PresenterViewInterface;
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.activities.BuildingDetailActivity;
 import it.unimi.unimiplaces.core.model.BaseEntity;
+import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.views.BuildingsListView;
 import it.unimi.unimiplaces.views.BuildingsMapView;
 
@@ -99,12 +102,17 @@ public class BuildingsFragment extends Fragment implements
             }
         });
 
+        /* initialize filter button */
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filterDialog.show();
             }
         });
+
+        /* detail listeners */
+        buildingsListView.setDetailActionListener(this);
+        buildingsMapView.setDetailActionListener(this);
 
     }
 
@@ -123,6 +131,7 @@ public class BuildingsFragment extends Fragment implements
         }
 
     }
+
 
 
     @Override
@@ -146,4 +155,20 @@ public class BuildingsFragment extends Fragment implements
         filterDialog = builder.create();
     }
 
+    @Override
+    public void clearListeners(){
+        this.buildingsListView.clearListeners();
+        this.buildingsMapView.clearListeners();
+    }
+
+    @Override
+    public void setDetailActionListener(PresenterViewInterface listener){}
+
+    @Override
+    public void onDetailActionListener(int i) {
+        Building detailBuilding     = (Building) presenter.payloadForDetailAtIndex(i);
+        Intent detailActivityIntent = new Intent(getActivity(), BuildingDetailActivity.class);
+        detailActivityIntent.putExtra("B_ID", detailBuilding.b_id);
+        startActivity(detailActivityIntent);
+    }
 }
