@@ -1,5 +1,6 @@
 package it.unimi.unimiplaces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
@@ -43,13 +44,11 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
     }
 
     public String[] getAvailableServicesLabels(){
-        String[] servicesLabel = new String[this.availableServices.size()+1];
+        String[] servicesLabel = new String[this.availableServices.size()];
         AvailableService service;
-
-        servicesLabel[SERVICES_ALL_INDEX] = "All";
         for(int i=0; i<this.availableServices.size();i++){
             service             = (AvailableService) this.availableServices.get(i);
-            servicesLabel[i+1]    = service.label;
+            servicesLabel[i]    = service.label;
         }
 
         return servicesLabel;
@@ -81,19 +80,33 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
 
     @Override
     public void apiServiceAvailableRequestEnd(List<BaseEntity> results) {
-        this.availableServices = results;
+        this.availableServices = new ArrayList<>();
+        /* add "All" service value */
+        this.availableServices.add(SERVICES_ALL_INDEX,new AvailableService(SERVICES_ALL_KEY,"All"));
+        /* add other services */
+        this.availableServices.addAll(results);
         this.view.setAvailableServices(this.getAvailableServicesLabels());
     }
 
     /* Presenter methods */
 
     @Override
-    public void init() {
-        this.initBuildings();
+    public void init(String lang) {
+        if( this.model==null ) {
+            this.initBuildings();
+        }
+        if( this.availableServices==null ) {
+            this.initAvailableServices(lang);
+        }
     }
 
     @Override
     public void showDetailAtIndex(int index) {
 
+    }
+
+    @Override
+    public void filterModelWithFilterAtIndex(int index) {
+        this.buildingsByAvailableService((AvailableService)this.availableServices.get(index));
     }
 }

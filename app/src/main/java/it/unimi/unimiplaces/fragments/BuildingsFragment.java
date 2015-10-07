@@ -2,6 +2,7 @@ package it.unimi.unimiplaces.fragments;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +25,7 @@ import it.unimi.unimiplaces.views.BuildingsMapView;
 
 public class BuildingsFragment extends Fragment implements
         PresenterViewInterface,
-        PresenterViewBuildings,
-        View.OnClickListener{
+        PresenterViewBuildings{
 
     private Presenter presenter;
     private BuildingsListView buildingsListView;
@@ -79,7 +79,7 @@ public class BuildingsFragment extends Fragment implements
                 this
                 );
 
-        presenter.init();
+        presenter.init(getResources().getConfiguration().locale.getLanguage());
 
         filterButton    = (Button) view.findViewById(R.id.buildings_filter);
 
@@ -99,7 +99,12 @@ public class BuildingsFragment extends Fragment implements
             }
         });
 
-        filterButton.setOnClickListener(this);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterDialog.show();
+            }
+        });
 
     }
 
@@ -119,10 +124,6 @@ public class BuildingsFragment extends Fragment implements
 
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
     @Override
     public void setModel(List<BaseEntity> model) {
@@ -133,7 +134,16 @@ public class BuildingsFragment extends Fragment implements
     @Override
     public void setAvailableServices(String[] services) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        //builder.setItems(services)
+        services[0] = getString(R.string.available_service_all);
+        builder.setTitle(R.string.filter_by);
+        builder.setItems(services, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                presenter.filterModelWithFilterAtIndex(which);
+            }
+        });
+
+        filterDialog = builder.create();
     }
 
 }
