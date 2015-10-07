@@ -14,6 +14,7 @@ import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.BuildingsPresenter;
+import it.unimi.unimiplaces.Presenter;
 import it.unimi.unimiplaces.PresenterViewBuildings;
 import it.unimi.unimiplaces.PresenterViewInterface;
 import it.unimi.unimiplaces.R;
@@ -26,7 +27,7 @@ public class BuildingsFragment extends Fragment implements
         PresenterViewBuildings,
         View.OnClickListener{
 
-    private BuildingsPresenter presenter;
+    private Presenter presenter;
     private BuildingsListView buildingsListView;
     private BuildingsMapView buildingsMapView;
     private ToggleButton buildingsModeView;
@@ -78,7 +79,7 @@ public class BuildingsFragment extends Fragment implements
                 this
                 );
 
-        presenter.initBuildings();
+        presenter.init();
 
         filterButton    = (Button) view.findViewById(R.id.buildings_filter);
 

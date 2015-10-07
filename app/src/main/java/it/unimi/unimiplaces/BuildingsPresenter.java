@@ -9,7 +9,7 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 /**
  * BuildingsPresenter class
  */
-public class BuildingsPresenter implements APIDelegateInterfaceExtended{
+public class BuildingsPresenter implements APIDelegateInterfaceExtended, Presenter {
 
     APIManager apiManager;
     PresenterViewBuildings view;
@@ -55,6 +55,8 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
         return servicesLabel;
     }
 
+    /* API Delegate methods */
+
     @Override
     public void apiRequestError() {
 
@@ -81,5 +83,17 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
     public void apiServiceAvailableRequestEnd(List<BaseEntity> results) {
         this.availableServices = results;
         this.view.setAvailableServices(this.getAvailableServicesLabels());
+    }
+
+    /* Presenter methods */
+
+    @Override
+    public void init() {
+        this.initBuildings();
+    }
+
+    @Override
+    public void showDetailAtIndex(int index) {
+
     }
 }
