@@ -5,16 +5,6 @@
     android:layout_height="match_parent"
     tools:context="it.unimi.unimiplaces.fragments.BuildingsFragment">
 
-    <Spinner
-        style="@style/spinnerLight"
-        android:id="@+id/buildings_filter_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:prompt="@string/filter_by"
-        android:visibility="gone"
-        android:spinnerMode="dialog"
-        android:layout_below="@+id/buildings_controls"/>
-
     <RelativeLayout
         android:id="@+id/buildings_controls"
         android:layout_width="match_parent"

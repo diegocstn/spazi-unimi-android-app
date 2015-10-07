@@ -12,15 +12,16 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 public class BuildingsPresenter implements APIDelegateInterfaceExtended{
 
     APIManager apiManager;
-    PresenterViewInterface view;
+    PresenterViewBuildings view;
 
-    public static String BUILDINGS_ALL_KEY = "ALL";
+    public static int SERVICES_ALL_INDEX = 0;
+    public static String SERVICES_ALL_KEY = "ALL";
 
     private List<BaseEntity> model;
     private List<BaseEntity> modelFiltered;
     private List<BaseEntity> availableServices;
 
-    public BuildingsPresenter(APIManager apiManager,PresenterViewInterface view){
+    public BuildingsPresenter(APIManager apiManager,PresenterViewBuildings view){
         this.apiManager = apiManager;
         this.view       = view;
     }
@@ -35,10 +36,23 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
     }
 
     public void buildingsByAvailableService(AvailableService service){
-        if( service.key == BUILDINGS_ALL_KEY && this.model!=null ){
+        if( service.key == SERVICES_ALL_KEY && this.model!=null ){
             this.view.setModel(this.model);
         }
-        apiManager.buildingsByAvailableService(this,service);
+        apiManager.buildingsByAvailableService(this, service);
+    }
+
+    public String[] getAvailableServicesLabels(){
+        String[] servicesLabel = new String[this.availableServices.size()+1];
+        AvailableService service;
+
+        servicesLabel[SERVICES_ALL_INDEX] = "All";
+        for(int i=0; i<this.availableServices.size();i++){
+            service             = (AvailableService) this.availableServices.get(i);
+            servicesLabel[i+1]    = service.label;
+        }
+
+        return servicesLabel;
     }
 
     @Override
@@ -66,5 +80,6 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended{
     @Override
     public void apiServiceAvailableRequestEnd(List<BaseEntity> results) {
         this.availableServices = results;
+        this.view.setAvailableServices(this.getAvailableServicesLabels());
     }
 }

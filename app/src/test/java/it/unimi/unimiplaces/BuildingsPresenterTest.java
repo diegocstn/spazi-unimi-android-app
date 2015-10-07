@@ -2,9 +2,12 @@ package it.unimi.unimiplaces;
 
 import android.app.Activity;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
@@ -29,12 +32,15 @@ public class BuildingsPresenterTest {
     APIManager apiManager;
 
     @Mock
-    PresenterViewInterface view;
+    PresenterViewBuildings view;
 
     @Mock
     Activity activity;
 
     BuildingsPresenter presenter;
+
+    @Captor
+    ArgumentCaptor<List<BaseEntity>> entitiesCaptor;
 
 
     @Before
@@ -74,15 +80,39 @@ public class BuildingsPresenterTest {
         }).when(apiManager).buildings(presenter);
 
         presenter.initAvailableServices("en");
-        Mockito.verify(apiManager).availableServices(presenter,"en");
+        Mockito.verify(apiManager).availableServices(presenter, "en");
 
+    }
+
+    @Test
+    public void availableServicesKeyShouldContainsAllKey(){
+
+        String[] expectedServices = new String[3];
+        expectedServices[0] = "All";
+        expectedServices[1] = "Service1";
+        expectedServices[2] = "Service2";
+
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                List<BaseEntity> entities = new ArrayList<>();
+                entities.add(new AvailableService("s1","Service1"));
+                entities.add(new AvailableService("s2","Service2"));
+                presenter.apiServiceAvailableRequestEnd(entities);
+                return null;
+            }
+        }).when(apiManager).availableServices(presenter,"en");
+
+        presenter.initAvailableServices("en");
+        Mockito.verify(apiManager).availableServices(presenter, "en");
+        Assert.assertArrayEquals(presenter.getAvailableServicesLabels(),expectedServices);
     }
 
     @Test
     public void testFilterBuildingsByService(){
 
         /* Available services */
-        AvailableService serviceAll    = new AvailableService(BuildingsPresenter.BUILDINGS_ALL_KEY,"service1");
+        AvailableService serviceAll    = new AvailableService(BuildingsPresenter.SERVICES_ALL_KEY,"service1");
         AvailableService serviceS1     = new AvailableService("s1","service1");
 
         /* Buildings */

@@ -1,5 +1,6 @@
 package it.unimi.unimiplaces.fragments;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,29 +8,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Spinner;
 import android.widget.ToggleButton;
 
 import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.BuildingsPresenter;
+import it.unimi.unimiplaces.PresenterViewBuildings;
 import it.unimi.unimiplaces.PresenterViewInterface;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.views.BuildingsListView;
 import it.unimi.unimiplaces.views.BuildingsMapView;
 
-public class BuildingsFragment extends Fragment implements PresenterViewInterface {
+public class BuildingsFragment extends Fragment implements
+        PresenterViewInterface,
+        PresenterViewBuildings,
+        View.OnClickListener{
 
     private BuildingsPresenter presenter;
     private BuildingsListView buildingsListView;
     private BuildingsMapView buildingsMapView;
     private ToggleButton buildingsModeView;
     private Button filterButton;
-    private Spinner filterSpinner;
     private final BuildingsModeView defaultBuildingModeView = BuildingsModeView.BUILDINGS_MODE_VIEW_LIST;
     private View view;
+    private AlertDialog filterDialog;
 
     private enum BuildingsModeView{
         BUILDINGS_MODE_VIEW_LIST,
@@ -63,11 +67,6 @@ public class BuildingsFragment extends Fragment implements PresenterViewInterfac
         super.onDetach();
     }
 
-    @Override
-    public void setModel(List<BaseEntity> model) {
-        this.buildingsListView.setModel(model);
-        this.buildingsMapView.setModel(model);
-    }
 
     private void initialize(){
 
@@ -82,7 +81,6 @@ public class BuildingsFragment extends Fragment implements PresenterViewInterfac
         presenter.initBuildings();
 
         filterButton    = (Button) view.findViewById(R.id.buildings_filter);
-        filterSpinner   = (Spinner) view.findViewById(R.id.buildings_filter_spinner);
 
         changeViewMode(defaultBuildingModeView);
 
@@ -99,6 +97,9 @@ public class BuildingsFragment extends Fragment implements PresenterViewInterfac
                 }
             }
         });
+
+        filterButton.setOnClickListener(this);
+
     }
 
 
@@ -115,6 +116,23 @@ public class BuildingsFragment extends Fragment implements PresenterViewInterfac
                 break;
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void setModel(List<BaseEntity> model) {
+        this.buildingsListView.setModel(model);
+        this.buildingsMapView.setModel(model);
+    }
+
+    @Override
+    public void setAvailableServices(String[] services) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        //builder.setItems(services)
     }
 
 }
