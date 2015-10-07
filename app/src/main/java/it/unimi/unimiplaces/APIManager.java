@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
@@ -67,6 +69,13 @@ public class APIManager {
         List<BaseEntity> entities;
         switch ( requestIdentifier ){
             case BUILDINGS_BY_SERVICES:
+                entities = this.apiFactory.makeBuildingsFromJSON(result);
+                if( entities == null ){
+                    this.delegate.apiRequestError();
+                }
+                this.delegate.apiRequestEnd(entities);
+                this.progressDialog.hide();
+                break;
             case BUILDINGS:
                 entities = this.apiFactory.makeBuildingsFromJSON(result);
                 if( entities == null ){
@@ -101,7 +110,12 @@ public class APIManager {
     public void buildingsByAvailableService(APIDelegateInterface delegate, AvailableService service){
         Log.v(LOG_TAG,"Building by available service API request");
         this.delegate           = delegate;
-        this.executeAPIRequest("buildings/?service="+service.key, APIRequest.APIRequestIdentifier.BUILDINGS_BY_SERVICES,true);
+        try {
+            String serviceEncoded = URLEncoder.encode(service.key, "UTF-8");
+            this.executeAPIRequest("buildings/?service="+serviceEncoded, APIRequest.APIRequestIdentifier.BUILDINGS_BY_SERVICES, true);
+        }catch (UnsupportedEncodingException e){
+            Log.e(LOG_TAG,"Error encoding service key");
+        }
     }
 
 

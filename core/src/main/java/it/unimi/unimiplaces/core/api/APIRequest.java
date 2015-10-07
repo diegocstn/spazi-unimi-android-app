@@ -60,6 +60,8 @@ public class APIRequest {
             }
 
             this.response = builder.toString();
+            urlConnection.disconnect();
+            in.close();
 
         }catch (IOException e){
             this.response = null;
