@@ -121,9 +121,9 @@ public class BuildingsPresenterTest {
         entitiesFiltered.add(new Building("b2", "Building 2", "address 2"));
 
         final List<BaseEntity> entitiesAll = new ArrayList<>();
-        entitiesFiltered.add(new Building("b1", "Building 1", "address 1"));
-        entitiesFiltered.add(new Building("b2", "Building 2", "address 2"));
-        entitiesFiltered.add(new Building("b3", "Building 3", "address 3"));
+        entitiesAll.add(new Building("b1", "Building 1", "address 1"));
+        entitiesAll.add(new Building("b2", "Building 2", "address 2"));
+        entitiesAll.add(new Building("b3", "Building 3", "address 3"));
 
         /* Mocked answer for apiManager */
         Mockito.doAnswer(new Answer() {
@@ -142,13 +142,26 @@ public class BuildingsPresenterTest {
             }
         }).when(apiManager).buildingsByAvailableService(presenter, serviceAll);
 
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                presenter.apiRequestEnd(entitiesAll);
+                return null;
+            }
+        }).when(apiManager).buildings(presenter);
+
+        /* init presenter */
+        presenter.init("en");
+        Mockito.verify(apiManager).buildings(presenter);
+
         /* check filtering */
         presenter.buildingsByAvailableService(serviceS1);
         Mockito.verify(apiManager).buildingsByAvailableService(presenter, serviceS1);
         Mockito.verify(view).setModel(entitiesFiltered);
 
         presenter.buildingsByAvailableService(serviceAll);
-        Mockito.verify(view).setModel(entitiesAll);
+
+        Mockito.verify(view,Mockito.times(2)).setModel(entitiesAll);
     }
 
     @Test
