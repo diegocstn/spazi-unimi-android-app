@@ -168,7 +168,8 @@ public class BuildingsFragment extends Fragment implements
     public void onDetailActionListener(int i) {
         Building detailBuilding     = (Building) presenter.payloadForDetailAtIndex(i);
         Intent detailActivityIntent = new Intent(getActivity(), BuildingDetailActivity.class);
-        detailActivityIntent.putExtra("B_ID", detailBuilding.b_id);
+        detailActivityIntent.putExtra("b_id", detailBuilding.b_id);
+        detailActivityIntent.putExtra("building_name", detailBuilding.building_name);
         startActivity(detailActivityIntent);
         getActivity().overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
     }
