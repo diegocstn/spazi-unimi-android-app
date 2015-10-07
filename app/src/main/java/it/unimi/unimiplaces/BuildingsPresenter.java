@@ -20,7 +20,9 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
 
     private List<BaseEntity> model;
     private List<BaseEntity> modelFiltered;
+    private String modelCurrentFilterKey;
     private List<BaseEntity> availableServices;
+
 
     public BuildingsPresenter(APIManager apiManager,PresenterViewBuildings view){
         this.apiManager = apiManager;
@@ -37,10 +39,18 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
     }
 
     public void buildingsByAvailableService(AvailableService service){
+        /* prevent API request for "ALL" key filter */
         if( service.key == SERVICES_ALL_KEY && this.model!=null ){
             this.view.setModel(this.model);
             return;
         }
+
+        /* prevent filtering when the filter is already selected */
+        if( this.modelCurrentFilterKey == service.key ){
+            return;
+        }
+
+        this.modelCurrentFilterKey  = service.key;
         apiManager.buildingsByAvailableService(this, service);
     }
 
@@ -108,6 +118,6 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
 
     @Override
     public void filterModelWithFilterAtIndex(int index) {
-        this.buildingsByAvailableService((AvailableService)this.availableServices.get(index));
+        this.buildingsByAvailableService((AvailableService) this.availableServices.get(index));
     }
 }
