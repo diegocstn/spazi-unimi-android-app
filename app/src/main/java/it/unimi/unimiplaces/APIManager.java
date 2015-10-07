@@ -57,6 +57,13 @@ public class APIManager {
     }
 
     private void requestExecuted(String result,APIRequest.APIRequestIdentifier requestIdentifier){
+
+        /* 404 */
+        if( result == null ){
+            this.delegate.apiRequestError();
+            return;
+        }
+
         List<BaseEntity> entities;
         switch ( requestIdentifier ){
             case BUILDINGS_BY_SERVICES:
