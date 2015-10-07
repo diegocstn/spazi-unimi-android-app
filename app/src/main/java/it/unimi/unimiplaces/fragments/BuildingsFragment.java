@@ -170,5 +170,6 @@ public class BuildingsFragment extends Fragment implements
         Intent detailActivityIntent = new Intent(getActivity(), BuildingDetailActivity.class);
         detailActivityIntent.putExtra("B_ID", detailBuilding.b_id);
         startActivity(detailActivityIntent);
+        getActivity().overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
     }
 }
