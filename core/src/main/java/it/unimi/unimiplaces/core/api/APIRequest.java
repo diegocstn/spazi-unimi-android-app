@@ -15,6 +15,7 @@ public class APIRequest {
 
     public enum APIRequestIdentifier{
         BUILDINGS,
+        BUILDING_BY_BID,
         AVAILABLE_SERVICES,
         BUILDINGS_BY_SERVICES
     }

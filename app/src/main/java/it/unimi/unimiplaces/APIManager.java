@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
@@ -92,11 +93,21 @@ public class APIManager {
                 }
                 extendedDelegate.apiServiceAvailableRequestEnd(entities);
                 break;
+
+            case BUILDING_BY_BID:
+                entities = new ArrayList<>();
+                entities.add(this.apiFactory.makeBuildingFromJSON(result));
+                if( entities == null ){
+                    this.delegate.apiRequestError();
+                }
+                this.delegate.apiRequestEnd(entities);
+                this.progressDialog.hide();
+                break;
         }
     }
 
     public void buildings(APIDelegateInterface delegate){
-        Log.v(LOG_TAG,"Building API request");
+        Log.v(LOG_TAG,"Buildings API request");
         this.delegate           = delegate;
         this.executeAPIRequest("buildings/", APIRequest.APIRequestIdentifier.BUILDINGS,true);
     }
@@ -116,6 +127,12 @@ public class APIManager {
         }catch (UnsupportedEncodingException e){
             Log.e(LOG_TAG,"Error encoding service key");
         }
+    }
+
+    public void buildingByBID(APIDelegateInterface delegate,String b_id){
+        Log.v(LOG_TAG,"Building:"+b_id+" API request");
+        this.delegate = delegate;
+        this.executeAPIRequest("buildings/"+b_id+"/", APIRequest.APIRequestIdentifier.BUILDING_BY_BID,true);
     }
 
 
