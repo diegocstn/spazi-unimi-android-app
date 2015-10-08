@@ -21,7 +21,7 @@ import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.presenters.BuildingsPresenter;
-import it.unimi.unimiplaces.presenters.PresenterViewBuildings;
+import it.unimi.unimiplaces.views.BuildingsViewInterface;
 
 /**
  * BuildingsPresenter class
@@ -34,7 +34,7 @@ public class BuildingsPresenterTest {
     APIManager apiManager;
 
     @Mock
-    PresenterViewBuildings view;
+    BuildingsViewInterface view;
 
     @Mock
     Activity activity;

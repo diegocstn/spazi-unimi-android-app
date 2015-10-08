@@ -14,7 +14,7 @@ import java.util.List;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.presenters.BuildingDetailPresenter;
-import it.unimi.unimiplaces.views.BuildingDetailView;
+import it.unimi.unimiplaces.views.BuildingDetailViewInterface;
 
 /**
  * BuildingDetailPresenter test class
@@ -23,7 +23,7 @@ import it.unimi.unimiplaces.views.BuildingDetailView;
 public class BuildingDetailPresenterTest {
 
     @Mock
-    BuildingDetailView view;
+    BuildingDetailViewInterface view;
 
     @Mock
     APIManager apiManager;

@@ -6,7 +6,7 @@ import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
-import it.unimi.unimiplaces.views.BuildingDetailView;
+import it.unimi.unimiplaces.views.BuildingDetailViewInterface;
 
 /**
  * BuildingDetailPresenter class. It istantiate an ApiManager objects
@@ -17,10 +17,10 @@ public class BuildingDetailPresenter implements
         Presenter{
 
     APIManager apiManager;
-    BuildingDetailView view;
+    BuildingDetailViewInterface view;
     Building model;
 
-    public BuildingDetailPresenter(APIManager apiManager,BuildingDetailView detailView){
+    public BuildingDetailPresenter(APIManager apiManager,BuildingDetailViewInterface detailView){
         this.apiManager = apiManager;
         this.view       = detailView;
     }

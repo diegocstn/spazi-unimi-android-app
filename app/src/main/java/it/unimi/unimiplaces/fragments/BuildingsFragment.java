@@ -17,7 +17,7 @@ import java.util.List;
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.presenters.BuildingsPresenter;
 import it.unimi.unimiplaces.presenters.Presenter;
-import it.unimi.unimiplaces.presenters.PresenterViewBuildings;
+import it.unimi.unimiplaces.views.BuildingsViewInterface;
 import it.unimi.unimiplaces.presenters.PresenterViewInterface;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.activities.BuildingDetailActivity;
@@ -28,7 +28,7 @@ import it.unimi.unimiplaces.views.BuildingsMapView;
 
 public class BuildingsFragment extends Fragment implements
         PresenterViewInterface,
-        PresenterViewBuildings{
+        BuildingsViewInterface {
 
     private Presenter presenter;
     private BuildingsListView buildingsListView;

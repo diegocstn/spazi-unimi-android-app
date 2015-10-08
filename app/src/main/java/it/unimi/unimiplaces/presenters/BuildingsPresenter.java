@@ -7,6 +7,7 @@ import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
 import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
+import it.unimi.unimiplaces.views.BuildingsViewInterface;
 
 /**
  * BuildingsPresenter class
@@ -14,7 +15,7 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 public class BuildingsPresenter implements APIDelegateInterfaceExtended, Presenter {
 
     APIManager apiManager;
-    PresenterViewBuildings view;
+    BuildingsViewInterface view;
 
     public static int SERVICES_ALL_INDEX = 0;
     public static String SERVICES_ALL_KEY = "ALL";
@@ -25,7 +26,7 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
     private List<BaseEntity> availableServices;
 
 
-    public BuildingsPresenter(APIManager apiManager,PresenterViewBuildings view){
+    public BuildingsPresenter(APIManager apiManager,BuildingsViewInterface view){
         this.apiManager = apiManager;
         this.view       = view;
     }
