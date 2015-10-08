@@ -1,4 +1,4 @@
-package it.unimi.unimiplaces;
+package it.unimi.unimiplaces.presenters;
 
 /**
  * PresenterViewInterface

@@ -15,10 +15,10 @@ import android.widget.ToggleButton;
 import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
-import it.unimi.unimiplaces.BuildingsPresenter;
-import it.unimi.unimiplaces.Presenter;
-import it.unimi.unimiplaces.PresenterViewBuildings;
-import it.unimi.unimiplaces.PresenterViewInterface;
+import it.unimi.unimiplaces.presenters.BuildingsPresenter;
+import it.unimi.unimiplaces.presenters.Presenter;
+import it.unimi.unimiplaces.presenters.PresenterViewBuildings;
+import it.unimi.unimiplaces.presenters.PresenterViewInterface;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.activities.BuildingDetailActivity;
 import it.unimi.unimiplaces.core.model.BaseEntity;

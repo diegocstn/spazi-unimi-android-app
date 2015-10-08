@@ -1,4 +1,4 @@
-package it.unimi.unimiplaces;
+package it.unimi.unimiplaces.presenters;
 
 import it.unimi.unimiplaces.core.model.BaseEntity;
 

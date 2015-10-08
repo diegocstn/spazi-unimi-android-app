@@ -20,6 +20,8 @@ import java.util.List;
 import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.presenters.BuildingsPresenter;
+import it.unimi.unimiplaces.presenters.PresenterViewBuildings;
 
 /**
  * BuildingsPresenter class
