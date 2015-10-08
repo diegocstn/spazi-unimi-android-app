@@ -1,5 +1,7 @@
 package it.unimi.unimiplaces.activities;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.fragments.BuildingsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -18,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
+    private MenuItem currentAppSection;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,64 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         drawerToggle    = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.nav_open,R.string.nav_close);
         drawerLayout.setDrawerListener(drawerToggle);
+
+        currentAppSection = getDefaultCheckedMenuItem();
+        showFragmentForMenuItem(currentAppSection,true);
+
+    }
+
+    /**
+     * getDefaultCheckedMenuItem : get the default checked menu item, marked as "checked"
+     * in xml res file menu_main_navigation.xml
+     * @return
+     */
+    private MenuItem getDefaultCheckedMenuItem(){
+        Menu menu       = navigationView.getMenu();
+        MenuItem item   = null;
+        for(int i=0;i<menu.size();i++){
+            if( menu.getItem(i).isChecked() ){
+                item = menu.getItem(i);
+            }
+        }
+        return item;
+    }
+
+    /**
+     * showFragment : replace content fragment with the associated fragment
+     * @param menuItem
+     * @param initialization if true skip the current fragment check
+     */
+    private void showFragmentForMenuItem(MenuItem menuItem,boolean initialization){
+        Fragment newFragment = null;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        /* do nothing if it's the current fragment */
+        if( currentAppSection.getItemId() == menuItem.getItemId() && !initialization ){
+            drawerLayout.closeDrawers();
+            return;
+        }
+
+        switch (menuItem.getItemId()){
+            case R.id.nav_buildings:
+                newFragment = new BuildingsFragment();
+                break;
+            case R.id.nav_bookmarks:
+                break;
+            case R.id.nav_search:
+                break;
+            case R.id.nav_places:
+                break;
+            case R.id.nav_whereami:
+                break;
+        }
+
+        currentAppSection = menuItem;
+        transaction.replace(R.id.frame_content,newFragment);
+        transaction.commit();
+
+        menuItem.setChecked(true);
+        setTitle(menuItem.getTitle());
+        drawerLayout.closeDrawers();
     }
 
     @Override
@@ -54,7 +117,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
-        return false;
+        showFragmentForMenuItem(menuItem,false);
+        return true;
     }
 
     @Override
