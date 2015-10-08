@@ -9,4 +9,14 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="no_results">Ops, no results :(</string>
     <string name="available_service_all">All</string>
+
+    <!-- Main Menu -->
+    <string name="nav_open">Open navigation menu</string>
+    <string name="nav_close">Close navigation menu</string>
+    <string name="nav_buildings">Buildings</string>
+    <string name="nav_places">Places</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_bookmarks">Bookmarks</string>
+    <string name="nav_whereami">Where Am I</string>
+
 </resources>
