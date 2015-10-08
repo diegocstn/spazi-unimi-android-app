@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /**
      * getDefaultCheckedMenuItem : get the default checked menu item, marked as "checked"
      * in xml res file menu_main_navigation.xml
-     * @return
+     * @return the default checked menu item
      */
     private MenuItem getDefaultCheckedMenuItem(){
         Menu menu       = navigationView.getMenu();
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * showFragment : replace content fragment with the associated fragment
-     * @param menuItem
+     * @param menuItem menu item clicked
      * @param initialization if true skip the current fragment check
      */
     private void showFragmentForMenuItem(MenuItem menuItem,boolean initialization){
@@ -108,11 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if( drawerToggle.onOptionsItemSelected(item) ){
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return drawerToggle.onOptionsItemSelected(item);
     }
 
     @Override
