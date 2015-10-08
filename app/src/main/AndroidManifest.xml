@@ -22,17 +22,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.BuildingDetailActivity"
-            android:parentActivityName=".activities.MainActivity">
+            android:parentActivityName=".activities.MainActivity" >
         </activity>
-
         <activity
             android:name=".activities.TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
-
+        <activity android:name=".activities.AppDetailSectionActivity"
+            android:parentActivityName=".activities.MainActivity">
+        </activity>
     </application>
 
 </manifest>
