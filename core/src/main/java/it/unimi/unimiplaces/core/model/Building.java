@@ -53,21 +53,24 @@ public class Building extends BaseEntity implements LocalizableEntity {
 
         Building building = (Building) o;
 
-        if (!b_id.equals(building.b_id)) return false;
+        if (b_id != null ? !b_id.equals(building.b_id) : building.b_id != null) return false;
         if (building_name != null ? !building_name.equals(building.building_name) : building.building_name != null)
             return false;
         if (address != null ? !address.equals(building.address) : building.address != null)
             return false;
-        return !(coordinates != null ? !coordinates.equals(building.coordinates) : building.coordinates != null);
+        if (coordinates != null ? !coordinates.equals(building.coordinates) : building.coordinates != null)
+            return false;
+        return !(floors != null ? !floors.equals(building.floors) : building.floors != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = b_id.hashCode();
+        int result = b_id != null ? b_id.hashCode() : 0;
         result = 31 * result + (building_name != null ? building_name.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (coordinates != null ? coordinates.hashCode() : 0);
+        result = 31 * result + (floors != null ? floors.hashCode() : 0);
         return result;
     }
 }
