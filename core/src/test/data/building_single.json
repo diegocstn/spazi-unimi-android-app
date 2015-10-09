@@ -21,7 +21,8 @@
         "Deposito"
       ],
       "f_id": "-20",
-      "floor_name": "Secondo Interrato"
+      "floor_name": "Secondo Interrato",
+      "map":"http://spazi.srv.di.unimi.it/static-maps/11020/11020_-20.svg"
     },
     {
       "available_services": [
@@ -51,7 +52,8 @@
         "Locale Tecnico"
       ],
       "f_id": "-10",
-      "floor_name": "Primo Interrato"
+      "floor_name": "Primo Interrato",
+      "map":"http://spazi.srv.di.unimi.it/static-maps/11020/11020_-10.svg"
     },
     {
       "available_services": [
@@ -82,7 +84,8 @@
         "Locale Tecnico"
       ],
       "f_id": "0",
-      "floor_name": "Piano Terra"
+      "floor_name": "Piano Terra",
+      "map":"http://spazi.srv.di.unimi.it/static-maps/11020/11020_0.svg"
     },
     {
       "available_services": [
@@ -106,7 +109,8 @@
         "Sala Riunioni"
       ],
       "f_id": "10",
-      "floor_name": "Primo Piano"
+      "floor_name": "Primo Piano",
+      "map":"http://spazi.srv.di.unimi.it/static-maps/11020/11020_10.svg"
     },
     {
       "available_services": [
@@ -134,7 +138,8 @@
         "Locale Tecnico"
       ],
       "f_id": "20",
-      "floor_name": "Secondo Piano"
+      "floor_name": "Secondo Piano",
+      "map":"http://spazi.srv.di.unimi.it/static-maps/11020/11020_20.svg"
     },
     {
       "available_services": [
@@ -154,7 +159,8 @@
         "Locale Tecnico"
       ],
       "f_id": "30",
-      "floor_name": "Terzo Piano"
+      "floor_name": "Terzo Piano",
+      "map":"http://spazi.srv.di.unimi.it/static-maps/11020/11020_30.svg"
     },
     {
       "available_services": [
@@ -169,7 +175,8 @@
         "Locale Tecnico"
       ],
       "f_id": "40",
-      "floor_name": "Quarto Piano"
+      "floor_name": "Quarto Piano",
+      "map":"http://spazi.srv.di.unimi.it/static-maps/11020/11020_40.svg"
     }
   ],
   "l_b_id": "5809"

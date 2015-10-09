@@ -30,6 +30,17 @@ public class Building extends BaseEntity {
         }
     }
 
+    public Floor floorAtIndex(int index){
+        if( index>=this.floors.size() ){
+            return null;
+        }
+        return this.floors.get(index);
+    }
+
+    public List<Floor> getFloors(){
+        return this.floors;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

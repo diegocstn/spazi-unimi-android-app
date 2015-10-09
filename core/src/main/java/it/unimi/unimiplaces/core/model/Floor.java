@@ -8,5 +8,6 @@ import java.util.List;
 public class Floor {
     public String f_id;
     public String floor_name;
+    public String map;
     public List<String> available_services;
 }
