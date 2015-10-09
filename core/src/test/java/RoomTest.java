@@ -22,7 +22,7 @@ public class RoomTest {
         String json                     = TestHelpers.readFixtureDataFromFile("room.json");
         Room roomExpected               = new Room("1067","Galleria","Aula Magna");
         Building building               = new Building("11020","Festa del Perdono","via Festa del Perdono, 3, Milano, 20122");
-        building.setCoordinates(9.194568,45.460998);
+        building.setCoordinates(45.460998,9.194568);
         roomExpected.setBuildingAttributes(building);
 
         Room roomActual = this.apiFactory.makeRoomFromJSON(json);
