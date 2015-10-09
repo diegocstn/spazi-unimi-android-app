@@ -10,6 +10,6 @@ import it.unimi.unimiplaces.core.model.Coordinates;
 public class CoordinatesJSONAdapter {
     @FromJson
     Coordinates fromJson(double[] coordinates){
-        return new Coordinates(coordinates[0],coordinates[1]);
+        return new Coordinates(coordinates[1],coordinates[0]);
     }
 }

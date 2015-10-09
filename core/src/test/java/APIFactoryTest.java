@@ -63,13 +63,13 @@ public class APIFactoryTest {
         List<BaseEntity> expectedBuildings = new ArrayList();
 
         Building b1 = new Building("11020","Festa Del Perdono","via Festa del Perdono, 3, Milano, 20122");
-        b1.setCoordinates(9.194568, 45.460998);
+        b1.setCoordinates(45.460998,9.194568);
 
         Building b2 = new Building("11120","Sant'Antonio","via Sant'Antonio, 5, Milano, 20122");
-        b2.setCoordinates(9.193712, 45.461615);
+        b2.setCoordinates(45.461615,9.193712);
 
         Building b3 = new Building("11220","Santa Sofia","Via Santa Sofia, 9/11, Milano, 20122");
-        b3.setCoordinates(9.191074, 45.456215);
+        b3.setCoordinates(45.456215,9.191074);
 
         expectedBuildings.add(b1);
         expectedBuildings.add(b2);
