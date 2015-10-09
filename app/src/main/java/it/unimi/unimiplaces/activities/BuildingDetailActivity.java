@@ -2,6 +2,7 @@ package it.unimi.unimiplaces.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import it.unimi.unimiplaces.APIManager;
@@ -15,6 +16,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements 
     private Presenter presenter;
     TextView buildingNameTextView;
     TextView buildingAddressTextView;
+    TextView buildingNoResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements 
 
         buildingNameTextView    = (TextView) findViewById(R.id.building_name);
         buildingAddressTextView = (TextView) findViewById(R.id.building_address);
+        buildingNoResults       = (TextView) findViewById(R.id.building_no_results);
 
         Intent intent = getIntent();
         presenter = new BuildingDetailPresenter(APIManager.APIManagerFactory.createAPIManager(this),this);
@@ -42,6 +45,8 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements 
 
     @Override
     public void showNoResultsMessage() {
-
+        buildingNameTextView.setVisibility(View.INVISIBLE);
+        buildingAddressTextView.setVisibility(View.INVISIBLE);
+        buildingNoResults.setVisibility(View.VISIBLE);
     }
 }
