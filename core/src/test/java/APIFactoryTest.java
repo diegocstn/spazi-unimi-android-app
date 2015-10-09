@@ -29,7 +29,7 @@ public class APIFactoryTest {
     public void TestSingleBuildingFactory(){
         String jsonBuilding = TestHelpers.readFixtureDataFromFile("building_single.json");
         Building actual = new Building("11020","Festa Del Perdono","via Festa del Perdono, 3, Milano, 20122");
-        actual.setCoordinates(9.194568, 45.460998);
+        actual.setCoordinates(45.460998,9.194568);
 
         Building other = (Building) apiFactory.makeBuildingFromJSON(jsonBuilding);
 
@@ -49,7 +49,7 @@ public class APIFactoryTest {
         String jsonBuilding = TestHelpers.readFixtureDataFromFile("buildings_1.json");
         List<BaseEntity> expectedBuildings = new ArrayList();
         Building b1 = new Building("11020","Festa Del Perdono","via Festa del Perdono, 3, Milano, 20122");
-        b1.setCoordinates(9.194568, 45.460998);
+        b1.setCoordinates(45.460998,9.194568);
         expectedBuildings.add(b1);
 
         List<BaseEntity> actualBuildings = apiFactory.makeBuildingsFromJSON(jsonBuilding);

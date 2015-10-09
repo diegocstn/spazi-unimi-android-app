@@ -58,9 +58,7 @@ public class Building extends BaseEntity implements LocalizableEntity {
             return false;
         if (address != null ? !address.equals(building.address) : building.address != null)
             return false;
-        if (coordinates != null ? !coordinates.equals(building.coordinates) : building.coordinates != null)
-            return false;
-        return !(floors != null ? !floors.equals(building.floors) : building.floors != null);
+        return !(coordinates != null ? !coordinates.equals(building.coordinates) : building.coordinates != null);
 
     }
 
@@ -70,7 +68,6 @@ public class Building extends BaseEntity implements LocalizableEntity {
         result = 31 * result + (building_name != null ? building_name.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (coordinates != null ? coordinates.hashCode() : 0);
-        result = 31 * result + (floors != null ? floors.hashCode() : 0);
         return result;
     }
 }
