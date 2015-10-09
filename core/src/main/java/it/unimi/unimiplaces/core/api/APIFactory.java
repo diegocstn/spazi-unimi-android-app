@@ -9,6 +9,7 @@ import java.util.List;
 import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.core.model.Room;
 
 /**
  * API object factory, provides an unique access point for BaseEntity objects creation
@@ -65,5 +66,17 @@ public class APIFactory {
             System.out.println(e);
         }
         return (List<BaseEntity>)services;
+    }
+
+    public Room makeRoomFromJSON(String json){
+        Room room = null;
+        JsonAdapter<Room> jsonAdapter = moshiBuilder.adapter(Room.class);
+        try {
+            room = jsonAdapter.fromJson(json);
+        }catch (IOException e){
+            System.out.println(e);
+        }
+
+        return room;
     }
 }
