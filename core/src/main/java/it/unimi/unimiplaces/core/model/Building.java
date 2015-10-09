@@ -3,7 +3,7 @@ package it.unimi.unimiplaces.core.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Building extends BaseEntity {
+public class Building extends BaseEntity implements LocalizableEntity {
     public String b_id;
     public String building_name;
     public String address;
@@ -17,9 +17,14 @@ public class Building extends BaseEntity {
         this.floors         = new ArrayList<Floor>();
     }
 
-
+    @Override
     public void setCoordinates(double lat, double lng){
         this.coordinates = new Coordinates(lat,lng);
+    }
+
+    @Override
+    public Coordinates getCoordinates() {
+        return this.coordinates;
     }
 
     public int numOfFloors(){
