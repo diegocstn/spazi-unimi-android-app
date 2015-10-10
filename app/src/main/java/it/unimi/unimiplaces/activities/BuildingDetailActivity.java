@@ -110,12 +110,12 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements 
 
         @Override
         public Object getChild(int groupPosition, int childPosition) {
-            return this.data.get(groupPosition).get(childPosition);
+            return this.data.get(this.headers.get(groupPosition)).get(childPosition);
         }
 
         @Override
         public int getChildrenCount(int groupPosition) {
-            return this.data.get(groupPosition).size();
+            return this.data.get(this.headers.get(groupPosition)).size();
         }
 
         @Override

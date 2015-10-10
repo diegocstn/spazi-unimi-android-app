@@ -31,8 +31,12 @@ public class BuildingDetailPresenter implements
 
     private HashMap<String,List<String>> prepareFloorsDetailModel(){
         HashMap<String,List<String>> data = new HashMap<>();
+        String[] rooms;
         for (Floor f:this.model.getFloors()){
-            data.put(f.floor_name,new ArrayList<>(Arrays.asList(f.getRoomsNamesList())));
+            rooms = f.getRoomsNamesList();
+            if( rooms != null ){
+                data.put(f.floor_name,new ArrayList<>(Arrays.asList(rooms)));
+            }
         }
 
         return data;

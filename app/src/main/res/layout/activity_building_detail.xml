@@ -11,12 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <RelativeLayout
+        android:id="@+id/building_detail_info"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,29 +35,36 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/building_name"
-            android:lines="2" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/building_name" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/building_name"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:id="@+id/building_address"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:lines="2" />
 
     </RelativeLayout>
+
     <RelativeLayout
+        android:layout_below="@+id/building_detail_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin">
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/building_detail_rooms_label"
+            android:text="@string/building_detail_Rooms_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/building_detail_Rooms_label"/>
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
         <ExpandableListView
             android:id="@+id/building_detail_rooms"
+            android:layout_below="@+id/building_detail_rooms_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
