@@ -19,4 +19,6 @@
     <string name="nav_bookmarks">Bookmarks</string>
     <string name="nav_whereami">Where Am I</string>
 
+    <!-- Building detail -->
+    <string name="building_detail_Rooms_label">Rooms</string>
 </resources>

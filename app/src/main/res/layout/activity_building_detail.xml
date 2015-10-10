@@ -47,6 +47,18 @@
             android:lines="2" />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/building_detail_Rooms_label"/>
+        <ExpandableListView
+            android:id="@+id/building_detail_rooms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
 
 </RelativeLayout>
