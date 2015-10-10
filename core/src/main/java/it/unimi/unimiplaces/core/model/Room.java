@@ -25,6 +25,10 @@ public class Room extends BaseEntity implements LocalizableEntity {
         this.cat_name   = cat;
     }
 
+    public void setB_id(String b_id){
+        this.b_id = b_id;
+    }
+
     public void setBuildingAttributes(Building building){
         this.building_coordinates   = building.getCoordinates();
         this.building_address       = building.address;
@@ -56,18 +60,7 @@ public class Room extends BaseEntity implements LocalizableEntity {
         if (r_id != null ? !r_id.equals(room.r_id) : room.r_id != null) return false;
         if (room_name != null ? !room_name.equals(room.room_name) : room.room_name != null)
             return false;
-        if (f_id != null ? !f_id.equals(room.f_id) : room.f_id != null) return false;
         if (b_id != null ? !b_id.equals(room.b_id) : room.b_id != null) return false;
-        if (building_name != null ? !building_name.equals(room.building_name) : room.building_name != null)
-            return false;
-        if (building_address != null ? !building_address.equals(room.building_address) : room.building_address != null)
-            return false;
-        if (building_coordinates != null ? !building_coordinates.equals(room.building_coordinates) : room.building_coordinates != null)
-            return false;
-        if (equipments != null ? !equipments.equals(room.equipments) : room.equipments != null)
-            return false;
-        if (accessibility != null ? !accessibility.equals(room.accessibility) : room.accessibility != null)
-            return false;
         return !(cat_name != null ? !cat_name.equals(room.cat_name) : room.cat_name != null);
 
     }
@@ -76,13 +69,7 @@ public class Room extends BaseEntity implements LocalizableEntity {
     public int hashCode() {
         int result = r_id != null ? r_id.hashCode() : 0;
         result = 31 * result + (room_name != null ? room_name.hashCode() : 0);
-        result = 31 * result + (f_id != null ? f_id.hashCode() : 0);
         result = 31 * result + (b_id != null ? b_id.hashCode() : 0);
-        result = 31 * result + (building_name != null ? building_name.hashCode() : 0);
-        result = 31 * result + (building_address != null ? building_address.hashCode() : 0);
-        result = 31 * result + (building_coordinates != null ? building_coordinates.hashCode() : 0);
-        result = 31 * result + (equipments != null ? equipments.hashCode() : 0);
-        result = 31 * result + (accessibility != null ? accessibility.hashCode() : 0);
         result = 31 * result + (cat_name != null ? cat_name.hashCode() : 0);
         return result;
     }

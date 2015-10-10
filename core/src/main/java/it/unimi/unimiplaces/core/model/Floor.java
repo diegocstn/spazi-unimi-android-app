@@ -1,5 +1,6 @@
 package it.unimi.unimiplaces.core.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,26 @@ public class Floor {
     public String floor_name;
     public String map;
     public List<String> available_services;
+    private List<Room> rooms;
+
+    public int roomsCount(){
+        return this.rooms.size();
+    }
+
+    public Room roomAtIndex(int i){
+        if( i>=this.rooms.size() ){
+            return null;
+        }
+        return rooms.get(i);
+    }
+
+    public List<Room> getRooms(){
+        if( this.rooms!=null ){
+            return this.rooms;
+        }
+
+        return new ArrayList<>();
+    }
 
     @Override
     public boolean equals(Object o) {

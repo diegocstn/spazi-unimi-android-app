@@ -1,0 +1,22 @@
+{
+  "f_id": "-10",
+  "floor_name": "Primo Interrato",
+  "rooms": [
+    {
+      "accessibility": "0",
+      "capacity": "63",
+      "cat_name": "Aula Informatica",
+      "equipments": [],
+      "r_id": "1I178",
+      "room_name": "Aula Bron Lab"
+    },
+    {
+      "accessibility": "0",
+      "capacity": "52",
+      "cat_name": "Aula Informatica",
+      "equipments": [],
+      "r_id": "1I096",
+      "room_name": "Aula Manhattan"
+    }
+  ]
+}
