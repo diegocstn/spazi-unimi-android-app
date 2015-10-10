@@ -51,8 +51,15 @@ public class BuildingDetailPresenter implements
     public void filterModelWithFilterAtIndex(int index) {}
 
     @Override
-    public BaseEntity payloadForDetailAtIndex(int index) {
-        return model;
+    public BaseEntity payloadForDetailAtIndex(int index) { return this.model; }
+
+    public BaseEntity payloadForDetailAtIndex(int floorIndex, int roomIndex) {
+        Floor f = this.model.floorAtIndex(floorIndex);
+        if( f!=null ){
+            return f.roomAtIndex(roomIndex);
+        }
+
+        return null;
     }
 
     @Override

@@ -20,6 +20,7 @@ import java.util.List;
 import it.unimi.unimiplaces.core.api.APIFactory;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.BuildingDetailPresenter;
 import it.unimi.unimiplaces.views.BuildingDetailViewInterface;
 
@@ -40,6 +41,21 @@ public class BuildingDetailPresenterTest {
 
     @Captor
     ArgumentCaptor<HashMap<String,List<String>>> floorsDetail;
+
+    public String jsonBuilding(){
+        String json = "";
+        json = "{\"address\":\"via Festa del Perdono, 3, Milano, 20122\",\"b_id\":\"11020\",\"building_name\":\"Festa Del Perdono\",\n" +
+                "\"floors\":[\n" +
+                "\t{\"f_id\":\"-10\",\"floor_name\":\"Primo Interrato\", \"rooms\":[{\"accessibility\":\"0\",\"capacity\":\"63\",\"cat_name\":\"Aula Informatica\",\"equipments\":[],\"r_id\":\"1I178\",\"room_name\":\"Aula Bron Lab\"},\n" +
+                "{\"accessibility\":\"0\",\"capacity\":\"52\",\"cat_name\":\"Aula Informatica\",\"equipments\":[],\"r_id\":\"1I096\",\"room_name\":\"Aula Manhattan\"}\n" +
+                "]},\n" +
+                "{\"f_id\":\"0\",\"floor_name\":\"Piano Terra\", \"rooms\":[\n" +
+                "{\"accessibility\":\"0\",\"capacity\":\"63\",\"cat_name\":\"Aula Informatica\",\"equipments\":[],\"r_id\":\"1I178\",\"room_name\":\"Aula 1\"},\n" +
+                "{\"accessibility\":\"0\",\"capacity\":\"52\",\"cat_name\":\"Aula Informatica\",\"equipments\":[],\"r_id\":\"1I096\",\"room_name\":\"Aula 2\"}\n" +
+                "]}\n" +
+                "]}";
+        return json;
+    }
 
     @Before
     public void setUp(){
@@ -88,20 +104,8 @@ public class BuildingDetailPresenterTest {
 
     @Test
     public void presenterShouldPrepareFloorsList(){
-        String json = "";
-        json = "{\"address\":\"via Festa del Perdono, 3, Milano, 20122\",\"b_id\":\"11020\",\"building_name\":\"Festa Del Perdono\",\n" +
-                "\"floors\":[\n" +
-                "\t{\"f_id\":\"-10\",\"floor_name\":\"Primo Interrato\", \"rooms\":[{\"accessibility\":\"0\",\"capacity\":\"63\",\"cat_name\":\"Aula Informatica\",\"equipments\":[],\"r_id\":\"1I178\",\"room_name\":\"Aula Bron Lab\"},\n" +
-                "{\"accessibility\":\"0\",\"capacity\":\"52\",\"cat_name\":\"Aula Informatica\",\"equipments\":[],\"r_id\":\"1I096\",\"room_name\":\"Aula Manhattan\"}\n" +
-                "]},\n" +
-                "{\"f_id\":\"0\",\"floor_name\":\"Piano Terra\", \"rooms\":[\n" +
-                "{\"accessibility\":\"0\",\"capacity\":\"63\",\"cat_name\":\"Aula Informatica\",\"equipments\":[],\"r_id\":\"1I178\",\"room_name\":\"Aula 1\"},\n" +
-                "{\"accessibility\":\"0\",\"capacity\":\"52\",\"cat_name\":\"Aula Informatica\",\"equipments\":[],\"r_id\":\"1I096\",\"room_name\":\"Aula 2\"}\n" +
-                "]}\n" +
-                "]}";
-
         final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view);
-        final Building building = (Building) factory.makeBuildingFromJSON(json);
+        final Building building = (Building) factory.makeBuildingFromJSON(this.jsonBuilding());
 
         Mockito.doAnswer(new Answer() {
             @Override
@@ -133,4 +137,28 @@ public class BuildingDetailPresenterTest {
         Assert.assertEquals(expected,actual);
 
     }
+
+    @Test
+    public void testBuildingDetailPayload(){
+        final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view);
+        final Building building = (Building) factory.makeBuildingFromJSON(this.jsonBuilding());
+
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                ArrayList<BaseEntity> model = new ArrayList<BaseEntity>();
+                model.add(building);
+                presenter.apiRequestEnd(model);
+                return null;
+            }
+        }).when(apiManager).buildingByBID(presenter, "123");
+
+
+        presenter.init("123");
+
+        Room r = new Room("1I096","Aula 2","Aula Informatica");
+        Assert.assertEquals(r,presenter.payloadForDetailAtIndex(1,1));
+
+    }
+
 }

@@ -8,4 +8,5 @@ import it.unimi.unimiplaces.presenters.PresenterViewInterface;
  */
 public interface BuildingsViewInterface extends PresenterViewInterface {
     void setAvailableServices(String[] services);
+
 }

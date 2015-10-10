@@ -15,11 +15,14 @@ import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.BuildingDetailPresenter;
 import it.unimi.unimiplaces.presenters.Presenter;
 import it.unimi.unimiplaces.views.BuildingDetailViewInterface;
 
-public class BuildingDetailActivity extends AppDetailSectionActivity implements BuildingDetailViewInterface {
+public class BuildingDetailActivity extends AppDetailSectionActivity implements
+        BuildingDetailViewInterface,
+        ExpandableListView.OnChildClickListener{
 
     private Presenter presenter;
     TextView buildingNameTextView;
@@ -65,6 +68,16 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements 
     public void setFloorsDetailModel(HashMap<String, List<String>> data) {
         floorsDetailAdapter = new FloorsDetailAdapter(this,data);
         this.floorsDetailListView.setAdapter(floorsDetailAdapter);
+        this.floorsDetailListView.setOnChildClickListener(this);
+    }
+
+
+    @Override
+    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+        BuildingDetailPresenter buildingDetailPresenter = (BuildingDetailPresenter) this.presenter;
+        Room room = (Room) buildingDetailPresenter.payloadForDetailAtIndex(groupPosition,childPosition);
+        //TODO do something useful (like starts an activity :D) with this room object
+        return true;
     }
 
     /**
