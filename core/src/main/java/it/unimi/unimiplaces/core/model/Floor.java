@@ -32,6 +32,19 @@ public class Floor {
         return new ArrayList<>();
     }
 
+    public String[] getRoomsNamesList(){
+        if( this.rooms.size()==0 ){
+            return null;
+        }
+
+        String names[] = new String[this.rooms.size()];
+        for(int i=0;i<this.rooms.size();i++){
+            names[i] = this.rooms.get(i).room_name;
+        }
+
+        return names;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -73,5 +73,17 @@ public class FloorTest {
     }
 
 
+    @Test
+    public void testRoomsNamesList(){
+        Floor floor = this.apiFactory.makeFloorFromJSON(TestHelpers.readFixtureDataFromFile("floor.json"));
+        String roomNames[] = { "Aula Bron Lab","Aula Manhattan" };
+        Assert.assertArrayEquals(roomNames, floor.getRoomsNamesList());
+    }
+
+    @Test
+    public void testRoomsNamesListNoRooms(){
+        Floor floor = this.apiFactory.makeFloorFromJSON(TestHelpers.readFixtureDataFromFile("floor_no_rooms.json"));
+        Assert.assertArrayEquals(null,floor.getRoomsNamesList());
+    }
 
 }
