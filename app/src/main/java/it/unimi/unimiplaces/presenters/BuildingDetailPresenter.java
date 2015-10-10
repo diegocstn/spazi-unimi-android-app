@@ -1,11 +1,15 @@
 package it.unimi.unimiplaces.presenters;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.core.model.Floor;
 import it.unimi.unimiplaces.views.BuildingDetailViewInterface;
 
 /**
@@ -23,6 +27,15 @@ public class BuildingDetailPresenter implements
     public BuildingDetailPresenter(APIManager apiManager,BuildingDetailViewInterface detailView){
         this.apiManager = apiManager;
         this.view       = detailView;
+    }
+
+    private HashMap<String,List<String>> prepareFloorsDetailModel(){
+        HashMap<String,List<String>> data = new HashMap<>();
+        for (Floor f:this.model.getFloors()){
+            data.put(f.floor_name,new ArrayList<>(Arrays.asList(f.getRoomsNamesList())));
+        }
+
+        return data;
     }
 
     @Override
@@ -53,6 +66,8 @@ public class BuildingDetailPresenter implements
         this.model = (Building) results.get(0);
         this.view.setBuildingName(this.model.building_name);
         this.view.setBuildingAddress(this.model.address);
+
+        this.view.setFloorsDetailModel(this.prepareFloorsDetailModel());
     }
 
     @Override
