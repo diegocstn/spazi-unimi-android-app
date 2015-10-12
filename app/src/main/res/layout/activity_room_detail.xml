@@ -55,6 +55,7 @@
                     android:id="@+id/building_info_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_building_marker"/>
                 <TextView
                     android:id="@+id/building_name"
@@ -95,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:src="@drawable/ic_favorite_black">
+            android:src="@drawable/ic_favorite_white">
         </android.support.design.widget.FloatingActionButton>
 
     </android.support.design.widget.CoordinatorLayout>
