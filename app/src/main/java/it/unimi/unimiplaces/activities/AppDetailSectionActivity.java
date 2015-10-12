@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 
 import it.unimi.unimiplaces.R;
 
@@ -33,6 +34,16 @@ public class AppDetailSectionActivity extends AppCompatActivity {
 
         /* Set title */
         setTitle(title);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                this.onBackPressed();
+        }
+        return true;
     }
 
     @Override

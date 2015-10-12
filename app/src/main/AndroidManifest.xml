@@ -34,7 +34,9 @@
             android:name=".activities.AppDetailSectionActivity"
             android:parentActivityName=".activities.MainActivity" >
         </activity>
-        <activity android:name=".activities.RoomDetailActivity" >
+        <activity
+            android:name=".activities.RoomDetailActivity"
+            android:parentActivityName=".activities.BuildingDetailActivity">
         </activity>
     </application>
 
