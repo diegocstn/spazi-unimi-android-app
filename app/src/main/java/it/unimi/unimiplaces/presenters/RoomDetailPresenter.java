@@ -30,6 +30,12 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
 
     @Override
     public void apiRequestEnd(List<BaseEntity> results) {
+
+        if( results==null ){
+            this.view.showNoResultsMessage();
+            return;
+        }
+
         this.room = (Room) results.get(0);
         this.view.setRoomName(room.room_name);
         this.view.setRoomCategory(room.cat_name);
@@ -40,7 +46,7 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
 
     @Override
     public void apiRequestError() {
-
+        this.view.showNoResultsMessage();
     }
 
     @Override

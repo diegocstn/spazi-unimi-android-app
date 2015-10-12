@@ -72,4 +72,14 @@ public class RoomDetailPresenterTest {
         Mockito.verify(view).setBuildingAddress(building.address);
 
     }
+
+    @Test
+    public void shouldShowErrorMessageIfNoRoomProvided(){
+        Mockito.doAnswer(mockAPIAnswerWithData(null)).when(apiManager)
+                .roomByRIDAndBID(presenter, "123", "000");
+
+        presenter.init("123", "000");
+        Mockito.verify(apiManager).roomByRIDAndBID(presenter, "123", "000");
+        Mockito.verify(view).showNoResultsMessage();
+    }
 }
