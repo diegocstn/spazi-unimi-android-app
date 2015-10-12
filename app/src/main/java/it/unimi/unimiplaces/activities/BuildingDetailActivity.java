@@ -46,9 +46,10 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
         Intent intent = getIntent();
         this.presenter  = new BuildingDetailPresenter(APIManager.APIManagerFactory.createAPIManager(this),this);
         this.buildingId = intent.getStringExtra( Building.MODEL_KEY );
-        presenter.init( this.buildingId );
+        presenter.init(this.buildingId);
         this.setUpDetailActivity(intent.getStringExtra(Building.MODEL_NAME_KEY));
     }
+
 
     @Override
     public void setBuildingName(String buildingName) {
@@ -83,6 +84,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
         roomDetailIntent.putExtra(Room.MODEL_KEY,room.r_id);
         roomDetailIntent.putExtra(Room.MODEL_NAME_KEY,room.room_name);
         startActivity(roomDetailIntent);
+        this.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         return true;
     }
 
@@ -180,5 +182,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
 
             return convertView;
         }
+
+
     }
 }
