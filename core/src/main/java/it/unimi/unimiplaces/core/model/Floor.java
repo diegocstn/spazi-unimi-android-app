@@ -13,6 +13,8 @@ public class Floor {
     public List<String> available_services;
     private List<Room> rooms;
 
+    public final String MODEL_KEY = "f_id";
+
     public int roomsCount(){
         return this.rooms.size();
     }

@@ -18,6 +18,8 @@ public class Room extends BaseEntity implements LocalizableEntity {
     public String accessibility;
     public String cat_name;
 
+    public final String MODEL_KEY = "r_id";
+
 
     public Room(String r_id,String name,String cat){
         this.r_id       = r_id;

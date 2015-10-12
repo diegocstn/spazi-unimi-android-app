@@ -10,6 +10,8 @@ public class Building extends BaseEntity implements LocalizableEntity {
     public Coordinates coordinates;
     private List<Floor> floors;
 
+    public final String MODEL_KEY = "b_id";
+
     public Building(String b_id, String building_name, String address){
         this.b_id           = b_id;
         this.building_name  = building_name;
