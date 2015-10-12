@@ -9,6 +9,7 @@ public class Room extends BaseEntity implements LocalizableEntity {
 
     public String r_id;
     public String room_name;
+    public String floor;
     public String f_id;
     private String b_id;
     public String building_name;
@@ -26,6 +27,11 @@ public class Room extends BaseEntity implements LocalizableEntity {
         this.r_id       = r_id;
         this.room_name  = name;
         this.cat_name   = cat;
+    }
+
+    public void setFloorAttributes(Floor floor){
+        this.f_id   = floor.f_id;
+        this.floor  = floor.floor_name;
     }
 
     public void setB_id(String b_id){
