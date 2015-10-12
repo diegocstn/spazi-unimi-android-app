@@ -30,8 +30,11 @@
             android:name=".activities.TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
-        <activity android:name=".activities.AppDetailSectionActivity"
-            android:parentActivityName=".activities.MainActivity">
+        <activity
+            android:name=".activities.AppDetailSectionActivity"
+            android:parentActivityName=".activities.MainActivity" >
+        </activity>
+        <activity android:name=".activities.RoomDetailActivity" >
         </activity>
     </application>
 
