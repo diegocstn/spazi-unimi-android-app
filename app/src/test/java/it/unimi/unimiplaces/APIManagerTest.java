@@ -24,6 +24,8 @@ import it.unimi.unimiplaces.core.api.APIRequest;
 import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.core.model.Floor;
+import it.unimi.unimiplaces.core.model.Room;
 
 /**
  * APIManager test class
@@ -164,7 +166,7 @@ public class APIManagerTest{
 
         mockAsyncTask(APIRequest.APIRequestIdentifier.BUILDING_BY_BID,json);
 
-        apiManager.buildingByBID(delegate,"11020");
+        apiManager.buildingByBID(delegate, "11020");
 
         Mockito.verify(delegate).apiRequestStart();
         Mockito.verify(delegate).apiRequestEnd(entities.capture());
@@ -174,5 +176,27 @@ public class APIManagerTest{
 
         Assert.assertEquals(buildingExpected.building_name, buildingActual.building_name);
         Assert.assertEquals(buildingExpected.address, buildingActual.address);
+    }
+
+    @Test
+    public void testRoomByRoomID(){
+        String json = "{\"accessibility\":\"\",\"b_id\":\"11020\",\"building_address\":\"via Festa del Perdono, 3, Milano, 20122\",\"building_coordinates\":[9.194568,45.460998],\"building_name\":\"Festa Del Perdono\",\"capacity\":\"258\",\"cat_name\":\"Aula Magna\",\"equipments\":[],\"f_id\":\"10\",\"floor\":\"Primo Piano\",\"map\":\"http://spazi.srv.di.unimi.it/static-maps/11020/11020_10.svg\",\"r_id\":\"1067\",\"room_name\":\"Galleria\"}";
+
+        mockAsyncTask(APIRequest.APIRequestIdentifier.ROOM_BY_ID, json);
+
+        apiManager.roomByRIDAndBID(delegate, "1067", "11020");
+
+        Mockito.verify(delegate).apiRequestStart();
+        Mockito.verify(delegate).apiRequestEnd(entities.capture());
+
+        Room roomExpected   = new Room("1067","Galleria","Aula Magna");
+        roomExpected.setBuildingAttributes(new Building("11020","Festa Del Perdono","via Festa del Perdono, 3, Milano, 20122"));
+        roomExpected.setFloorAttributes(new Floor("10","Primo Piano"));
+
+        Room actual         = (Room) entities.getValue().get(0);
+        Assert.assertEquals(roomExpected.room_name,actual.room_name);
+        Assert.assertEquals(roomExpected.r_id,actual.r_id);
+        Assert.assertEquals(roomExpected.building_name,actual.building_name);
+
     }
 }

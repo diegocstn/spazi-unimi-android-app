@@ -96,8 +96,20 @@ public class APIManager {
 
             case BUILDING_BY_BID:
                 entities = new ArrayList<>();
-                entities.add(this.apiFactory.makeBuildingFromJSON(result));
-                if( entities == null ){
+                BaseEntity building = this.apiFactory.makeBuildingFromJSON(result);
+                entities.add( building );
+                if( building == null ){
+                    this.delegate.apiRequestError();
+                }
+                this.delegate.apiRequestEnd(entities);
+                this.progressDialog.hide();
+                break;
+
+            case ROOM_BY_ID:
+                entities    = new ArrayList<>();
+                BaseEntity room = this.apiFactory.makeRoomFromJSON(result);
+                entities.add( room );
+                if( room == null ){
                     this.delegate.apiRequestError();
                 }
                 this.delegate.apiRequestEnd(entities);
@@ -133,6 +145,12 @@ public class APIManager {
         Log.v(LOG_TAG,"Building:"+b_id+" API request");
         this.delegate = delegate;
         this.executeAPIRequest("buildings/"+b_id+"/", APIRequest.APIRequestIdentifier.BUILDING_BY_BID,true);
+    }
+
+    public void roomByRIDAndBID(APIDelegateInterface delegate, String r_id, String b_id){
+        Log.v(LOG_TAG,"Room:"+r_id+"in building"+b_id+" API request");
+        this.delegate = delegate;
+        this.executeAPIRequest("rooms/"+b_id+"/"+r_id+"/", APIRequest.APIRequestIdentifier.ROOM_BY_ID,true);
     }
 
 
