@@ -21,4 +21,8 @@
 
     <!-- Building detail -->
     <string name="building_detail_Rooms_label">Rooms</string>
+
+    <!-- Room detail -->
+    <string name="room_detail_equipments_label">Equipments:</string>
+
 </resources>

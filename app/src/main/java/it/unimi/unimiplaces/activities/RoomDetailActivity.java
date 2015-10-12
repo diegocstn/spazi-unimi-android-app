@@ -22,6 +22,7 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     TextView textViewFloor;
     TextView textViewBuildingName;
     TextView textViewBuildingAddress;
+    TextView textViewEquipments;
 
 
     @Override
@@ -38,6 +39,7 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         textViewFloor           = (TextView) findViewById(R.id.floor);
         textViewBuildingName    = (TextView) findViewById(R.id.building_name);
         textViewBuildingAddress = (TextView) findViewById(R.id.building_address);
+        textViewEquipments      = (TextView) findViewById(R.id.room_equipments);
 
         // initialize presenter
         this.presenter = new RoomDetailPresenter(APIManager.APIManagerFactory.createAPIManager(this),this);
@@ -67,6 +69,11 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     @Override
     public void setRoomCategory(String roomCategory) {
         this.textViewRoomCategory.setText(roomCategory);
+    }
+
+    @Override
+    public void setRoomEquipments(String equipments){
+        this.textViewEquipments.setText(equipments);
     }
 
     @Override

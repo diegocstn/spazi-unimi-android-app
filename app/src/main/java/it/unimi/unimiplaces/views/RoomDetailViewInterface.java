@@ -9,6 +9,7 @@ public interface RoomDetailViewInterface {
     void setBuildingName(String buildingName);
     void setBuildingAddress(String buildingAddress);
     void setRoomCategory(String roomCategory);
+    void setRoomEquipments(String equipments);
     void setFloorMapForRoom();
     void showNoResultsMessage();
 }

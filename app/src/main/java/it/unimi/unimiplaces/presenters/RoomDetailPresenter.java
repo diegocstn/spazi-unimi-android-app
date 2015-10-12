@@ -42,6 +42,16 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
         this.view.setRoomFloor(room.floor);
         this.view.setBuildingName(room.building_name);
         this.view.setBuildingAddress(room.building_address);
+
+        if( this.room.equipments != null ){
+            StringBuilder builder = new StringBuilder();
+            for ( String equipment : this.room.equipments ){
+                builder.append(equipment);
+                builder.append(", ");
+            }
+            builder.delete(builder.length()-2,builder.length());
+            this.view.setRoomEquipments(builder.toString());
+        }
     }
 
     @Override

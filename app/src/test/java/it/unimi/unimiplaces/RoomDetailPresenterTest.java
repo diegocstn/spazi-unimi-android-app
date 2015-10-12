@@ -82,4 +82,23 @@ public class RoomDetailPresenterTest {
         Mockito.verify(apiManager).roomByRIDAndBID(presenter, "123", "000");
         Mockito.verify(view).showNoResultsMessage();
     }
+
+    @Test
+    public void testSetRoomEquipments(){
+        List<BaseEntity> entities = new ArrayList<>();
+        Room room               = new Room("123","Aula 1","Aula informatica");
+        List<String> equipments = new ArrayList<>();
+        equipments.add("projector");
+        equipments.add("desks");
+        equipments.add("knife");
+        room.setEquipments(equipments);
+        entities.add(room);
+        Mockito.doAnswer(mockAPIAnswerWithData(entities)).when(apiManager)
+                .roomByRIDAndBID(presenter, "123", "000");
+
+        presenter.init("123", "000");
+
+        Mockito.verify(apiManager).roomByRIDAndBID(presenter, "123", "000");
+        Mockito.verify(view).setRoomEquipments("projector, desks, knife");
+    }
 }

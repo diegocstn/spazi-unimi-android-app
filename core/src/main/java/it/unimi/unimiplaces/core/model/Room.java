@@ -15,7 +15,7 @@ public class Room extends BaseEntity implements LocalizableEntity {
     public String building_name;
     public String building_address;
     private Coordinates building_coordinates;
-    private List<String> equipments;
+    public List<String> equipments;
     public String accessibility;
     public String cat_name;
 
