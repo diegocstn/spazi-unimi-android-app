@@ -15,6 +15,7 @@ import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.BuildingDetailPresenter;
 import it.unimi.unimiplaces.presenters.Presenter;
@@ -25,6 +26,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
         ExpandableListView.OnChildClickListener{
 
     private Presenter presenter;
+    private String buildingId;
     TextView buildingNameTextView;
     TextView buildingAddressTextView;
     TextView buildingNoResults;
@@ -42,9 +44,10 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
         floorsDetailListView    = (ExpandableListView) findViewById(R.id.building_detail_rooms);
 
         Intent intent = getIntent();
-        presenter = new BuildingDetailPresenter(APIManager.APIManagerFactory.createAPIManager(this),this);
-        presenter.init( intent.getStringExtra("b_id") );
-        this.setUpDetailActivity(intent.getStringExtra("building_name"));
+        this.presenter  = new BuildingDetailPresenter(APIManager.APIManagerFactory.createAPIManager(this),this);
+        this.buildingId = intent.getStringExtra( Building.MODEL_KEY );
+        presenter.init( this.buildingId );
+        this.setUpDetailActivity(intent.getStringExtra(Building.MODEL_NAME_KEY));
     }
 
     @Override
@@ -76,9 +79,13 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
         BuildingDetailPresenter buildingDetailPresenter = (BuildingDetailPresenter) this.presenter;
         Room room = (Room) buildingDetailPresenter.payloadForDetailAtIndex(groupPosition,childPosition);
-        //TODO do something useful (like starts an activity :D) with this room object
+        Intent roomDetailIntent = new Intent();
+        roomDetailIntent.putExtra(Room.MODEL_KEY,room.r_id);
+        roomDetailIntent.putExtra(Room.MODEL_NAME_KEY,room.room_name);
+        startActivity(roomDetailIntent);
         return true;
     }
+
 
     /**
      * FloorsDetailAdapter
