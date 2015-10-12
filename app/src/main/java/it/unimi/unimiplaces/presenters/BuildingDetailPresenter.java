@@ -2,7 +2,7 @@ package it.unimi.unimiplaces.presenters;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
@@ -13,8 +13,8 @@ import it.unimi.unimiplaces.core.model.Floor;
 import it.unimi.unimiplaces.views.BuildingDetailViewInterface;
 
 /**
- * BuildingDetailPresenter class. It istantiate an ApiManager objects
- * and retrieve building data from API server
+ * BuildingDetailPresenter class. Given an ApiManager object
+ * used for retrieving building data from API server, it sets the given view
  */
 public class BuildingDetailPresenter implements
         APIDelegateInterface,
@@ -29,13 +29,15 @@ public class BuildingDetailPresenter implements
         this.view       = detailView;
     }
 
-    private HashMap<String,List<String>> prepareFloorsDetailModel(){
-        HashMap<String,List<String>> data = new HashMap<>();
+    private LinkedHashMap<String,List<String>> prepareFloorsDetailModel(){
+        LinkedHashMap<String,List<String>> data = new LinkedHashMap<>();
         String[] rooms;
         for (Floor f:this.model.getFloors()){
             rooms = f.getRoomsNamesList();
             if( rooms != null ){
                 data.put(f.floor_name,new ArrayList<>(Arrays.asList(rooms)));
+            }else{
+                data.put(f.floor_name,new ArrayList());
             }
         }
 

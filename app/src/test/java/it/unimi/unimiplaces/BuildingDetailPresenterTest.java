@@ -15,6 +15,7 @@ import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIFactory;
@@ -40,7 +41,7 @@ public class BuildingDetailPresenterTest {
     APIFactory factory;
 
     @Captor
-    ArgumentCaptor<HashMap<String,List<String>>> floorsDetail;
+    ArgumentCaptor<LinkedHashMap<String,List<String>>> floorsDetail;
 
     public String jsonBuilding(){
         String json = "";
@@ -132,8 +133,13 @@ public class BuildingDetailPresenterTest {
         f2.add("Aula 2");
         expected.put("Piano Terra", f2);
 
-        HashMap<String,List<String>> actual = floorsDetail.getValue();
+        List<String> expectedHeaders = new ArrayList<>();
+        expectedHeaders.add("Primo Interrato");
+        expectedHeaders.add("Piano Terra");
 
+        LinkedHashMap<String,List<String>> actual = floorsDetail.getValue();
+        Assert.assertEquals(expectedHeaders.get(0),actual.keySet().toArray()[0]);
+        Assert.assertEquals(expectedHeaders.get(1),actual.keySet().toArray()[1]);
         Assert.assertEquals(expected,actual);
 
     }

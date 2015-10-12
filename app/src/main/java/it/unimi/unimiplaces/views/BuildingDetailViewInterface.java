@@ -1,6 +1,6 @@
 package it.unimi.unimiplaces.views;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -9,6 +9,6 @@ import java.util.List;
 public interface BuildingDetailViewInterface {
     void setBuildingName(String buildingName);
     void setBuildingAddress(String buildingAddress);
-    void setFloorsDetailModel(HashMap<String,List<String>> data);
+    void setFloorsDetailModel(LinkedHashMap<String,List<String>> data);
     void showNoResultsMessage();
 }

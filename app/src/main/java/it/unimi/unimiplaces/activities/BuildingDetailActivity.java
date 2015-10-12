@@ -10,7 +10,7 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
@@ -68,7 +68,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
     }
 
     @Override
-    public void setFloorsDetailModel(HashMap<String, List<String>> data) {
+    public void setFloorsDetailModel(LinkedHashMap<String, List<String>> data) {
         floorsDetailAdapter = new FloorsDetailAdapter(this,data);
         this.floorsDetailListView.setAdapter(floorsDetailAdapter);
         this.floorsDetailListView.setOnChildClickListener(this);
@@ -79,7 +79,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
         BuildingDetailPresenter buildingDetailPresenter = (BuildingDetailPresenter) this.presenter;
         Room room = (Room) buildingDetailPresenter.payloadForDetailAtIndex(groupPosition,childPosition);
-        Intent roomDetailIntent = new Intent();
+        Intent roomDetailIntent = new Intent(this,RoomDetailActivity.class);
         roomDetailIntent.putExtra(Room.MODEL_KEY,room.r_id);
         roomDetailIntent.putExtra(Room.MODEL_NAME_KEY,room.room_name);
         startActivity(roomDetailIntent);
@@ -94,14 +94,14 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
 
         private Context context;
         private List<String> headers;
-        private HashMap<String,List<String>> data;
+        private LinkedHashMap<String,List<String>> data;
 
         /**
          * Constructor
          * @param data HashMap in which every entry has as key the group name,
          *             and as value the list of entries in that group
          */
-        public FloorsDetailAdapter(Context context,HashMap<String,List<String>> data){
+        public FloorsDetailAdapter(Context context,LinkedHashMap<String,List<String>> data){
             this.context    = context;
             this.data       = data;
             this.headers    = new ArrayList<>();
@@ -145,7 +145,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
 
         @Override
         public boolean isChildSelectable(int groupPosition, int childPosition) {
-            return false;
+            return true;
         }
 
         @Override
