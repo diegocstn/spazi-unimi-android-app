@@ -83,6 +83,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
         Intent roomDetailIntent = new Intent(this,RoomDetailActivity.class);
         roomDetailIntent.putExtra(Room.MODEL_KEY,room.r_id);
         roomDetailIntent.putExtra(Room.MODEL_NAME_KEY,room.room_name);
+        roomDetailIntent.putExtra(Building.MODEL_KEY,this.buildingId);
         startActivity(roomDetailIntent);
         this.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         return true;

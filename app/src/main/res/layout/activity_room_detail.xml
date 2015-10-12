@@ -10,14 +10,79 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
         android:id="@+id/building_detail_info"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingBottom="20dp">
-    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/room_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/room_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+            <TextView
+                android:id="@+id/room_category"
+                android:layout_below="@id/room_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+            <TextView
+                android:id="@+id/floor"
+                android:layout_below="@id/room_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+            <RelativeLayout
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:layout_below="@id/floor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/building_info_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_building_marker"/>
+                <TextView
+                    android:id="@+id/building_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:layout_toRightOf="@id/building_info_image"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+                <TextView
+                    android:id="@+id/building_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/building_name"
+                    android:layout_toRightOf="@id/building_info_image"
+                    android:paddingStart="10dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add_remove_bookmarks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_favorite_black">
+        </android.support.design.widget.FloatingActionButton>
+
+    </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>
