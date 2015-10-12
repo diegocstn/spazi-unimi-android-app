@@ -18,7 +18,7 @@ import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.presenters.BuildingsPresenter;
 import it.unimi.unimiplaces.presenters.Presenter;
 import it.unimi.unimiplaces.views.BuildingsViewInterface;
-import it.unimi.unimiplaces.presenters.PresenterViewInterface;
+import it.unimi.unimiplaces.views.PresenterViewInterface;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.activities.BuildingDetailActivity;
 import it.unimi.unimiplaces.core.model.BaseEntity;

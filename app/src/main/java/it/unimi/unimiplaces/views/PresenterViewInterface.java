@@ -1,4 +1,4 @@
-package it.unimi.unimiplaces.presenters;
+package it.unimi.unimiplaces.views;
 
 import java.util.List;
 
