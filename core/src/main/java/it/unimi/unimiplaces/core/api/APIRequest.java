@@ -17,7 +17,8 @@ public class APIRequest {
         BUILDINGS,
         BUILDING_BY_BID,
         AVAILABLE_SERVICES,
-        BUILDINGS_BY_SERVICES
+        BUILDINGS_BY_SERVICES,
+        ROOM_BY_ID
     }
 
     private URL url;
