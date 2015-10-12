@@ -16,6 +16,11 @@ public class Floor {
     public static final String MODEL_KEY        = "f_id";
     public static final String MODEL_NAME_KEY   = "floor_name";
 
+    public Floor(String f_id, String floor_name){
+        this.f_id       = f_id;
+        this.floor_name = floor_name;
+    }
+
     public int roomsCount(){
         return this.rooms.size();
     }
