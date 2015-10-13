@@ -10,4 +10,8 @@ public interface LocalizableEntity {
     String getLocalizableTitle();
     String getLocalizableAddress();
     Coordinates getCoordinates();
+    String TITLE_KEY            = "loc_title";
+    String ADDRESS_KEY          = "loc_address";
+    String COORDINATES_LAT_KEY  = "loc_lat";
+    String COORDINATES_LNG_KEY  = "loc_lng";
 }
