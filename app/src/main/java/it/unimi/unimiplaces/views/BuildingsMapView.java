@@ -3,6 +3,8 @@ package it.unimi.unimiplaces.views;
 import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.InflateException;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +39,7 @@ public class BuildingsMapView extends RelativeLayout implements
     private HashMap<Marker,Integer> markers;
     private PresenterViewInterface parentPresenter;
 
+    private final String LOG_TAG = "BUILDINGSMAPVIEW";
 
     public BuildingsMapView(Context context) {
         super(context);
@@ -52,10 +55,17 @@ public class BuildingsMapView extends RelativeLayout implements
 
 
     private void init(){
-        inflate(getContext(), R.layout.view_buildings_map, this);
+        try {
+            inflate(getContext(), R.layout.view_buildings_map, this);
+        }catch (InflateException e){
+            Log.e(LOG_TAG,e.getMessage());
+        }
+
         MapFragment mapFragment = (MapFragment)((Activity)this.context).getFragmentManager().findFragmentById(R.id.buildings_map);
         mapFragment.getMapAsync(this);
     }
+
+
 
 
     @Override
@@ -137,4 +147,5 @@ public class BuildingsMapView extends RelativeLayout implements
     }
     @Override
     public void onDetailActionListener(int i) {}
+
 }

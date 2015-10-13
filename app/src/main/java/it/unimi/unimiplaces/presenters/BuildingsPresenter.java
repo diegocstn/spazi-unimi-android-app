@@ -66,9 +66,7 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
 
         return servicesLabel;
     }
-
     /* API Delegate methods */
-
     @Override
     public void apiRequestError() {
 
