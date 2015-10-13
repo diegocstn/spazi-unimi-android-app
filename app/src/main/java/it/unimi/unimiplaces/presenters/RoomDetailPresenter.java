@@ -43,7 +43,7 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
         this.view.setBuildingName(room.building_name);
         this.view.setBuildingAddress(room.building_address);
 
-        if( this.room.equipments != null ){
+        if( this.room.equipments != null && this.room.equipments.size()>0 ){
             StringBuilder builder = new StringBuilder();
             for ( String equipment : this.room.equipments ){
                 builder.append(equipment);
@@ -51,6 +51,10 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
             }
             builder.delete(builder.length()-2,builder.length());
             this.view.setRoomEquipments(builder.toString());
+        }
+
+        if( room.map!=null ){
+            this.view.setFloorMapForRoom(room.map);
         }
     }
 
