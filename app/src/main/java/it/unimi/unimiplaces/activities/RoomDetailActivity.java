@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import it.unimi.unimiplaces.APIManager;
@@ -21,7 +22,6 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
 
     String room_id;
     String building_id;
-    TextView textViewRoomName;
     TextView textViewRoomCategory;
     TextView textViewFloor;
     TextView textViewBuildingName;
@@ -30,7 +30,7 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     View viewEquipments;
     FloorMapView floorMapView;
     FloatingActionButton bookmarksFab;
-    FloatingActionButton routingFab;
+    ImageButton routingButton;
 
 
     @Override
@@ -42,7 +42,6 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         this.building_id    = intent.getStringExtra(Building.MODEL_KEY);
         this.setUpDetailActivity(intent.getStringExtra(Room.MODEL_NAME_KEY));
 
-        textViewRoomName        = (TextView) findViewById(R.id.room_name);
         textViewRoomCategory    = (TextView) findViewById(R.id.room_category);
         textViewFloor           = (TextView) findViewById(R.id.floor);
         textViewBuildingName    = (TextView) findViewById(R.id.building_name);
@@ -52,9 +51,9 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         viewEquipments          = findViewById(R.id.room_equipments_block);
 
         bookmarksFab            = (FloatingActionButton) findViewById(R.id.fab_add_remove_bookmarks);
-        routingFab              = (FloatingActionButton) findViewById(R.id.fab_room_routing);
+        routingButton = (ImageButton) findViewById(R.id.routing_button);
 
-        routingFab.setOnClickListener(new View.OnClickListener() {
+        routingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showRoomRouting();
@@ -77,11 +76,6 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         routingIntent.putExtra(LocalizableEntity.COORDINATES_LAT_KEY,room.getCoordinates().lat);
         routingIntent.putExtra(LocalizableEntity.COORDINATES_LNG_KEY,room.getCoordinates().lng);
         startActivity(routingIntent);
-    }
-
-    @Override
-    public void setRoomName(String roomName) {
-        this.textViewRoomName.setText(roomName);
     }
 
     @Override

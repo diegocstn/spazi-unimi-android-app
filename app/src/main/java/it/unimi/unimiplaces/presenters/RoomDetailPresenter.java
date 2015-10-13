@@ -37,7 +37,6 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
         }
 
         this.room = (Room) results.get(0);
-        this.view.setRoomName(room.room_name);
         this.view.setRoomCategory(room.cat_name);
         this.view.setRoomFloor(room.floor);
         this.view.setBuildingName(room.building_name);

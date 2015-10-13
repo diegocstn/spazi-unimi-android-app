@@ -65,7 +65,6 @@ public class RoomDetailPresenterTest {
         presenter.init("123", "000");
 
         Mockito.verify(apiManager).roomByRIDAndBID(presenter, "123", "000");
-        Mockito.verify(view).setRoomName(room.room_name);
         Mockito.verify(view).setRoomFloor(room.floor);
         Mockito.verify(view).setRoomCategory(room.cat_name);
         Mockito.verify(view).setBuildingName(building.building_name);
