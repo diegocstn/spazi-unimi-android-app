@@ -78,5 +78,7 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
     @Override
     public void filterModelWithFilterAtIndex(int index) {}
     @Override
-    public BaseEntity payloadForDetailAtIndex(int index) {return null;}
+    public BaseEntity payloadForDetailAtIndex(int index) {
+        return this.room;
+    }
 }

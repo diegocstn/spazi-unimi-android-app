@@ -2,12 +2,14 @@ package it.unimi.unimiplaces.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.TextView;
 
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.core.model.LocalizableEntity;
 import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.RoomDetailPresenter;
 import it.unimi.unimiplaces.views.FloorMapView;
@@ -27,6 +29,8 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     TextView textViewEquipments;
     View viewEquipments;
     FloorMapView floorMapView;
+    FloatingActionButton bookmarksFab;
+    FloatingActionButton routingFab;
 
 
     @Override
@@ -45,11 +49,33 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         textViewBuildingAddress = (TextView) findViewById(R.id.building_address);
         textViewEquipments      = (TextView) findViewById(R.id.room_equipments);
         floorMapView            = (FloorMapView) findViewById(R.id.floor_map);
-        viewEquipments          = (View) findViewById(R.id.room_equipments_block);
+        viewEquipments          = findViewById(R.id.room_equipments_block);
+
+        bookmarksFab            = (FloatingActionButton) findViewById(R.id.fab_add_remove_bookmarks);
+        routingFab              = (FloatingActionButton) findViewById(R.id.fab_room_routing);
+
+        routingFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showRoomRouting();
+            }
+        });
 
         // initialize presenter
         this.presenter = new RoomDetailPresenter(APIManager.APIManagerFactory.createAPIManager(this),this);
         this.presenter.init(this.room_id,this.building_id);
+
+
+    }
+
+    private void showRoomRouting(){
+        Intent routingIntent    = new Intent(this,RoomDetailMapActivity.class);
+        Room room               = (Room) this.presenter.payloadForDetailAtIndex(0);
+        routingIntent.putExtra(LocalizableEntity.TITLE_KEY, room.getLocalizableTitle());
+        routingIntent.putExtra(LocalizableEntity.ADDRESS_KEY,room.getLocalizableAddress());
+        routingIntent.putExtra(LocalizableEntity.COORDINATES_LAT_KEY,room.getCoordinates().lat);
+        routingIntent.putExtra(LocalizableEntity.COORDINATES_LNG_KEY,room.getCoordinates().lng);
+        startActivity(routingIntent);
     }
 
     @Override
