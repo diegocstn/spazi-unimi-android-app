@@ -30,6 +30,16 @@ public class Building extends BaseEntity implements LocalizableEntity,Bookmarkab
         return this.coordinates;
     }
 
+    @Override
+    public String getLocalizableTitle() {
+        return this.building_name;
+    }
+
+    @Override
+    public String getLocalizableAddress() {
+        return this.address;
+    }
+
     public int numOfFloors(){
         if( this.floors != null ) {
             return this.floors.size();

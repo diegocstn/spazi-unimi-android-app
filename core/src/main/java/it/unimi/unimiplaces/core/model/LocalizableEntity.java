@@ -7,5 +7,7 @@ package it.unimi.unimiplaces.core.model;
  */
 public interface LocalizableEntity {
     void setCoordinates(double lat, double lng);
+    String getLocalizableTitle();
+    String getLocalizableAddress();
     Coordinates getCoordinates();
 }

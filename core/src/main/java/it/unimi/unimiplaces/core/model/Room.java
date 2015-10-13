@@ -63,6 +63,15 @@ public class Room extends BaseEntity implements LocalizableEntity,BookmarkableEn
         this.building_coordinates = new Coordinates(lat,lng);
     }
 
+    @Override
+    public String getLocalizableTitle() {
+        return String.format("%s - %s",this.room_name,this.building_name);
+    }
+
+    @Override
+    public String getLocalizableAddress() {
+        return this.building_address;
+    }
     /* BookmarkableEntity methods */
 
     @Override

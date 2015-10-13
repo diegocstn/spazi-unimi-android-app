@@ -21,6 +21,8 @@ import java.util.List;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.core.model.Coordinates;
+import it.unimi.unimiplaces.core.model.LocalizableEntity;
 
 /**
  * BuildingsFragment child view used for map-mode representation of buildings
@@ -80,12 +82,13 @@ public class BuildingsMapView extends RelativeLayout implements
     }
 
 
-    private MarkerOptions markerOptionsForBuilding(Building building){
+    private MarkerOptions markerOptionsForBuilding(LocalizableEntity entity){
         MarkerOptions markerOptions;
+        Coordinates coordinates = entity.getCoordinates();
         markerOptions = new MarkerOptions();
-        markerOptions.position(new LatLng(building.coordinates.lat, building.coordinates.lng));
-        markerOptions.title(building.building_name);
-        markerOptions.snippet(building.address);
+        markerOptions.position(new LatLng(coordinates.lat, coordinates.lng));
+        markerOptions.title(entity.getLocalizableTitle());
+        markerOptions.snippet(entity.getLocalizableAddress());
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_building_marker));
 
         return markerOptions;
