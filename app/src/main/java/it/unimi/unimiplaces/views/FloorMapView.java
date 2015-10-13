@@ -34,6 +34,7 @@ public class FloorMapView extends RelativeLayout {
         this.webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         this.webView.getSettings().getAllowContentAccess();
         this.webView.getSettings().setBuiltInZoomControls(true);
+        this.webView.getSettings().setDisplayZoomControls(false);
 
         this.webView.loadUrl(HTMLfileURL);
     }
