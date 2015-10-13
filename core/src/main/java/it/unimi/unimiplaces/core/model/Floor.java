@@ -46,8 +46,10 @@ public class Floor {
         }
 
         String names[] = new String[this.rooms.size()];
+        Room room;
         for(int i=0;i<this.rooms.size();i++){
-            names[i] = this.rooms.get(i).room_name;
+            room = this.rooms.get(i);
+            names[i] = ( room.room_name.length()>0 ) ? room.room_name : room.cat_name;
         }
 
         return names;

@@ -79,10 +79,11 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
         BuildingDetailPresenter buildingDetailPresenter = (BuildingDetailPresenter) this.presenter;
-        Room room = (Room) buildingDetailPresenter.payloadForDetailAtIndex(groupPosition,childPosition);
+        Room room           = (Room) buildingDetailPresenter.payloadForDetailAtIndex(groupPosition,childPosition);
+        String detailTitle  = room.room_name.length()>0 ? room.room_name : room.cat_name;
         Intent roomDetailIntent = new Intent(this,RoomDetailActivity.class);
         roomDetailIntent.putExtra(Room.MODEL_KEY,room.r_id);
-        roomDetailIntent.putExtra(Room.MODEL_NAME_KEY,room.room_name);
+        roomDetailIntent.putExtra(Room.MODEL_NAME_KEY,detailTitle);
         roomDetailIntent.putExtra(Building.MODEL_KEY,this.buildingId);
         startActivity(roomDetailIntent);
         this.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
