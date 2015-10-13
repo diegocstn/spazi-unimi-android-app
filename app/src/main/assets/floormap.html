@@ -27,9 +27,10 @@
             var polylines   = document.querySelectorAll('polyline');
             var room        = document.getElementById(r_id).querySelector('polyline');
             for( var i=0;i<polylines.length;i++ ){
-                polylines[i].style.opacity = 0.4;
+                polylines[i].style.opacity = 0.3;
             }
             room.style.opacity = 1;
+            room.style.fill = "#FF9201";
         }
         SVGFloor.prototype.initAndSelectRoom = function(svgURL,r_id){
             var that = this;
