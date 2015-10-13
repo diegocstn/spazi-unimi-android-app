@@ -1,11 +1,12 @@
 package it.unimi.unimiplaces.core.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Room class
  */
-public class Room extends BaseEntity implements LocalizableEntity {
+public class Room extends BaseEntity implements LocalizableEntity,BookmarkableEntity {
 
     public String r_id;
     public String room_name;
@@ -50,6 +51,7 @@ public class Room extends BaseEntity implements LocalizableEntity {
         this.equipments = equipments;
     }
 
+    /* LocalizableEntity methods */
     @Override
     public Coordinates getCoordinates() {
         return this.building_coordinates;
@@ -58,6 +60,23 @@ public class Room extends BaseEntity implements LocalizableEntity {
     @Override
     public void setCoordinates(double lat, double lng) {
         this.building_coordinates = new Coordinates(lat,lng);
+    }
+
+    /* BookmarkableEntity methods */
+
+    @Override
+    public String getBookmarkableType() {
+        return "ROOM";
+    }
+
+    @Override
+    public String getBookmarkableObjectIdentifier() {
+        return String.format("%s;%s",this.r_id,this.b_id);
+    }
+
+    @Override
+    public List<String> getIdentifierFromBookmarkData(String data) {
+        return Arrays.asList(data.split(";"));
     }
 
     @Override
