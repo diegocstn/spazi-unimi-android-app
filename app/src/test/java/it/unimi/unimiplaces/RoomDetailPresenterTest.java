@@ -101,4 +101,35 @@ public class RoomDetailPresenterTest {
         Mockito.verify(apiManager).roomByRIDAndBID(presenter, "123", "000");
         Mockito.verify(view).setRoomEquipments("projector, desks, knife");
     }
+
+    @Test
+    public void testHideRoomEquipments(){
+        List<BaseEntity> entities = new ArrayList<>();
+        Room room               = new Room("123","Aula 1","Aula informatica");
+        List<String> equipments = new ArrayList<>();
+        room.setEquipments(equipments);
+        entities.add(room);
+        Mockito.doAnswer(mockAPIAnswerWithData(entities)).when(apiManager)
+                .roomByRIDAndBID(presenter, "123", "000");
+
+        presenter.init("123", "000");
+
+        Mockito.verify(apiManager).roomByRIDAndBID(presenter, "123", "000");
+        Mockito.verify(view).hideRoomEquipments();
+    }
+
+    @Test
+    public void testHideRoomEquipmentsWhenNull(){
+        List<BaseEntity> entities = new ArrayList<>();
+        Room room                 = new Room("123","Aula 1","Aula informatica");
+        room.setEquipments(null);
+        entities.add(room);
+        Mockito.doAnswer(mockAPIAnswerWithData(entities)).when(apiManager)
+                .roomByRIDAndBID(presenter, "123", "000");
+
+        presenter.init("123", "000");
+
+        Mockito.verify(apiManager).roomByRIDAndBID(presenter, "123", "000");
+        Mockito.verify(view).hideRoomEquipments();
+    }
 }

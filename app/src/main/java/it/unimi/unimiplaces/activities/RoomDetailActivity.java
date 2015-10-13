@@ -2,6 +2,7 @@ package it.unimi.unimiplaces.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import it.unimi.unimiplaces.APIManager;
@@ -9,6 +10,7 @@ import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.RoomDetailPresenter;
+import it.unimi.unimiplaces.views.FloorMapView;
 import it.unimi.unimiplaces.views.RoomDetailViewInterface;
 
 public class RoomDetailActivity extends AppDetailSectionActivity implements RoomDetailViewInterface{
@@ -23,6 +25,8 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     TextView textViewBuildingName;
     TextView textViewBuildingAddress;
     TextView textViewEquipments;
+    View viewEquipments;
+    FloorMapView floorMapView;
 
 
     @Override
@@ -40,6 +44,8 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         textViewBuildingName    = (TextView) findViewById(R.id.building_name);
         textViewBuildingAddress = (TextView) findViewById(R.id.building_address);
         textViewEquipments      = (TextView) findViewById(R.id.room_equipments);
+        floorMapView            = (FloorMapView) findViewById(R.id.floor_map);
+        viewEquipments          = (View) findViewById(R.id.room_equipments_block);
 
         // initialize presenter
         this.presenter = new RoomDetailPresenter(APIManager.APIManagerFactory.createAPIManager(this),this);
@@ -72,13 +78,18 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     }
 
     @Override
+    public void hideRoomEquipments() {
+        this.viewEquipments.setVisibility(View.GONE);
+    }
+
+    @Override
     public void setRoomEquipments(String equipments){
         this.textViewEquipments.setText(equipments);
     }
 
     @Override
-    public void setFloorMapForRoom() {
-
+    public void setFloorMapForRoom(String svgURL) {
+        this.floorMapView.highlightRoomInMap(svgURL,this.room_id);
     }
 
     @Override

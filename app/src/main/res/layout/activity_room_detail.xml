@@ -21,34 +21,59 @@
         android:paddingBottom="20dp">
 
         <RelativeLayout
-            android:id="@+id/room_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/room_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
-            <TextView
-                android:id="@+id/room_category"
-                android:layout_below="@id/room_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
-            <TextView
-                android:id="@+id/floor"
-                android:layout_below="@id/room_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+            android:layout_height="match_parent">
 
+            <RelativeLayout
+                android:id="@+id/room_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/room_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                <TextView
+                    android:id="@+id/room_category"
+                    android:layout_below="@id/room_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+                <TextView
+                    android:id="@+id/floor"
+                    android:layout_below="@id/room_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                <RelativeLayout
+                    android:id="@+id/room_equipments_block"
+                    android:layout_below="@id/room_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/room_equipments_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/room_detail_equipments_label"/>
+                    <TextView
+                        android:id="@+id/room_equipments"
+                        android:layout_below="@id/room_equipments_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:lines="2"
+                        android:linksClickable="true" />
+                </RelativeLayout>
+
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/building_info"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                android:layout_below="@id/floor"
+                android:layout_below="@id/room_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
@@ -75,20 +100,17 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/room_equipments_label"
-                android:layout_below="@id/building_info"
+            <RelativeLayout
+                android:id="@+id/floor_map_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/room_detail_equipments_label"/>
-            <TextView
-                android:id="@+id/room_equipments"
-                android:layout_below="@id/room_equipments_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:lines="3"
-                android:linksClickable="true" />
+                android:layout_height="fill_parent"
+                android:layout_below="@id/room_info">
+                <it.unimi.unimiplaces.views.FloorMapView
+                    android:id="@+id/floor_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </RelativeLayout>
+
         </RelativeLayout>
 
         <android.support.design.widget.FloatingActionButton

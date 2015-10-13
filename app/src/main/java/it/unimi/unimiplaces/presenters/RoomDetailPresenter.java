@@ -51,6 +51,8 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
             }
             builder.delete(builder.length()-2,builder.length());
             this.view.setRoomEquipments(builder.toString());
+        }else{
+            this.view.hideRoomEquipments();
         }
 
         if( room.map!=null ){
