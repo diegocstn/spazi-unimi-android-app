@@ -28,29 +28,35 @@
                 android:id="@+id/room_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/room_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="5dp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
-                <TextView
-                    android:id="@+id/room_category"
-                    android:layout_below="@id/room_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="5dp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
-                <TextView
-                    android:id="@+id/floor"
-                    android:layout_below="@id/room_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
                 <RelativeLayout
+                    android:id="@+id/room_info_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/room_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="2dp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                    <TextView
+                        android:id="@+id/room_category"
+                        android:layout_below="@id/room_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="2dp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+                    <TextView
+                        android:id="@+id/floor"
+                        android:layout_below="@id/room_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+                </RelativeLayout>
+                <RelativeLayout
                     android:id="@+id/room_equipments_block"
-                    android:layout_below="@id/room_category"
+                    android:paddingTop="5dp"
+                    android:layout_below="@id/room_info_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
@@ -104,7 +110,7 @@
                 android:id="@+id/floor_map_container"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:layout_below="@id/room_info">
+                android:layout_below="@id/building_info">
                 <it.unimi.unimiplaces.views.FloorMapView
                     android:id="@+id/floor_map"
                     android:layout_width="match_parent"

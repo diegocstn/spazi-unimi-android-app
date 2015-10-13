@@ -8,13 +8,16 @@
             this.svgContainer = document.getElementById('svg');
         }
 
-        SVGFloor.prototype.init = function(svgURL){
+        SVGFloor.prototype.init = function(svgURL,fn){
             var xhr     = new XMLHttpRequest();
             var that    = this;
             xhr.open("GET",svgURL);
             xhr.onload = function(e){
                 if( xhr.status === 200 ){
                     that.svgContainer.innerHTML = xhr.responseText;
+                    if( fn ){
+                        fn.apply(that);
+                    }
                 }
             }
 
@@ -22,15 +25,20 @@
         }
         SVGFloor.prototype.selectRoom = function(r_id){
             var polylines   = document.querySelectorAll('polyline');
-            var selector    = "";
-            for( var i=0;i<poylines.length;i++ ){
-                polylines[i].style.opacity = 0.5;
+            var room        = document.getElementById(r_id).querySelector('polyline');
+            for( var i=0;i<polylines.length;i++ ){
+                polylines[i].style.opacity = 0.4;
             }
-            // check if the id contains only digits string
-            selector = ( /^\d+$/.test(r_id) )? "[id='"+r_id+"'] polyline" : '#'+r_id+' polyline';
-            document.querySelector(selector).style.opacity = 1;
+            room.style.opacity = 1;
         }
-        var floor = new SVGFloor();
+        SVGFloor.prototype.initAndSelectRoom = function(svgURL,r_id){
+            var that = this;
+            this.init(svgURL,function(){
+                that.selectRoom(r_id);
+            });
+        }
+
+        var svgFloor = new SVGFloor();
     </script>
     </body>
 </html>
