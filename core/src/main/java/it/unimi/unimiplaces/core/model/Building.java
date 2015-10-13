@@ -3,7 +3,7 @@ package it.unimi.unimiplaces.core.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Building extends BaseEntity implements LocalizableEntity {
+public class Building extends BaseEntity implements LocalizableEntity,BookmarkableEntity {
     public String b_id;
     public String building_name;
     public String address;
@@ -47,6 +47,29 @@ public class Building extends BaseEntity implements LocalizableEntity {
 
     public List<Floor> getFloors(){
         return this.floors;
+    }
+
+
+    @Override
+    public String getBookmarkableType() {
+        return "BUILDING";
+    }
+
+    @Override
+    public String getBookmarkableObjectIdentifier() {
+        return this.b_id;
+    }
+
+    @Override
+    public List<String> getIdentifierFromBookmarkData(String data) {
+        List<String> res = new ArrayList<>(1);
+        res.add(data.trim());
+        return res;
+    }
+
+    @Override
+    public String getBookmarkableObjectTitle() {
+        return this.building_name;
     }
 
     @Override

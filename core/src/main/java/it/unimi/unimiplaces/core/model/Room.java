@@ -41,6 +41,7 @@ public class Room extends BaseEntity implements LocalizableEntity,BookmarkableEn
     }
 
     public void setBuildingAttributes(Building building){
+        this.b_id                   = building.b_id;
         this.building_coordinates   = building.getCoordinates();
         this.building_address       = building.address;
         this.building_name          = building.building_name;
@@ -77,6 +78,11 @@ public class Room extends BaseEntity implements LocalizableEntity,BookmarkableEn
     @Override
     public List<String> getIdentifierFromBookmarkData(String data) {
         return Arrays.asList(data.split(";"));
+    }
+
+    @Override
+    public String getBookmarkableObjectTitle() {
+        return String.format("%s - %s",this.room_name,this.building_name);
     }
 
     @Override

@@ -9,5 +9,6 @@ import java.util.List;
 public interface BookmarkableEntity {
     String getBookmarkableType();
     String getBookmarkableObjectIdentifier();
+    String getBookmarkableObjectTitle();
     List<String> getIdentifierFromBookmarkData(String data);
 }
