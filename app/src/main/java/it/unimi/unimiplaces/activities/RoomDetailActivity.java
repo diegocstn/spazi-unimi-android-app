@@ -71,6 +71,7 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     private void showRoomRouting(){
         Intent routingIntent    = new Intent(this,RoomDetailMapActivity.class);
         Room room               = (Room) this.presenter.payloadForDetailAtIndex(0);
+        routingIntent.putExtra(Room.MODEL_NAME_KEY,room.room_name);
         routingIntent.putExtra(LocalizableEntity.TITLE_KEY, room.getLocalizableTitle());
         routingIntent.putExtra(LocalizableEntity.ADDRESS_KEY,room.getLocalizableAddress());
         routingIntent.putExtra(LocalizableEntity.COORDINATES_LAT_KEY,room.getCoordinates().lat);

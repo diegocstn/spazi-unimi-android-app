@@ -20,7 +20,6 @@ import java.util.List;
 
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.BaseEntity;
-import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.Coordinates;
 import it.unimi.unimiplaces.core.model.LocalizableEntity;
 
@@ -107,7 +106,7 @@ public class BuildingsMapView extends RelativeLayout implements
         }
 
         for (int i=0;i<this.model.size();i++) {
-            Building building = (Building) this.model.get(i);
+            LocalizableEntity building = (LocalizableEntity) this.model.get(i);
             markers.put(map.addMarker(markerOptionsForBuilding(building)),i);
         }
     }

@@ -1,10 +1,12 @@
 package it.unimi.unimiplaces.views;
 
-import it.unimi.unimiplaces.core.model.LocalizableEntity;
+import java.util.List;
+
+import it.unimi.unimiplaces.core.model.BaseEntity;
 
 /**
  * RoomDetailMapInterface
  */
 public interface RoomDetailMapViewInterface {
-    void placeRoomOnMap(LocalizableEntity entity);
+    void placeRoomOnMap(List<BaseEntity> entities);
 }
