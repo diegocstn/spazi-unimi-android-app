@@ -78,6 +78,13 @@ public class BuildingsMapView extends RelativeLayout implements
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
+
+                if( markers.size()==1 ){
+                    Marker marker = (Marker)(markers.keySet().toArray())[0];
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(),18f));
+                    return;
+                }
+
                 LatLngBounds.Builder markerBounds = new LatLngBounds.Builder();
                 for (Marker marker : markers.keySet()) {
                     markerBounds.include(marker.getPosition());
