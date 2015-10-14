@@ -90,7 +90,7 @@ public class BuildingsMapView extends RelativeLayout implements
             @Override
             public void onMapLoaded() {
                 if (markers.size() == 1) {
-                    Marker marker = (Marker) (clusteredMarkers.toArray())[0];
+                    ClusteredMarker marker = (ClusteredMarker) ((clusteredMarkers.toArray())[0]);
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 18f));
                     return;
                 }
