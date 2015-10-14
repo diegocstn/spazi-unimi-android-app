@@ -39,7 +39,7 @@ public class BuildingsMapView extends RelativeLayout implements
 
     private Context context;
     private GoogleMap map;
-    private ClusterManager clusterManager;
+    private ClusterManager<ClusteredMarker> clusterManager;
     private List<BaseEntity> model;
     private List<ClusteredMarker> clusteredMarkers;
     private HashMap<String,Integer> markers;
@@ -77,7 +77,7 @@ public class BuildingsMapView extends RelativeLayout implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        clusterManager = new ClusterManager(getContext(),map);
+        clusterManager = new ClusterManager<ClusteredMarker>(getContext(),map);
         clusterManager.setRenderer(new ClusterCustomRenderer(getContext(),map,clusterManager));
         map.setOnCameraChangeListener(clusterManager);
         map.setOnMarkerClickListener(clusterManager);
