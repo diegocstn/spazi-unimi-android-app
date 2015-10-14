@@ -16,7 +16,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.ClusterItem;
+import com.google.maps.android.clustering.ClusterManager;
+import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,8 +39,10 @@ public class BuildingsMapView extends RelativeLayout implements
 
     private Context context;
     private GoogleMap map;
+    private ClusterManager clusterManager;
     private List<BaseEntity> model;
-    private HashMap<Marker,Integer> markers;
+    private List<ClusteredMarker> clusteredMarkers;
+    private HashMap<String,Integer> markers;
     private PresenterViewInterface parentPresenter;
 
     private final String LOG_TAG = "BUILDINGSMAPVIEW";
@@ -71,22 +77,25 @@ public class BuildingsMapView extends RelativeLayout implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        clusterManager = new ClusterManager(getContext(),map);
+        clusterManager.setRenderer(new ClusterCustomRenderer(getContext(),map,clusterManager));
+        map.setOnCameraChangeListener(clusterManager);
+        map.setOnMarkerClickListener(clusterManager);
+
         if( model!=null ){
-            this.placeBuildingsMarker();
+            this.placeMarkers();
         }
 
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-
-                if( markers.size()==1 ){
-                    Marker marker = (Marker)(markers.keySet().toArray())[0];
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(),18f));
+                if (markers.size() == 1) {
+                    Marker marker = (Marker) (clusteredMarkers.toArray())[0];
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 18f));
                     return;
                 }
-
                 LatLngBounds.Builder markerBounds = new LatLngBounds.Builder();
-                for (Marker marker : markers.keySet()) {
+                for (ClusteredMarker marker : clusteredMarkers) {
                     markerBounds.include(marker.getPosition());
                 }
                 map.animateCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(), 10));
@@ -97,8 +106,7 @@ public class BuildingsMapView extends RelativeLayout implements
 
     }
 
-
-    private MarkerOptions markerOptionsForBuilding(LocalizableEntity entity){
+    private MarkerOptions markerOptionsForEntity(LocalizableEntity entity){
         MarkerOptions markerOptions;
         Coordinates coordinates = entity.getCoordinates();
         markerOptions = new MarkerOptions();
@@ -110,34 +118,40 @@ public class BuildingsMapView extends RelativeLayout implements
         return markerOptions;
     }
 
-    private void placeBuildingsMarker(){
-
+    private void placeMarkers(){
+        Log.v(LOG_TAG,"Placing markers");
         /* remove all marker if needed */
         if( markers != null ){
-            for (Marker marker : markers.keySet()){
-                marker.remove();
+            for (ClusteredMarker marker : clusteredMarkers){
+                clusterManager.removeItem(marker);
             }
             markers.clear();
+            clusteredMarkers.clear();
         }else{
-            markers = new HashMap<>();
+            markers             = new HashMap<>();
+            clusteredMarkers    = new ArrayList<>();
         }
 
         for (int i=0;i<this.model.size();i++) {
-            LocalizableEntity building = (LocalizableEntity) this.model.get(i);
-            markers.put(map.addMarker(markerOptionsForBuilding(building)),i);
+            LocalizableEntity building  = (LocalizableEntity) this.model.get(i);
+            ClusteredMarker marker      = new ClusteredMarker(building);
+            clusterManager.addItem(marker);
+            clusteredMarkers.add(marker);
+            markers.put(marker.getEntity().getLocalizableTitle(),i);
         }
+
     }
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        this.parentPresenter.onDetailActionListener(markers.get(marker));
+        this.parentPresenter.onDetailActionListener(markers.get(marker.getTitle()));
     }
 
     @Override
     public void setModel(List<BaseEntity> model){
         this.model = model;
         if( this.map != null ){
-            this.placeBuildingsMarker();
+            this.placeMarkers();
         }
     }
 
@@ -154,5 +168,44 @@ public class BuildingsMapView extends RelativeLayout implements
     }
     @Override
     public void onDetailActionListener(int i) {}
+
+
+    /* Clustering class */
+    private class ClusteredMarker implements ClusterItem {
+        private final LocalizableEntity entity;
+        private final LatLng position;
+
+        public ClusteredMarker(LocalizableEntity entity){
+            this.entity     = entity;
+            this.position   = new LatLng(entity.getCoordinates().lat,entity.getCoordinates().lng);
+        }
+
+        public LocalizableEntity getEntity(){
+            return this.entity;
+        }
+
+        @Override
+        public LatLng getPosition() {
+            return this.position;
+        }
+    }
+
+    /* cluster render class */
+    private class ClusterCustomRenderer extends DefaultClusterRenderer<ClusteredMarker>{
+        public ClusterCustomRenderer(Context context, GoogleMap map, ClusterManager<ClusteredMarker> clusterManager){
+            super(context, map, clusterManager);
+        }
+
+        @Override
+        protected void onBeforeClusterItemRendered(ClusteredMarker item, MarkerOptions markerOptions) {
+            MarkerOptions customMarkerOptions = markerOptionsForEntity(item.getEntity());
+            markerOptions.title(customMarkerOptions.getTitle());
+            markerOptions.snippet(customMarkerOptions.getSnippet());
+            markerOptions.icon(customMarkerOptions.getIcon());
+            super.onBeforeClusterItemRendered(item, markerOptions);
+        }
+
+
+    }
 
 }
