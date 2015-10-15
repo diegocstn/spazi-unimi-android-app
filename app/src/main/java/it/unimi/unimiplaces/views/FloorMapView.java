@@ -16,7 +16,7 @@ public class FloorMapView extends RelativeLayout {
 
     private TextView loadingTextView;
     private WebView webView;
-    private final String HTMLfileURL = "file:///android_asset/floormap.html";
+    private final String HTMLfileURL = "file:///android_asset/html/floormap.html";
 
     public FloorMapView(Context context){
         super(context);
