@@ -20,7 +20,9 @@ public class BookmarksPresenter implements Presenter {
         this.dataSource = source;
         this.model      = this.dataSource.allBookmarks();
         this.view       = view;
+    }
 
+    public void init(){
         this.view.setModel(this.model);
         if( this.model.size()==0 ){
             this.view.showNoResults();
@@ -30,7 +32,9 @@ public class BookmarksPresenter implements Presenter {
     }
 
     @Override
-    public void init(String id) {}
+    public void init(String id) {
+        this.init();
+    }
 
     @Override
     public void filterModelWithFilterAtIndex(int index) {

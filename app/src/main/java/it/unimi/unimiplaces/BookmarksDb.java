@@ -33,10 +33,11 @@ public class BookmarksDb extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.v(LOG_TAG,"Creating bookmarks db");
         String SQLQuery = "CREATE TABLE bookmarks (" +
                 FIELD_OBJECT_ID+" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 FIELD_OBJECT_TYPE+" TEXT NOT NULL," +
-                FIELD_OBJECT_IDENTIFIER+" TEXT NOT NULL" +
+                FIELD_OBJECT_IDENTIFIER+" TEXT NOT NULL," +
                 FIELD_OBJECT_TITLE+" TEXT NOT NULL" +
                 ");";
         db.execSQL(SQLQuery);

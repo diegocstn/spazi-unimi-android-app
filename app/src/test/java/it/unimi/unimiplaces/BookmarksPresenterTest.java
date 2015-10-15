@@ -38,6 +38,7 @@ public class BookmarksPresenterTest {
         }).when(bookmarkDataSource).allBookmarks();
 
         presenter = new BookmarksPresenter(bookmarkDataSource,view);
+        presenter.init();
 
         Mockito.verify(view).setModel(new ArrayList<Bookmark>());
         Mockito.verify(view).showNoResults();
@@ -55,6 +56,7 @@ public class BookmarksPresenterTest {
         }).when(bookmarkDataSource).allBookmarks();
 
         presenter = new BookmarksPresenter(bookmarkDataSource,view);
+        presenter.init();
 
         Mockito.verify(view).setModel(res);
         Mockito.verify(view).showBookmarksList();
