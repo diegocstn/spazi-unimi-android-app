@@ -74,14 +74,15 @@ public class BookmarksPresenter implements Presenter {
 
         /* Room boomark */
         if( bookmark.type.equals(BookmarkableEntity.BOOKMARK_TYPE.ROOM) ){
-            Room r = new Room(args.get(0),"","");
-            r.setB_id( args.get(1) );
+            Room r = new Room(args.get(0),bookmark.title,"");
+            Building b = new Building(args.get(1),"","");
+            r.setBuildingAttributes(b);
             return r;
         }
 
         /* Building bookmark */
         if( bookmark.type.equals(BookmarkableEntity.BOOKMARK_TYPE.BUILDING) ){
-            return new Building(args.get(0),"","");
+            return new Building(args.get(0),bookmark.title,"");
         }
 
         return null;

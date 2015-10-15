@@ -74,6 +74,7 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
         noResultsTextView   = (TextView) view.findViewById(R.id.bookmarks_no_results);
         listView            = (ListView) view.findViewById(R.id.bookmarks_list);
         listView.setAdapter(this.adapter);
+        listView.setOnItemClickListener(this);
 
         this.presenter.init();
     }
@@ -99,12 +100,13 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
             detailIntent = new Intent(getActivity(), RoomDetailActivity.class);
             detailIntent.putExtra(Room.MODEL_KEY,((Room) entity).r_id);
             detailIntent.putExtra(Building.MODEL_KEY,((Room) entity).b_id);
-            detailIntent.putExtra(Room.MODEL_NAME_KEY,"");
+            detailIntent.putExtra(Room.MODEL_NAME_KEY,((Room) entity).getBookmarkableObjectTitle());
             startActivity(detailIntent);
         }
         if( entity instanceof Building){
             detailIntent = new Intent(getActivity(), BuildingDetailActivity.class);
             detailIntent.putExtra(Building.MODEL_KEY,((Building) entity).b_id);
+            detailIntent.putExtra(Building.MODEL_NAME_KEY,((Building) entity).getBookmarkableObjectTitle());
             startActivity(detailIntent);
         }
 
