@@ -32,7 +32,7 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
     private View view;
     private ListView listView;
     private TextView noResultsTextView;
-    private BookmarksListAdapter arrayAdapter;
+    private BookmarksListAdapter adapter;
     private BookmarksPresenter presenter;
 
     public static BookmarksFragment newInstance() {
@@ -54,7 +54,7 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         try {
-            view = inflater.inflate(R.layout.fragment_buildings, container, false);
+            view = inflater.inflate(R.layout.fragment_bookmarks, container, false);
         }catch (InflateException e){
             Log.e(LOG_TAG, e.getMessage());
         }
@@ -66,13 +66,13 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
         super.onViewCreated(view, savedInstanceState);
         noResultsTextView   = (TextView) view.findViewById(R.id.bookmarks_no_results);
         listView            = (ListView) view.findViewById(R.id.bookmarks_list);
-        listView.setAdapter(this.arrayAdapter);
+        listView.setAdapter(this.adapter);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.arrayAdapter   = new BookmarksListAdapter(getActivity(),new ArrayList<Bookmark>());
+        this.adapter = new BookmarksListAdapter(getActivity(),new ArrayList<Bookmark>());
         this.presenter      = new BookmarksPresenter(new BookmarkDataSource(new BookmarksDb(getActivity())),this);
     }
 
@@ -88,9 +88,9 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
 
     @Override
     public void setModel(List<Bookmark> bookmarks) {
-        this.arrayAdapter.clear();
-        this.arrayAdapter.addAll(bookmarks);
-        this.arrayAdapter.notifyDataSetChanged();
+        this.adapter.clear();
+        this.adapter.addAll(bookmarks);
+        this.adapter.notifyDataSetChanged();
     }
 
     @Override
