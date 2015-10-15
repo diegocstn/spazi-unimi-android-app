@@ -61,8 +61,8 @@ public class Building extends BaseEntity implements LocalizableEntity,Bookmarkab
 
 
     @Override
-    public String getBookmarkableType() {
-        return "BUILDING";
+    public BOOKMARK_TYPE getBookmarkableType() {
+        return BOOKMARK_TYPE.BUILDING;
     }
 
     @Override
