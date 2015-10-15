@@ -28,4 +28,9 @@ public class BookmarksNotificationBar {
         Snackbar snackbar = Snackbar.make(parentView, context.getString(R.string.bookmarks_bookmark_error),Snackbar.LENGTH_SHORT);
         snackbar.show();
     }
+
+     public void showDeletedSuccessMessage(){
+         Snackbar snackbar = Snackbar.make(parentView, context.getString(R.string.bookmarks_bookmark_deleted),Snackbar.LENGTH_SHORT);
+         snackbar.show();
+     }
 }

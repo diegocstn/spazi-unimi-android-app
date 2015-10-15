@@ -26,4 +26,8 @@ public class BookmarksDataSource {
     public Bookmark saveBookmark(BookmarkableEntity entity){
         return this.db.saveBookmark(entity);
     }
+
+    public void deleteBookmark(Bookmark bookmark){
+        this.db.deleteBookmarkById(bookmark.id);
+    }
 }

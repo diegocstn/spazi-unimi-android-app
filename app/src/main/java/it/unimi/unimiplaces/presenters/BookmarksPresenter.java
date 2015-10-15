@@ -87,4 +87,11 @@ public class BookmarksPresenter implements Presenter {
 
         return null;
     }
+
+    public void deleteBookmarkAtindex(int index){
+        Bookmark bookmark = this.model.get(index);
+        this.model.remove(index);
+        this.dataSource.deleteBookmark(bookmark);
+        this.view.setModel(this.model);
+    }
 }

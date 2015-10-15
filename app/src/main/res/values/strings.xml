@@ -28,6 +28,7 @@
     <!-- Bookmarks -->
     <string name="bookmarks_no_results">Ops, you do not have any bookmark saved yet ;)</string>
     <string name="bookmarks_bookmark_saved">Bookmark saved!</string>
+    <string name="bookmarks_bookmark_deleted">Bookmark deleted!</string>
     <string name="bookmarks_bookmark_error">Ops, something went wrong :(</string>
 
 </resources>

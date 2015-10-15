@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.BookmarksPresenter;
+import it.unimi.unimiplaces.views.BookmarksNotificationBar;
 import it.unimi.unimiplaces.views.BookmarksViewInterface;
 
 /**
@@ -41,6 +43,7 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
     private TextView noResultsTextView;
     private BookmarksListAdapter adapter;
     private BookmarksPresenter presenter;
+    private BookmarksNotificationBar bookmarksNotificationBar;
 
     public static BookmarksFragment newInstance() {
         BookmarksFragment fragment = new BookmarksFragment();
@@ -75,6 +78,8 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
         listView            = (ListView) view.findViewById(R.id.bookmarks_list);
         listView.setAdapter(this.adapter);
         listView.setOnItemClickListener(this);
+
+        this.bookmarksNotificationBar = new BookmarksNotificationBar(getActivity(),view);
 
         this.presenter.init();
     }
@@ -112,6 +117,11 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
 
     }
 
+    public void deleteBookmark(int position){
+        this.presenter.deleteBookmarkAtindex(position);
+        this.bookmarksNotificationBar.showDeletedSuccessMessage();
+    }
+
     @Override
     public void setModel(List<Bookmark> bookmarks) {
         this.adapter.clear();
@@ -131,18 +141,21 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
         this.listView.setVisibility(View.GONE);
     }
 
+
     private class BookmarksListAdapter extends ArrayAdapter<Bookmark>{
         private final Context context;
         private final List<Bookmark> bookmarks;
 
         private class BookmarkViewHolder{
             public TextView bookmarkTitle;
+            public ImageButton deleteButton;
         }
 
         public BookmarksListAdapter(Context context,List<Bookmark> bookmarks){
             super( context, R.layout.bookmarks_list_item , bookmarks );
             this.context    = context;
             this.bookmarks  = bookmarks;
+
         }
 
         @Override
@@ -156,8 +169,9 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
 
                 // create BookmarkViewHolder in order to avoid searching
                 // resources within XML and speeds up rendering
-                BookmarkViewHolder holder = new BookmarkViewHolder();
-                holder.bookmarkTitle     = (TextView) bookmarkView.findViewById(R.id.bookmark_title);
+                BookmarkViewHolder holder   = new BookmarkViewHolder();
+                holder.bookmarkTitle        = (TextView) bookmarkView.findViewById(R.id.bookmark_title);
+                holder.deleteButton         = (ImageButton) bookmarkView.findViewById(R.id.bookmark_delete);
                 bookmarkView.setTag(holder);
             }
 
@@ -165,6 +179,15 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
             BookmarkViewHolder holder = (BookmarkViewHolder) bookmarkView.getTag();
             Bookmark bookmark = this.bookmarks.get(position);
             holder.bookmarkTitle.setText(bookmark.title);
+            holder.deleteButton.setTag(position);
+
+            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = (Integer )v.getTag();
+                    deleteBookmark(position);
+                }
+            });
 
             return bookmarkView;
         }

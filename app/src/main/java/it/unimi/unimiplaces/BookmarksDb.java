@@ -61,22 +61,22 @@ public class BookmarksDb extends SQLiteOpenHelper{
         return res;
     }
 
-    public void deleteBookmarkById(int id){
+    public void deleteBookmarkById(long id){
         String args[]  = new String[1];
         args[0]        = String.valueOf(id);
-        getReadableDatabase().delete(TABLE_NAME,FIELD_OBJECT_ID,args);
+        getReadableDatabase().delete(TABLE_NAME,FIELD_OBJECT_ID+"=?",args);
     }
 
     public void deleteBookmarkByIdentifier(String identifier){
         String args[]  = new String[1];
         args[0]        = identifier;
-        getReadableDatabase().delete(TABLE_NAME,FIELD_OBJECT_IDENTIFIER,args);
+        getReadableDatabase().delete(TABLE_NAME,FIELD_OBJECT_IDENTIFIER+"=?",args);
     }
 
     public void deleteBookmarkByTile(String title){
         String args[]  = new String[1];
         args[0]        = title;
-        getReadableDatabase().delete(TABLE_NAME,FIELD_OBJECT_TITLE,args);
+        getReadableDatabase().delete(TABLE_NAME,FIELD_OBJECT_TITLE+"=?",args);
     }
 
     public Bookmark saveBookmark(BookmarkableEntity entity){
