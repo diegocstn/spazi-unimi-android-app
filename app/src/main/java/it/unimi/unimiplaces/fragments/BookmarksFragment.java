@@ -16,7 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unimi.unimiplaces.Bookmark;
+import it.unimi.unimiplaces.BookmarkDataSource;
+import it.unimi.unimiplaces.BookmarksDb;
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.presenters.BookmarksPresenter;
 import it.unimi.unimiplaces.views.BookmarksViewInterface;
 
 /**
@@ -28,7 +31,9 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
     private final String LOG_TAG = "BOOKMARKS";
     private View view;
     private ListView listView;
+    private TextView noResultsTextView;
     private BookmarksListAdapter arrayAdapter;
+    private BookmarksPresenter presenter;
 
     public static BookmarksFragment newInstance() {
         BookmarksFragment fragment = new BookmarksFragment();
@@ -59,14 +64,16 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listView = (ListView) view.findViewById(R.id.bookmarks_list);
+        noResultsTextView   = (TextView) view.findViewById(R.id.bookmarks_no_results);
+        listView            = (ListView) view.findViewById(R.id.bookmarks_list);
         listView.setAdapter(this.arrayAdapter);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.arrayAdapter = new BookmarksListAdapter(getActivity(),new ArrayList<Bookmark>());
+        this.arrayAdapter   = new BookmarksListAdapter(getActivity(),new ArrayList<Bookmark>());
+        this.presenter      = new BookmarksPresenter(new BookmarkDataSource(new BookmarksDb(getActivity())),this);
     }
 
     @Override
@@ -88,12 +95,14 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
 
     @Override
     public void showBookmarksList() {
+        this.noResultsTextView.setVisibility(View.GONE);
         this.listView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showNoResults() {
-
+        this.noResultsTextView.setVisibility(View.VISIBLE);
+        this.listView.setVisibility(View.GONE);
     }
 
     private class BookmarksListAdapter extends ArrayAdapter<Bookmark>{
