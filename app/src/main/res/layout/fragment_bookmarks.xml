@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context="it.unimi.unimiplaces.fragments.BookmarksFragment">
 
+    <TextView
+        android:id="@+id/bookmarks_no_results"
+        android:text="@string/bookmarks_no_results"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" />
+
     <ListView
         android:id="@+id/bookmarks_list"
         android:layout_width="match_parent"
