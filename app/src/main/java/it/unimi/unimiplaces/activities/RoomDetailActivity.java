@@ -3,7 +3,6 @@ package it.unimi.unimiplaces.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -16,6 +15,7 @@ import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.LocalizableEntity;
 import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.RoomDetailPresenter;
+import it.unimi.unimiplaces.views.BookmarksNotificationBar;
 import it.unimi.unimiplaces.views.FloorMapView;
 import it.unimi.unimiplaces.views.RoomDetailViewInterface;
 
@@ -34,6 +34,7 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     FloorMapView floorMapView;
     FloatingActionButton bookmarksFab;
     ImageButton routingButton;
+    BookmarksNotificationBar bookmarksNotificationBar;
 
 
     @Override
@@ -68,7 +69,7 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
                 APIManager.APIManagerFactory.createAPIManager(this),
                 this,
                 new BookmarksDataSource(new BookmarksDb(this)));
-        this.presenter.init(this.room_id,this.building_id);
+        this.presenter.init(this.room_id, this.building_id);
 
         this.bookmarksFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +77,6 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
                 presenter.saveBookmark();
             }
         });
-
 
     }
 
@@ -136,6 +136,7 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     public void setDisplayAddBookmarksButton(boolean show){
         if( show ){
             this.bookmarksFab.setVisibility(View.VISIBLE);
+            this.bookmarksNotificationBar = new BookmarksNotificationBar(this,findViewById(R.id.room_detail_info));
         }else{
             this.bookmarksFab.setVisibility(View.GONE);
         }
@@ -143,15 +144,11 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
 
     @Override
     public void onSuccessBookmarkSaved(){
-        View view = findViewById(R.id.room_detail_info);
-        Snackbar snackbar = Snackbar.make(view,getString(R.string.bookmarks_bookmark_saved),Snackbar.LENGTH_SHORT);
-        snackbar.show();
+        this.bookmarksNotificationBar.showSuccessMessage();
     }
 
     @Override
     public void onErrorBookmarkSaved(){
-        View view = findViewById(R.id.room_detail_info);
-        Snackbar snackbar = Snackbar.make(view, getString(R.string.bookmarks_bookmark_error), Snackbar.LENGTH_SHORT);
-        snackbar.show();
+        this.bookmarksNotificationBar.showErrorMessage();
     }
 }

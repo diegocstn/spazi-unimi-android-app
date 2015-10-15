@@ -40,6 +40,9 @@ public class BuildingDetailPresenterTest {
 
     APIFactory factory;
 
+    @Mock
+    BookmarksDataSource bookmarksDataSource;
+
     @Captor
     ArgumentCaptor<LinkedHashMap<String,List<String>>> floorsDetail;
 
@@ -65,7 +68,7 @@ public class BuildingDetailPresenterTest {
 
     @Test
     public void presenterShouldSetModel(){
-        final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view);
+        final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view,bookmarksDataSource);
         final List<BaseEntity> model = new ArrayList<>();
         final Building building = new Building("123","Celoria21","via Celoria 21");
         building.setCoordinates(123.0,321.0);
@@ -88,7 +91,7 @@ public class BuildingDetailPresenterTest {
 
     @Test
     public void presenterShouldShowErrorMessage(){
-        final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view);
+        final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view,bookmarksDataSource);
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
@@ -105,7 +108,7 @@ public class BuildingDetailPresenterTest {
 
     @Test
     public void presenterShouldPrepareFloorsList(){
-        final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view);
+        final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view,bookmarksDataSource);
         final Building building = (Building) factory.makeBuildingFromJSON(this.jsonBuilding());
 
         Mockito.doAnswer(new Answer() {
@@ -146,7 +149,7 @@ public class BuildingDetailPresenterTest {
 
     @Test
     public void testBuildingDetailPayload(){
-        final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view);
+        final BuildingDetailPresenter presenter = new BuildingDetailPresenter(apiManager,view,bookmarksDataSource);
         final Building building = (Building) factory.makeBuildingFromJSON(this.jsonBuilding());
 
         Mockito.doAnswer(new Answer() {

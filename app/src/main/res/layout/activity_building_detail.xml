@@ -12,6 +12,7 @@
         android:layout_height="wrap_content" />
 
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/building_wrapper"
         android:layout_below="@id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">

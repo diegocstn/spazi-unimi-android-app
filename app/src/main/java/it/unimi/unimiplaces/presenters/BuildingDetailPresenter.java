@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
+import it.unimi.unimiplaces.BookmarksDataSource;
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
@@ -23,10 +24,12 @@ public class BuildingDetailPresenter implements
     APIManager apiManager;
     BuildingDetailViewInterface view;
     Building model;
+    BookmarksDataSource bookmarksDataSource;
 
-    public BuildingDetailPresenter(APIManager apiManager,BuildingDetailViewInterface detailView){
-        this.apiManager = apiManager;
-        this.view       = detailView;
+    public BuildingDetailPresenter(APIManager apiManager,BuildingDetailViewInterface detailView, BookmarksDataSource dataSource){
+        this.apiManager             = apiManager;
+        this.view                   = detailView;
+        this.bookmarksDataSource    = dataSource;
     }
 
     private LinkedHashMap<String,List<String>> prepareFloorsDetailModel(){
@@ -42,6 +45,15 @@ public class BuildingDetailPresenter implements
         }
 
         return data;
+    }
+
+    public void saveBookmark(){
+        if( this.bookmarksDataSource.saveBookmark(this.model)!=null ){
+            this.view.setDisplayAddBookmarksButton(false);
+            this.view.onSuccessBookmarkSaved();
+        }else{
+            this.view.onErrorBookmarkSaved();
+        }
     }
 
     @Override
@@ -81,6 +93,8 @@ public class BuildingDetailPresenter implements
         this.view.setBuildingAddress(this.model.address);
 
         this.view.setFloorsDetailModel(this.prepareFloorsDetailModel());
+
+        this.view.setDisplayAddBookmarksButton(!this.bookmarksDataSource.entityIsBookmarked(this.model));
     }
 
     @Override

@@ -3,6 +3,7 @@ package it.unimi.unimiplaces.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -14,24 +15,28 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
+import it.unimi.unimiplaces.BookmarksDataSource;
+import it.unimi.unimiplaces.BookmarksDb;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.BuildingDetailPresenter;
-import it.unimi.unimiplaces.presenters.Presenter;
+import it.unimi.unimiplaces.views.BookmarksNotificationBar;
 import it.unimi.unimiplaces.views.BuildingDetailViewInterface;
 
 public class BuildingDetailActivity extends AppDetailSectionActivity implements
         BuildingDetailViewInterface,
         ExpandableListView.OnChildClickListener{
 
-    private Presenter presenter;
+    private BuildingDetailPresenter presenter;
     private String buildingId;
     TextView buildingNameTextView;
     TextView buildingAddressTextView;
     TextView buildingNoResults;
     FloorsDetailAdapter floorsDetailAdapter;
     ExpandableListView floorsDetailListView;
+    FloatingActionButton bookmarksFab;
+    BookmarksNotificationBar bookmarksNotificationBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +47,23 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
         buildingAddressTextView = (TextView) findViewById(R.id.building_address);
         buildingNoResults       = (TextView) findViewById(R.id.building_no_results);
         floorsDetailListView    = (ExpandableListView) findViewById(R.id.building_detail_rooms);
+        bookmarksFab            = (FloatingActionButton) findViewById(R.id.fab_add_remove_bookmarks);
 
         Intent intent = getIntent();
-        this.presenter  = new BuildingDetailPresenter(APIManager.APIManagerFactory.createAPIManager(this),this);
+        this.presenter  = new BuildingDetailPresenter(
+                APIManager.APIManagerFactory.createAPIManager(this),
+                this,
+                new BookmarksDataSource(new BookmarksDb(this)));
         this.buildingId = intent.getStringExtra( Building.MODEL_KEY );
         presenter.init(this.buildingId);
         this.setUpDetailActivity(intent.getStringExtra(Building.MODEL_NAME_KEY));
+
+        this.bookmarksFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.saveBookmark();
+            }
+        });
     }
 
 
@@ -75,6 +91,25 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
         this.floorsDetailListView.setOnChildClickListener(this);
     }
 
+    @Override
+    public void setDisplayAddBookmarksButton(boolean show) {
+        if( show ){
+            this.bookmarksFab.setVisibility(View.VISIBLE);
+            this.bookmarksNotificationBar = new BookmarksNotificationBar(this,findViewById(R.id.building_wrapper));
+        }else{
+            this.bookmarksFab.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onSuccessBookmarkSaved() {
+        this.bookmarksNotificationBar.showSuccessMessage();
+    }
+
+    @Override
+    public void onErrorBookmarkSaved() {
+        this.bookmarksNotificationBar.showErrorMessage();
+    }
 
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {

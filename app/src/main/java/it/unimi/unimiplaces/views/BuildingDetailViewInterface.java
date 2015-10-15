@@ -11,4 +11,7 @@ public interface BuildingDetailViewInterface {
     void setBuildingAddress(String buildingAddress);
     void setFloorsDetailModel(LinkedHashMap<String,List<String>> data);
     void showNoResultsMessage();
+    void setDisplayAddBookmarksButton(boolean show);
+    void onSuccessBookmarkSaved();
+    void onErrorBookmarkSaved();
 }
