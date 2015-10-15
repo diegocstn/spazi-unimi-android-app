@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.fragments.BookmarksFragment;
 import it.unimi.unimiplaces.fragments.BuildingsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 newFragment = new BuildingsFragment();
                 break;
             case R.id.nav_bookmarks:
+                newFragment = new BookmarksFragment();
                 break;
             case R.id.nav_search:
                 break;
