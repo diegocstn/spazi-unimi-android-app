@@ -139,11 +139,10 @@ public class RoomDetailPresenterTest {
     public void shouldHideBookmarksFab(){
         Mockito.doAnswer(mockAPIAnswerWithData(null)).when(apiManager)
                 .roomByRIDAndBID(presenter, "123", "000");
-        Room room = new Room("123","Name","Cat");
-        room.setB_id("000");
-        Mockito.when(bookmarksDataSource.entityIsBookmarked(room)).thenReturn(true);
 
-        presenter.init("123","000");
+        Mockito.when(bookmarksDataSource.entityIsBookmarked(Mockito.any(Room.class))).thenReturn(true);
+
+        presenter.init("123", "000");
         Mockito.verify(view).setDisplayAddBookmarksButton(false);
     }
 
@@ -151,9 +150,8 @@ public class RoomDetailPresenterTest {
     public void shouldShowBookmarksFab(){
         Mockito.doAnswer(mockAPIAnswerWithData(null)).when(apiManager)
                 .roomByRIDAndBID(presenter, "123", "000");
-        Room room = new Room("123","Name","Cat");
-        room.setB_id("000");
-        Mockito.when(bookmarksDataSource.entityIsBookmarked(room)).thenReturn(false);
+
+        Mockito.when(bookmarksDataSource.entityIsBookmarked(Mockito.any(Room.class))).thenReturn(false);
 
         presenter.init("123","000");
         Mockito.verify(view).setDisplayAddBookmarksButton(true);
