@@ -8,6 +8,7 @@ import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ import it.unimi.unimiplaces.views.BookmarksViewInterface;
  * A fragment representing a list of Bookmarks.
  *
  */
-public class BookmarksFragment extends Fragment implements BookmarksViewInterface {
+public class BookmarksFragment extends Fragment implements BookmarksViewInterface, AdapterView.OnItemClickListener {
 
     private final String LOG_TAG = "BOOKMARKS";
     private View view;
@@ -81,10 +82,10 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
         super.onDetach();
     }
 
-    /*@Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-    }*/
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 
     @Override
     public void setModel(List<Bookmark> bookmarks) {

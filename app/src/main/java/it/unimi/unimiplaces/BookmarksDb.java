@@ -81,8 +81,8 @@ public class BookmarksDb extends SQLiteOpenHelper{
 
     public Bookmark saveBookmark(BookmarkableEntity entity){
         ContentValues values    = new ContentValues();
-        Bookmark bookmark       = new Bookmark(entity.getBookmarkableType(),entity.getBookmarkableType(),entity.getBookmarkableObjectIdentifier());
-        values.put(FIELD_OBJECT_TYPE,bookmark.type);
+        Bookmark bookmark       = new Bookmark(entity.getBookmarkableType(),entity.getBookmarkableObjectIdentifier(),entity.getBookmarkableObjectTitle());
+        values.put(FIELD_OBJECT_TYPE,bookmark.type.toString());
         values.put(FIELD_OBJECT_IDENTIFIER,bookmark.identifier);
         values.put(FIELD_OBJECT_TITLE,bookmark.title);
         long newBookmarkId = getReadableDatabase().insert(TABLE_NAME,null,values);
@@ -98,12 +98,18 @@ public class BookmarksDb extends SQLiteOpenHelper{
     public List<Bookmark> allBookmarks(){
         String SQLQuery     = "SELECT * from "+TABLE_NAME;
         Cursor cursor       = getReadableDatabase().rawQuery(SQLQuery,null);
+        BookmarkableEntity.BOOKMARK_TYPE type;
 
         /* results list */
         List<Bookmark> res = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            res.add( new Bookmark(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)) );
+            if( cursor.getString(1).equals(BookmarkableEntity.BOOKMARK_TYPE.BUILDING.toString()) ){
+                type = BookmarkableEntity.BOOKMARK_TYPE.BUILDING;
+            }else{
+                type = BookmarkableEntity.BOOKMARK_TYPE.ROOM;
+            }
+            res.add( new Bookmark(cursor.getInt(0),type,cursor.getString(2), cursor.getString(3)) );
         }
 
         return res;

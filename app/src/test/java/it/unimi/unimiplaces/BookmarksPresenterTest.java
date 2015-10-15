@@ -11,6 +11,7 @@ import org.mockito.stubbing.Answer;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unimi.unimiplaces.core.model.BookmarkableEntity;
 import it.unimi.unimiplaces.presenters.BookmarksPresenter;
 import it.unimi.unimiplaces.views.BookmarksViewInterface;
 
@@ -47,7 +48,7 @@ public class BookmarksPresenterTest {
     @Test
     public void testModel(){
         final List<Bookmark> res = new ArrayList<>();
-        res.add( new Bookmark("ROOM","123;000","Room 1") );
+        res.add( new Bookmark(BookmarkableEntity.BOOKMARK_TYPE.ROOM,"123;000","Room 1") );
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
