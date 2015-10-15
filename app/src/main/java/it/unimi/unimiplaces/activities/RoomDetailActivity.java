@@ -70,14 +70,12 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
                 new BookmarksDataSource(new BookmarksDb(this)));
         this.presenter.init(this.room_id,this.building_id);
 
-        if( this.bookmarksFab.getVisibility()==View.VISIBLE ){
-            this.bookmarksFab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    presenter.saveBookmark();
-                }
-            });
-        }
+        this.bookmarksFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.saveBookmark();
+            }
+        });
 
 
     }

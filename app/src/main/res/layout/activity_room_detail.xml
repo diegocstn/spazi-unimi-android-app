@@ -13,16 +13,16 @@
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/room_detail_info"
         android:layout_below="@id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="20dp">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="20dp">
 
             <RelativeLayout
                 android:id="@+id/room_info"
@@ -119,7 +119,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_favorite_white"
-            android:layout_gravity="bottom|end">
+            android:layout_gravity="bottom|end"
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin">
         </android.support.design.widget.FloatingActionButton>
     </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>
