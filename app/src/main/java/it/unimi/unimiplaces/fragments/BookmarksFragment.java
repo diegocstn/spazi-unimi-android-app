@@ -2,6 +2,7 @@ package it.unimi.unimiplaces.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.InflateException;
@@ -17,9 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unimi.unimiplaces.Bookmark;
-import it.unimi.unimiplaces.BookmarkDataSource;
+import it.unimi.unimiplaces.BookmarksDataSource;
 import it.unimi.unimiplaces.BookmarksDb;
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.activities.BuildingDetailActivity;
+import it.unimi.unimiplaces.activities.RoomDetailActivity;
+import it.unimi.unimiplaces.core.model.BaseEntity;
+import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.BookmarksPresenter;
 import it.unimi.unimiplaces.views.BookmarksViewInterface;
 
@@ -74,7 +80,7 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.adapter = new BookmarksListAdapter(getActivity(),new ArrayList<Bookmark>());
-        this.presenter      = new BookmarksPresenter(new BookmarkDataSource(new BookmarksDb(getActivity())),this);
+        this.presenter      = new BookmarksPresenter(new BookmarksDataSource(new BookmarksDb(getActivity())),this);
     }
 
     @Override
@@ -84,6 +90,20 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        BaseEntity entity = this.presenter.payloadForDetailAtIndex(position);
+        Intent detailIntent;
+        if( entity instanceof Room){
+            detailIntent = new Intent(getActivity(), RoomDetailActivity.class);
+            detailIntent.putExtra(Room.MODEL_KEY,((Room) entity).r_id);
+            detailIntent.putExtra(Building.MODEL_KEY,((Room) entity).b_id);
+            detailIntent.putExtra(Room.MODEL_NAME_KEY,"");
+            startActivity(detailIntent);
+        }
+        if( entity instanceof Building){
+            detailIntent = new Intent(getActivity(), BuildingDetailActivity.class);
+            detailIntent.putExtra(Building.MODEL_KEY,((Building) entity).b_id);
+            startActivity(detailIntent);
+        }
 
     }
 
