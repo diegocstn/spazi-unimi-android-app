@@ -12,7 +12,7 @@ public class Room extends BaseEntity implements LocalizableEntity,BookmarkableEn
     public String room_name;
     public String floor;
     public String f_id;
-    private String b_id;
+    public String b_id;
     public String building_name;
     public String building_address;
     private Coordinates building_coordinates;
