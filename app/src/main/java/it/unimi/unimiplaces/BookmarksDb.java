@@ -110,6 +110,7 @@ public class BookmarksDb extends SQLiteOpenHelper{
                 type = BookmarkableEntity.BOOKMARK_TYPE.ROOM;
             }
             res.add( new Bookmark(cursor.getInt(0),type,cursor.getString(2), cursor.getString(3)) );
+            cursor.moveToNext();
         }
 
         return res;

@@ -74,13 +74,16 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
         noResultsTextView   = (TextView) view.findViewById(R.id.bookmarks_no_results);
         listView            = (ListView) view.findViewById(R.id.bookmarks_list);
         listView.setAdapter(this.adapter);
+
+        this.presenter.init();
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.adapter = new BookmarksListAdapter(getActivity(),new ArrayList<Bookmark>());
-        this.presenter      = new BookmarksPresenter(new BookmarksDataSource(new BookmarksDb(getActivity())),this);
+        this.adapter    = new BookmarksListAdapter(getActivity(),new ArrayList<Bookmark>());
+        this.presenter  = new BookmarksPresenter(new BookmarksDataSource(new BookmarksDb(getActivity())),this);
     }
 
     @Override
