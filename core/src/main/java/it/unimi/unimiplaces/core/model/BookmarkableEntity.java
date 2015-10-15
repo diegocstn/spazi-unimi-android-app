@@ -7,7 +7,7 @@ import java.util.List;
  * a class which could be bookmarked should implements
  */
 public interface BookmarkableEntity {
-    String getBookmarkableType();
+    BOOKMARK_TYPE getBookmarkableType();
     String getBookmarkableObjectIdentifier();
     String getBookmarkableObjectTitle();
     List<String> getIdentifierFromBookmarkData(String data);

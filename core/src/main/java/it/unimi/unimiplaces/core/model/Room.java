@@ -75,8 +75,8 @@ public class Room extends BaseEntity implements LocalizableEntity,BookmarkableEn
     /* BookmarkableEntity methods */
 
     @Override
-    public String getBookmarkableType() {
-        return BOOKMARK_TYPE.ROOM.toString();
+    public BOOKMARK_TYPE getBookmarkableType() {
+        return BOOKMARK_TYPE.ROOM;
     }
 
     @Override
