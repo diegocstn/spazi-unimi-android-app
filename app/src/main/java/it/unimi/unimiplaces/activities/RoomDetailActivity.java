@@ -3,11 +3,14 @@ package it.unimi.unimiplaces.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import it.unimi.unimiplaces.APIManager;
+import it.unimi.unimiplaces.BookmarksDataSource;
+import it.unimi.unimiplaces.BookmarksDb;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.LocalizableEntity;
@@ -51,7 +54,7 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         viewEquipments          = findViewById(R.id.room_equipments_block);
 
         bookmarksFab            = (FloatingActionButton) findViewById(R.id.fab_add_remove_bookmarks);
-        routingButton = (ImageButton) findViewById(R.id.routing_button);
+        routingButton           = (ImageButton) findViewById(R.id.routing_button);
 
         routingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,11 +64,24 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         });
 
         // initialize presenter
-        this.presenter = new RoomDetailPresenter(APIManager.APIManagerFactory.createAPIManager(this),this);
+        this.presenter = new RoomDetailPresenter(
+                APIManager.APIManagerFactory.createAPIManager(this),
+                this,
+                new BookmarksDataSource(new BookmarksDb(this)));
         this.presenter.init(this.room_id,this.building_id);
+
+        if( this.bookmarksFab.getVisibility()==View.VISIBLE ){
+            this.bookmarksFab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    presenter.saveBookmark();
+                }
+            });
+        }
 
 
     }
+
 
     private void showRoomRouting(){
         Intent routingIntent    = new Intent(this,RoomDetailMapActivity.class);
@@ -125,5 +141,19 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         }else{
             this.bookmarksFab.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onSuccessBookmarkSaved(){
+        View view = findViewById(R.id.room_detail_info);
+        Snackbar snackbar = Snackbar.make(view,getString(R.string.bookmarks_bookmark_saved),Snackbar.LENGTH_SHORT);
+        snackbar.show();
+    }
+
+    @Override
+    public void onErrorBookmarkSaved(){
+        View view = findViewById(R.id.room_detail_info);
+        Snackbar snackbar = Snackbar.make(view, getString(R.string.bookmarks_bookmark_error), Snackbar.LENGTH_SHORT);
+        snackbar.show();
     }
 }

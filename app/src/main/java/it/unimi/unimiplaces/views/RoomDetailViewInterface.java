@@ -13,4 +13,6 @@ public interface RoomDetailViewInterface {
     void setFloorMapForRoom(String svgURl);
     void showNoResultsMessage();
     void setDisplayAddBookmarksButton(boolean show);
+    void onSuccessBookmarkSaved();
+    void onErrorBookmarkSaved();
 }

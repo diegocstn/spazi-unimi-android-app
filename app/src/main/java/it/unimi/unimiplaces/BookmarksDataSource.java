@@ -15,7 +15,7 @@ public class BookmarksDataSource {
         this.db = db;
     }
 
-    public boolean entitiesIsBookmarked( BookmarkableEntity entity ){
+    public boolean entityIsBookmarked(BookmarkableEntity entity){
         return this.db.entityWithIdentifierExists(entity.getBookmarkableObjectIdentifier());
     }
 
@@ -26,5 +26,4 @@ public class BookmarksDataSource {
     public Bookmark saveBookmark(BookmarkableEntity entity){
         return this.db.saveBookmark(entity);
     }
-
 }

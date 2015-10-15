@@ -31,11 +31,14 @@ public class RoomDetailPresenterTest {
     @Mock
     APIManager apiManager;
 
+    @Mock
+    BookmarksDataSource bookmarksDataSource;
+
     RoomDetailPresenter presenter;
 
     @Before
     public void setUp(){
-        presenter = new RoomDetailPresenter(apiManager,view);
+        presenter = new RoomDetailPresenter(apiManager,view,bookmarksDataSource);
     }
 
     public Answer mockAPIAnswerWithData(final List<BaseEntity>entities){
@@ -130,5 +133,29 @@ public class RoomDetailPresenterTest {
 
         Mockito.verify(apiManager).roomByRIDAndBID(presenter, "123", "000");
         Mockito.verify(view).hideRoomEquipments();
+    }
+
+    @Test
+    public void shouldHideBookmarksFab(){
+        Mockito.doAnswer(mockAPIAnswerWithData(null)).when(apiManager)
+                .roomByRIDAndBID(presenter, "123", "000");
+        Room room = new Room("123","Name","Cat");
+        room.setB_id("000");
+        Mockito.when(bookmarksDataSource.entityIsBookmarked(room)).thenReturn(true);
+
+        presenter.init("123","000");
+        Mockito.verify(view).setDisplayAddBookmarksButton(false);
+    }
+
+    @Test
+    public void shouldShowBookmarksFab(){
+        Mockito.doAnswer(mockAPIAnswerWithData(null)).when(apiManager)
+                .roomByRIDAndBID(presenter, "123", "000");
+        Room room = new Room("123","Name","Cat");
+        room.setB_id("000");
+        Mockito.when(bookmarksDataSource.entityIsBookmarked(room)).thenReturn(false);
+
+        presenter.init("123","000");
+        Mockito.verify(view).setDisplayAddBookmarksButton(true);
     }
 }

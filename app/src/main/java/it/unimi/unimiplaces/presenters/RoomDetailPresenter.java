@@ -3,6 +3,7 @@ package it.unimi.unimiplaces.presenters;
 import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
+import it.unimi.unimiplaces.BookmarksDataSource;
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Room;
@@ -17,10 +18,12 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
     private Room room;
     APIManager apiManager;
     RoomDetailViewInterface view;
+    BookmarksDataSource bookmarksDataSource;
 
-    public RoomDetailPresenter(APIManager apiManager,RoomDetailViewInterface view){
-        this.apiManager = apiManager;
-        this.view       = view;
+    public RoomDetailPresenter(APIManager apiManager,RoomDetailViewInterface view, BookmarksDataSource dataSource){
+        this.apiManager             = apiManager;
+        this.view                   = view;
+        this.bookmarksDataSource    = dataSource;
     }
 
     @Override
@@ -71,6 +74,18 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
 
     public void init(String roomID, String buildingID){
         this.apiManager.roomByRIDAndBID(this,roomID,buildingID);
+        Room r = new Room(roomID,"","");
+        r.setB_id(buildingID);
+        this.view.setDisplayAddBookmarksButton(!this.bookmarksDataSource.entityIsBookmarked(r));
+    }
+
+    public void saveBookmark(){
+        if( this.bookmarksDataSource.saveBookmark(this.room)!=null ){
+            this.view.setDisplayAddBookmarksButton(false);
+            this.view.onSuccessBookmarkSaved();
+        }else{
+            this.view.onErrorBookmarkSaved();
+        }
     }
 
 
