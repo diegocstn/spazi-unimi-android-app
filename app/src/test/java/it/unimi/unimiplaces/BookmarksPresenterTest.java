@@ -24,7 +24,7 @@ public class BookmarksPresenterTest {
     BookmarksPresenter presenter;
 
     @Mock
-    BookmarkDataSource bookmarkDataSource;
+    BookmarksDataSource bookmarkDataSource;
 
     @Mock
     BookmarksViewInterface view;

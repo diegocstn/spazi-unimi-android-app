@@ -12,4 +12,5 @@ public interface RoomDetailViewInterface {
     void setRoomEquipments(String equipments);
     void setFloorMapForRoom(String svgURl);
     void showNoResultsMessage();
+    void setDisplayAddBookmarksButton(boolean show);
 }

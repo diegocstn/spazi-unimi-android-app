@@ -3,7 +3,7 @@ package it.unimi.unimiplaces.presenters;
 import java.util.List;
 
 import it.unimi.unimiplaces.Bookmark;
-import it.unimi.unimiplaces.BookmarkDataSource;
+import it.unimi.unimiplaces.BookmarksDataSource;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.BookmarkableEntity;
 import it.unimi.unimiplaces.core.model.Building;
@@ -16,10 +16,10 @@ import it.unimi.unimiplaces.views.BookmarksViewInterface;
 public class BookmarksPresenter implements Presenter {
 
     private List<Bookmark> model;
-    private BookmarkDataSource dataSource;
+    private BookmarksDataSource dataSource;
     private BookmarksViewInterface view;
 
-    public BookmarksPresenter(BookmarkDataSource source,BookmarksViewInterface view){
+    public BookmarksPresenter(BookmarksDataSource source,BookmarksViewInterface view){
         this.dataSource = source;
         this.model      = this.dataSource.allBookmarks();
         this.view       = view;

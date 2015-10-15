@@ -5,13 +5,13 @@ import java.util.List;
 import it.unimi.unimiplaces.core.model.BookmarkableEntity;
 
 /**
- * BookmarkDataSource
+ * BookmarksDataSource
  */
-public class BookmarkDataSource {
+public class BookmarksDataSource {
 
     BookmarksDb db;
 
-    public BookmarkDataSource(BookmarksDb db){
+    public BookmarksDataSource(BookmarksDb db){
         this.db = db;
     }
 

@@ -110,11 +110,20 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
 
     @Override
     public void setFloorMapForRoom(String svgURL) {
-        this.floorMapView.highlightRoomInMap(svgURL,this.room_id);
+        this.floorMapView.highlightRoomInMap(svgURL, this.room_id);
     }
 
     @Override
     public void showNoResultsMessage() {
 
+    }
+
+    @Override
+    public void setDisplayAddBookmarksButton(boolean show){
+        if( show ){
+            this.bookmarksFab.setVisibility(View.VISIBLE);
+        }else{
+            this.bookmarksFab.setVisibility(View.GONE);
+        }
     }
 }
