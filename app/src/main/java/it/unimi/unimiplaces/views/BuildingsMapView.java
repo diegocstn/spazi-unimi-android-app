@@ -122,9 +122,7 @@ public class BuildingsMapView extends RelativeLayout implements
         Log.v(LOG_TAG,"Placing markers");
         /* remove all marker if needed */
         if( markers != null ){
-            for (ClusteredMarker marker : clusteredMarkers){
-                clusterManager.removeItem(marker);
-            }
+            clusterManager.clearItems();
             markers.clear();
             clusteredMarkers.clear();
         }else{
@@ -139,6 +137,8 @@ public class BuildingsMapView extends RelativeLayout implements
             clusteredMarkers.add(marker);
             markers.put(marker.getEntity().getLocalizableTitle(),i);
         }
+
+        clusterManager.cluster();
 
     }
 
