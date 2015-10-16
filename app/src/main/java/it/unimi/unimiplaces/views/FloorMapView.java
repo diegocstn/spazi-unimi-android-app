@@ -1,6 +1,7 @@
 package it.unimi.unimiplaces.views;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -41,6 +42,8 @@ public class FloorMapView extends RelativeLayout {
         this.webView.getSettings().setBuiltInZoomControls(true);
         this.webView.getSettings().setDisplayZoomControls(false);
 
+        WebView.setWebContentsDebuggingEnabled(true);
+
         this.webView.loadUrl(HTMLfileURL);
     }
 
@@ -62,7 +65,11 @@ public class FloorMapView extends RelativeLayout {
     }
 
     public void highlightRoomInMap(String svgURL,String roomId){
-        final String script = String.format("svgFloor.initAndSelectRoom(\"%s\",\"%s\")",svgURL,roomId);
+        /* extract color from res, remove alpha component and convert in hex rgb form */
+        int colorInt = ContextCompat.getColor(getContext(), R.color.colorAccent);
+        String color = "#"+Integer.toHexString(colorInt & 0x00ffffff);
+        /* JS script */
+        final String script = String.format("svgFloor.initAndSelectRoom(\"%s\",\"%s\",\"%s\")",svgURL,roomId,color);
         this.webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
