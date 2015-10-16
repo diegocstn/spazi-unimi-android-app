@@ -37,6 +37,9 @@ public class BuildingsMapView extends RelativeLayout implements
         OnMapReadyCallback,
         GoogleMap.OnInfoWindowClickListener{
 
+    boolean mapInitialized;
+    boolean mapLoaded;
+    boolean modelInitialized;
     private Context context;
     private GoogleMap map;
     private ClusterManager<ClusteredMarker> clusterManager;
@@ -56,6 +59,8 @@ public class BuildingsMapView extends RelativeLayout implements
     public BuildingsMapView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        this.mapInitialized     = false;
+        this.modelInitialized   = false;
         this.init();
     }
 
@@ -71,39 +76,46 @@ public class BuildingsMapView extends RelativeLayout implements
         mapFragment.getMapAsync(this);
     }
 
-
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+        this.mapInitialized = true;
         map = googleMap;
-        clusterManager = new ClusterManager<ClusteredMarker>(getContext(),map);
-        clusterManager.setRenderer(new ClusterCustomRenderer(getContext(),map,clusterManager));
+        clusterManager = new ClusterManager<>(getContext(),map);
+        clusterManager.setRenderer(new ClusterCustomRenderer(getContext(), map, clusterManager));
         map.setOnCameraChangeListener(clusterManager);
         map.setOnMarkerClickListener(clusterManager);
 
-        if( model!=null ){
+        if( this.modelInitialized ){
             this.placeMarkers();
         }
 
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-                if (markers.size() == 1) {
-                    ClusteredMarker marker = (ClusteredMarker) ((clusteredMarkers.toArray())[0]);
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 18f));
+                mapLoaded = true;
+                if( !modelInitialized ){
                     return;
                 }
-                LatLngBounds.Builder markerBounds = new LatLngBounds.Builder();
-                for (ClusteredMarker marker : clusteredMarkers) {
-                    markerBounds.include(marker.getPosition());
-                }
-                map.animateCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(), 10));
+                adjustZoomLevelToMarkers();
             }
         });
 
         map.setOnInfoWindowClickListener(this);
 
+    }
+
+    private void adjustZoomLevelToMarkers(){
+        if (markers.size() == 1) {
+            ClusteredMarker marker = (ClusteredMarker) ((clusteredMarkers.toArray())[0]);
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 18f));
+            return;
+        }
+        LatLngBounds.Builder markerBounds = new LatLngBounds.Builder();
+        for (ClusteredMarker marker : clusteredMarkers) {
+            markerBounds.include(marker.getPosition());
+        }
+        map.animateCamera(CameraUpdateFactory.newLatLngBounds(markerBounds.build(), 10));
     }
 
     private MarkerOptions markerOptionsForEntity(LocalizableEntity entity){
@@ -149,9 +161,15 @@ public class BuildingsMapView extends RelativeLayout implements
 
     @Override
     public void setModel(List<BaseEntity> model){
-        this.model = model;
-        if( this.map != null ){
+        this.model              = model;
+        this.modelInitialized   = true;
+
+        if( this.mapInitialized ){
             this.placeMarkers();
+        }
+
+        if( this.mapLoaded ){
+            this.adjustZoomLevelToMarkers();
         }
     }
 
