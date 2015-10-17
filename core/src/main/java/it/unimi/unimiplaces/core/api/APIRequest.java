@@ -86,4 +86,8 @@ public class APIRequest {
     public boolean is404(){
         return this.response==null;
     }
+
+    public void setUseCache(boolean use){
+        this.useCache = use;
+    }
 }
