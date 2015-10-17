@@ -18,9 +18,11 @@ public class APIRequest {
         BUILDING_BY_BID,
         AVAILABLE_SERVICES,
         BUILDINGS_BY_SERVICES,
-        ROOM_BY_ID
+        ROOM_BY_ID,
+        FLOOR_MAP
     }
 
+    private boolean useCache;
     private URL url;
     private String response;
     public APIRequestIdentifier requestType;
@@ -29,6 +31,7 @@ public class APIRequest {
 
         this.response       = null;
         this.requestType    = identifier;
+        this.useCache       = false;
         try {
             this.url = new URL(url);
         }catch (MalformedURLException e){
@@ -50,6 +53,8 @@ public class APIRequest {
 
         try {
             HttpURLConnection  urlConnection = (HttpURLConnection) this.url.openConnection();
+            urlConnection.setUseCaches(this.useCache);
+            urlConnection.setDefaultUseCaches(this.useCache);
 
             if( urlConnection.getResponseCode() > HttpURLConnection.HTTP_ACCEPTED){
                 this.response = null;

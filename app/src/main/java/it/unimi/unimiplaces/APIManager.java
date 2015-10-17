@@ -2,9 +2,12 @@ package it.unimi.unimiplaces;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -30,7 +33,8 @@ public class APIManager {
     private APIDelegateInterface delegate;
     private APIAsyncTask asyncTask;
 
-    final static String LOG_TAG = "APIMANAGER";
+    final static String LOG_TAG     = "APIMANAGER";
+
 
     public APIManager(Context context, APIAsyncTask asyncTask){
         this.apiFactory     = new APIFactory();
@@ -38,8 +42,28 @@ public class APIManager {
         this.progressDialog = new ProgressDialog( this.context , ProgressDialog.STYLE_SPINNER );
         this.progressDialog.setMessage(this.context.getString(R.string.progress_loading));
         this.asyncTask      = asyncTask;
+
+        this.installCache();
     }
 
+    private void installCache(){
+        long cacheSize      = 50*10*1024; /* 50 MB */
+        File httpCacheDir   = new File(this.context.getCacheDir(),"http");
+        try {
+            HttpResponseCache.install(httpCacheDir,cacheSize);
+        }catch (IOException e){
+            Log.e(LOG_TAG,"Cache install: "+e.getMessage());
+        }
+
+    }
+
+    private void logCacheStats(){
+        HttpResponseCache httpResponseCache = HttpResponseCache.getInstalled();
+        Log.i(LOG_TAG, "Cache req count " + httpResponseCache.getRequestCount());
+        Log.i(LOG_TAG,"Cache net count "+httpResponseCache.getNetworkCount());
+        Log.i(LOG_TAG,"Cache hit count "+httpResponseCache.getHitCount());
+        Log.i(LOG_TAG,"Cache size "+httpResponseCache.size());
+    }
 
     private void executeAPIRequest(String endpoint,APIRequest.APIRequestIdentifier identifier,boolean showProgress){
         // show progress dialog and alert the delegate object
@@ -114,6 +138,12 @@ public class APIManager {
                 }
                 this.delegate.apiRequestEnd(entities);
                 this.progressDialog.hide();
+                break;
+
+            case FLOOR_MAP:
+                /* flush HTTP request response to filesystem */
+                HttpResponseCache.getInstalled().flush();
+                this.logCacheStats();
                 break;
         }
     }
