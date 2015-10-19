@@ -98,6 +98,12 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
     }
 
     @Override
+    public void onDestroy() {
+        this.listView.setOnItemClickListener(null);
+        super.onDestroy();
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         BaseEntity entity = this.presenter.payloadForDetailAtIndex(position);
         Intent detailIntent;
