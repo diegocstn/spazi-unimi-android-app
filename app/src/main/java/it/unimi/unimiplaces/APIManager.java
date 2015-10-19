@@ -59,7 +59,7 @@ public class APIManager {
 
     private void logCacheStats(){
         HttpResponseCache httpResponseCache = HttpResponseCache.getInstalled();
-        Log.i(LOG_TAG, "Cache req count " + httpResponseCache.getRequestCount());
+        Log.i(LOG_TAG,"Cache req count " + httpResponseCache.getRequestCount());
         Log.i(LOG_TAG,"Cache net count "+httpResponseCache.getNetworkCount());
         Log.i(LOG_TAG,"Cache hit count "+httpResponseCache.getHitCount());
         Log.i(LOG_TAG,"Cache size "+httpResponseCache.size());
@@ -83,7 +83,21 @@ public class APIManager {
 
     }
 
+    private void executeCachedAPIRequest(String fullEndpoint,APIRequest.APIRequestIdentifier identifier){
+        try {
+            this.delegate.apiRequestStart();
+            APIAsyncTask apiAsyncTask   = this.asyncTask.buildAPISyncTask(this);
+            APIRequest request          = new APIRequest(fullEndpoint,identifier);
+            request.setUseCache(true);
+            apiAsyncTask.execute(request);
+        }catch (Exception e){
+            Log.e(LOG_TAG, e.getMessage());
+        }
+    }
+
     private void requestExecuted(String result,APIRequest.APIRequestIdentifier requestIdentifier){
+
+        APIDelegateInterfaceExtended extendedDelegate;
 
         /* 404 */
         if( result == null ){
@@ -110,7 +124,7 @@ public class APIManager {
                 this.progressDialog.hide();
                 break;
             case AVAILABLE_SERVICES:
-                APIDelegateInterfaceExtended extendedDelegate = (APIDelegateInterfaceExtended) this.delegate;
+                extendedDelegate = (APIDelegateInterfaceExtended) this.delegate;
                 entities = this.apiFactory.makeAvailableServicesFromJSON(result);
                 if( entities == null ){
                  extendedDelegate.apiRequestError();
@@ -141,6 +155,8 @@ public class APIManager {
                 break;
 
             case FLOOR_MAP:
+                extendedDelegate = (APIDelegateInterfaceExtended) this.delegate;
+                extendedDelegate.apiFloorMapAtURLEnd(result);
                 /* flush HTTP request response to filesystem */
                 HttpResponseCache.getInstalled().flush();
                 this.logCacheStats();
@@ -181,6 +197,12 @@ public class APIManager {
         Log.v(LOG_TAG,"Room:"+r_id+"in building"+b_id+" API request");
         this.delegate = delegate;
         this.executeAPIRequest("rooms/"+b_id+"/"+r_id+"/", APIRequest.APIRequestIdentifier.ROOM_BY_ID,true);
+    }
+
+    public void floorMapAtURL(APIDelegateInterfaceExtended delegate,String URL){
+        Log.v(LOG_TAG,"Floor map at:"+URL);
+        this.delegate = delegate;
+        this.executeCachedAPIRequest(URL, APIRequest.APIRequestIdentifier.FLOOR_MAP);
     }
 
 

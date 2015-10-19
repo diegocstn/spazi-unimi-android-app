@@ -190,13 +190,22 @@ public class APIManagerTest{
         Mockito.verify(delegate).apiRequestEnd(entities.capture());
 
         Room roomExpected   = new Room("1067","Galleria","Aula Magna");
-        roomExpected.setBuildingAttributes(new Building("11020","Festa Del Perdono","via Festa del Perdono, 3, Milano, 20122"));
-        roomExpected.setFloorAttributes(new Floor("10","Primo Piano"));
+        roomExpected.setBuildingAttributes(new Building("11020", "Festa Del Perdono", "via Festa del Perdono, 3, Milano, 20122"));
+        roomExpected.setFloorAttributes(new Floor("10", "Primo Piano"));
 
         Room actual         = (Room) entities.getValue().get(0);
         Assert.assertEquals(roomExpected.room_name,actual.room_name);
         Assert.assertEquals(roomExpected.r_id,actual.r_id);
         Assert.assertEquals(roomExpected.building_name,actual.building_name);
 
+    }
+
+    @Test
+    public void testFloorMap(){
+        String svg = "<svg></svg>";
+        mockAsyncTask(APIRequest.APIRequestIdentifier.FLOOR_MAP,svg);
+        apiManager.floorMapAtURL(extendedDelegate, "http://svgurl");
+        Mockito.verify(extendedDelegate).apiRequestStart();
+        Mockito.verify(extendedDelegate).apiFloorMapAtURLEnd(svg);
     }
 }
