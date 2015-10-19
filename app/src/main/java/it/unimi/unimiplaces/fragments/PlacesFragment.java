@@ -2,6 +2,7 @@ package it.unimi.unimiplaces.fragments;
 
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,10 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unimi.unimiplaces.LookupTableEntry;
@@ -32,6 +35,7 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
     private EditText editTextSearchKey;
     private ListView resultsListView;
     private TextView noResultsTextView;
+    private PlacesListAdapter resultsAdapter;
 
     private static final String LOG_TAG = "PLACES";
 
@@ -49,7 +53,8 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.presenter = new PlacesPresenter(new PlacesDataSource(new PlacesDb(getActivity())),this);
+        this.presenter          = new PlacesPresenter(new PlacesDataSource(new PlacesDb(getActivity())),this);
+        this.resultsAdapter     = new PlacesListAdapter(getActivity(),new ArrayList<LookupTableEntry>());
     }
 
     @Override
@@ -71,8 +76,9 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
         editTextSearchKey   = (EditText) getActivity().findViewById(R.id.places_search_key);
         resultsListView     = (ListView) getActivity().findViewById(R.id.places_results);
         noResultsTextView   = (TextView) getActivity().findViewById(R.id.places_no_results);
-
         editTextSearchKey.addTextChangedListener(this);
+
+        this.resultsListView.setAdapter(this.resultsAdapter);
     }
 
     /* TextWatcher methods */
@@ -81,6 +87,7 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         Log.v(LOG_TAG, s.toString());
+        presenter.searchPlacesWithKey(s.toString());
     }
     @Override
     public void afterTextChanged(Editable s) {}
@@ -97,9 +104,55 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
     public void setResults(List<LookupTableEntry> results) {
         this.resultsListView.setVisibility(View.VISIBLE);
         this.noResultsTextView.setVisibility(View.GONE);
+        this.resultsAdapter.clear();
+        this.resultsAdapter.addAll(results);
+        this.resultsAdapter.notifyDataSetChanged();
 
     }
 
+    private class PlacesListAdapter extends ArrayAdapter<LookupTableEntry> {
+        private final Context context;
+        private final List<LookupTableEntry> entries;
+
+        private class PlaceViewHolder{
+            public TextView entryName;
+            public TextView entryAddress;
+        }
+
+        public PlacesListAdapter(Context context,List<LookupTableEntry> entries){
+            super( context, R.layout.buildings_list_item , entries );
+            this.context    = context;
+            this.entries    = entries;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup group){
+            View entryRowView = convertView;
+
+            // reuse view
+            if( entryRowView==null ){
+                LayoutInflater inflater = LayoutInflater.from(context);
+                entryRowView = inflater.inflate(R.layout.buildings_list_item,null);
+
+                // create BuildingViewHolder in order to avoid searching
+                // resources within XML and speeds up rendering
+                PlaceViewHolder holder = new PlaceViewHolder();
+                holder.entryName     = (TextView) entryRowView.findViewById(R.id.building_name);
+                holder.entryAddress  = (TextView) entryRowView.findViewById(R.id.building_address);
+
+                entryRowView.setTag(holder);
+            }
+
+            // fill with building data
+            PlaceViewHolder holder = (PlaceViewHolder) entryRowView.getTag();
+            LookupTableEntry entry = this.entries.get(position);
+            holder.entryName.setText(entry.roomName);
+            holder.entryAddress.setText(entry.buildingName);
+
+
+            return entryRowView;
+        }
+    }
 
 
 }

@@ -32,8 +32,8 @@ public class PlacesDb extends SQLiteAssetHelper{
     }
 
     public List<LookupTableEntry> searchPlacesWithKey(String key){
-        String query = "SELECT DISTINCT * FROM lookup WHERE lookup.building_name LIKE \"%%s%\" OR lookup.room_name LIKE \"%%s%%\"";
-        Cursor cursor = this.getReadableDatabase().rawQuery(String.format(query,key),null);
+        String query = "SELECT DISTINCT * FROM lookup WHERE lookup.building_name LIKE \"%"+key+"%\" OR lookup.room_name LIKE \"%"+key+"%\"";
+        Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
 
         if( cursor.getCount()==0 ){
             return null;
