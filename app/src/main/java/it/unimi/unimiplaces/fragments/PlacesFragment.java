@@ -15,7 +15,7 @@ import it.unimi.unimiplaces.R;
  */
 public class PlacesFragment extends Fragment {
 
-    public static PlacesFragment newInstance(String param1, String param2) {
+    public static PlacesFragment newInstance() {
         PlacesFragment fragment = new PlacesFragment();
         Bundle args = new Bundle();
         return fragment;
