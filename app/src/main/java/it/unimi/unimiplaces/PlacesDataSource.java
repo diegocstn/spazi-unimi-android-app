@@ -12,6 +12,6 @@ public class PlacesDataSource {
         this.db = db;
     }
     public List<LookupTableEntry> getEntriesForKey(String key){
-        return null;
+        return this.db.searchPlacesWithKey(key);
     }
 }

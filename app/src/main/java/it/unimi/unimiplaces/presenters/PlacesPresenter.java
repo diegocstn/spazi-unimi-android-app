@@ -14,14 +14,22 @@ public class PlacesPresenter implements Presenter {
 
     PlacesDataSource dataSource;
     PlacesViewInterface view;
+    List<LookupTableEntry> model;
 
     public PlacesPresenter(PlacesDataSource dataSource,PlacesViewInterface view){
         this.dataSource = dataSource;
         this.view       = view;
     }
 
-    public List<LookupTableEntry> searchPlacesWithKey(String key){
-        return null;
+    public void searchPlacesWithKey(String key){
+        this.model = this.dataSource.getEntriesForKey(key);
+
+        /* no results */
+        if( this.model==null ){
+            this.view.showNoResults();
+            return;
+        }
+        this.view.setResults(this.model);
     }
 
     @Override
