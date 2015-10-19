@@ -100,6 +100,9 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
         this.view.setAvailableServices(this.getAvailableServicesLabels());
     }
 
+    @Override
+    public void apiFloorMapAtURLEnd(String floormap) {}
+
     /* Presenter methods */
     @Override
     public void init(String lang) {
