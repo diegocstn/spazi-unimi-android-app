@@ -3,6 +3,7 @@ package it.unimi.unimiplaces.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -22,6 +24,9 @@ import it.unimi.unimiplaces.LookupTableEntry;
 import it.unimi.unimiplaces.PlacesDataSource;
 import it.unimi.unimiplaces.PlacesDb;
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.activities.RoomDetailActivity;
+import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.PlacesPresenter;
 import it.unimi.unimiplaces.views.PlacesViewInterface;
 
@@ -29,7 +34,7 @@ import it.unimi.unimiplaces.views.PlacesViewInterface;
 /**
  * Places Fragment
  */
-public class PlacesFragment extends Fragment implements PlacesViewInterface,TextWatcher {
+public class PlacesFragment extends Fragment implements PlacesViewInterface,TextWatcher,AdapterView.OnItemClickListener {
 
     private PlacesPresenter presenter;
     private EditText editTextSearchKey;
@@ -79,6 +84,7 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
         editTextSearchKey.addTextChangedListener(this);
 
         this.resultsListView.setAdapter(this.resultsAdapter);
+        this.resultsListView.setOnItemClickListener(this);
     }
 
     /* TextWatcher methods */
@@ -92,6 +98,17 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
     @Override
     public void afterTextChanged(Editable s) {}
 
+    /* OnItemListener */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Room room = (Room) this.presenter.payloadForDetailAtIndex(position);;
+        Intent detailIntent = new Intent(getActivity(), RoomDetailActivity.class);
+        detailIntent.putExtra(Room.MODEL_KEY, room.r_id);
+        detailIntent.putExtra(Building.MODEL_KEY, room.b_id);
+        detailIntent.putExtra(Room.MODEL_NAME_KEY, room.room_name);
+        startActivity(detailIntent);
+        getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+    }
 
     /* PlacesViewInterface methods */
     @Override

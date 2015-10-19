@@ -5,6 +5,7 @@ import java.util.List;
 import it.unimi.unimiplaces.LookupTableEntry;
 import it.unimi.unimiplaces.PlacesDataSource;
 import it.unimi.unimiplaces.core.model.BaseEntity;
+import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.views.PlacesViewInterface;
 
 /**
@@ -33,17 +34,19 @@ public class PlacesPresenter implements Presenter {
     }
 
     @Override
-    public void init(String id) {
-
-    }
+    public void init(String id) {}
 
     @Override
-    public void filterModelWithFilterAtIndex(int index) {
-
-    }
+    public void filterModelWithFilterAtIndex(int index) {}
 
     @Override
     public BaseEntity payloadForDetailAtIndex(int index) {
-        return null;
+        if( index>this.model.size() ){
+            return null;
+        }
+        LookupTableEntry entry = this.model.get(index);
+        Room room = new Room(entry.roomId,entry.roomName,"");
+        room.setB_id(entry.buildingId);
+        return room;
     }
 }
