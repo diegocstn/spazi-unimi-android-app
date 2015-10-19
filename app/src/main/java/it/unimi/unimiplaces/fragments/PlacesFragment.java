@@ -44,13 +44,6 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
 
     private static final String LOG_TAG = "PLACES";
 
-    public static PlacesFragment newInstance() {
-        PlacesFragment fragment = new PlacesFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     public PlacesFragment() {
         // Required empty public constructor
     }
@@ -101,7 +94,7 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
     /* OnItemListener */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Room room = (Room) this.presenter.payloadForDetailAtIndex(position);;
+        Room room = (Room) this.presenter.payloadForDetailAtIndex(position);
         Intent detailIntent = new Intent(getActivity(), RoomDetailActivity.class);
         detailIntent.putExtra(Room.MODEL_KEY, room.r_id);
         detailIntent.putExtra(Building.MODEL_KEY, room.b_id);
