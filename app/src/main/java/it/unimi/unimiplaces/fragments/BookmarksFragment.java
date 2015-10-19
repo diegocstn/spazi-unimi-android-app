@@ -107,12 +107,14 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
             detailIntent.putExtra(Building.MODEL_KEY,((Room) entity).b_id);
             detailIntent.putExtra(Room.MODEL_NAME_KEY,((Room) entity).getBookmarkableObjectTitle());
             startActivity(detailIntent);
+            getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
         if( entity instanceof Building){
             detailIntent = new Intent(getActivity(), BuildingDetailActivity.class);
             detailIntent.putExtra(Building.MODEL_KEY,((Building) entity).b_id);
             detailIntent.putExtra(Building.MODEL_NAME_KEY,((Building) entity).getBookmarkableObjectTitle());
             startActivity(detailIntent);
+            getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
 
     }
