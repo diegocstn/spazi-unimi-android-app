@@ -113,6 +113,8 @@ public class BookmarksDb extends SQLiteOpenHelper{
             cursor.moveToNext();
         }
 
+        cursor.close();
+
         return res;
     }
 }

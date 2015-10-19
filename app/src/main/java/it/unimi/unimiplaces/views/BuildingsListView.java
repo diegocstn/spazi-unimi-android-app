@@ -123,7 +123,7 @@ public class BuildingsListView extends RelativeLayout implements
             // reuse view
             if( buildingRowView==null ){
                 LayoutInflater inflater = LayoutInflater.from(context);
-                buildingRowView = inflater.inflate(R.layout.buildings_list_item,null);
+                buildingRowView = inflater.inflate(R.layout.buildings_list_item,group,false);
 
                 // create BuildingViewHolder in order to avoid searching
                 // resources within XML and speeds up rendering

@@ -142,7 +142,7 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
             // reuse view
             if( entryRowView==null ){
                 LayoutInflater inflater = LayoutInflater.from(context);
-                entryRowView = inflater.inflate(R.layout.buildings_list_item,null);
+                entryRowView = inflater.inflate(R.layout.buildings_list_item,group,false);
 
                 // create BuildingViewHolder in order to avoid searching
                 // resources within XML and speeds up rendering

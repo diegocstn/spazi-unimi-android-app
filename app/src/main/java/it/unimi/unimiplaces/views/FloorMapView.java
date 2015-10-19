@@ -1,5 +1,6 @@
 package it.unimi.unimiplaces.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -38,6 +39,7 @@ public class FloorMapView extends RelativeLayout {
         this.init();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void init(){
         inflate(getContext(), R.layout.view_floor_map,this);
 

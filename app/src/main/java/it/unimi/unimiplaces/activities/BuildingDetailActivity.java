@@ -113,7 +113,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
 
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-        BuildingDetailPresenter buildingDetailPresenter = (BuildingDetailPresenter) this.presenter;
+        BuildingDetailPresenter buildingDetailPresenter = this.presenter;
         Room room           = (Room) buildingDetailPresenter.payloadForDetailAtIndex(groupPosition,childPosition);
         String detailTitle  = room.room_name.length()>0 ? room.room_name : room.cat_name;
         Intent roomDetailIntent = new Intent(this,RoomDetailActivity.class);
@@ -194,7 +194,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
 
             // inflate layout there's not a recycled view
             if( convertView==null ){
-                convertView = getLayoutInflater().inflate(R.layout.building_detail_list_item,null);
+                convertView = getLayoutInflater().inflate(R.layout.building_detail_list_item,parent,false);
             }
 
             childTextView = (TextView) convertView.findViewById(R.id.building_detail_item);
@@ -211,7 +211,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
 
             // inflate layout there's not a recycled view
             if( convertView==null ){
-                convertView = getLayoutInflater().inflate(R.layout.building_detail_group_list_item,null);
+                convertView = getLayoutInflater().inflate(R.layout.building_detail_group_list_item,parent,false);
             }
 
             groupTextView = (TextView) convertView.findViewById(R.id.building_detail_group);

@@ -173,7 +173,7 @@ public class BookmarksFragment extends Fragment implements BookmarksViewInterfac
             // reuse view
             if( bookmarkView==null ){
                 LayoutInflater inflater = LayoutInflater.from(context);
-                bookmarkView = inflater.inflate(R.layout.bookmarks_list_item,null);
+                bookmarkView = inflater.inflate(R.layout.bookmarks_list_item,group,false);
 
                 // create BookmarkViewHolder in order to avoid searching
                 // resources within XML and speeds up rendering
