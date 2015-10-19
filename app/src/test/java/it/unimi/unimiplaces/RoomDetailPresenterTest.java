@@ -156,4 +156,30 @@ public class RoomDetailPresenterTest {
         presenter.init("123","000");
         Mockito.verify(view).setDisplayAddBookmarksButton(true);
     }
+
+    @Test
+    public void shouldGetMapSVG(){
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                List<BaseEntity> entities = new ArrayList<>();
+                Room room                 = new Room("123","Aula 1","Aula informatica");
+                entities.add(room);
+                room.map = "http://mapurl.com";
+                presenter.apiRequestEnd(entities);
+                return null;
+            }
+        }).when(apiManager).roomByRIDAndBID(presenter,"123","000");
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                presenter.apiFloorMapAtURLEnd("<svg></svg>");
+                return null;
+            }
+        }).when(apiManager).floorMapAtURL(presenter,"http://mapurl.com");
+
+        presenter.init("123", "000");
+
+        Mockito.verify(view).setFloorMapForRoom("<svg></svg>");
+    }
 }

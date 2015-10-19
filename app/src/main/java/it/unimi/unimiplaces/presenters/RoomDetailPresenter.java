@@ -4,7 +4,7 @@ import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.BookmarksDataSource;
-import it.unimi.unimiplaces.core.api.APIDelegateInterface;
+import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
 import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.views.RoomDetailViewInterface;
@@ -12,7 +12,7 @@ import it.unimi.unimiplaces.views.RoomDetailViewInterface;
 /**
  * Room Detail Presenter
  */
-public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
+public class RoomDetailPresenter implements Presenter, APIDelegateInterfaceExtended {
 
     private String roomID;
     private Room room;
@@ -58,13 +58,21 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterface {
         }
 
         if( room.map!=null ){
-            this.view.setFloorMapForRoom(room.map);
+            this.apiManager.floorMapAtURL(this,room.map);
         }
     }
 
     @Override
     public void apiRequestError() {
         this.view.showNoResultsMessage();
+    }
+
+    @Override
+    public void apiServiceAvailableRequestEnd(List<BaseEntity> results) {}
+
+    @Override
+    public void apiFloorMapAtURLEnd(String floormapSVG) {
+        this.view.setFloorMapForRoom(floormapSVG);
     }
 
     @Override
