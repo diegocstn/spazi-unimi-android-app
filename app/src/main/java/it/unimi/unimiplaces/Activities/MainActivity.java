@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.fragments.BookmarksFragment;
 import it.unimi.unimiplaces.fragments.BuildingsFragment;
+import it.unimi.unimiplaces.fragments.PlacesFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -84,9 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_bookmarks:
                 newFragment = new BookmarksFragment();
                 break;
-            case R.id.nav_search:
-                break;
             case R.id.nav_places:
+                newFragment = new PlacesFragment();
                 break;
             case R.id.nav_whereami:
                 break;
