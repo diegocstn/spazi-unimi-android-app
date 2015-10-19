@@ -123,8 +123,8 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     }
 
     @Override
-    public void setFloorMapForRoom(String svgURL) {
-        this.floorMapView.highlightRoomInMap(svgURL, this.room_id);
+    public void setFloorMapForRoom(String SVGdata) {
+        this.floorMapView.highlightRoomInMap(SVGdata, this.room_id);
     }
 
     @Override

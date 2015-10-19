@@ -10,7 +10,7 @@ public interface RoomDetailViewInterface {
     void setRoomCategory(String roomCategory);
     void hideRoomEquipments();
     void setRoomEquipments(String equipments);
-    void setFloorMapForRoom(String svgURl);
+    void setFloorMapForRoom(String SVGdata);
     void showNoResultsMessage();
     void setDisplayAddBookmarksButton(boolean show);
     void onSuccessBookmarkSaved();
