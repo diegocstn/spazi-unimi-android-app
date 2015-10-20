@@ -20,6 +20,7 @@ import java.util.List;
 
 import it.unimi.unimiplaces.core.api.APIDelegateInterface;
 import it.unimi.unimiplaces.core.api.APIDelegateInterfaceExtended;
+import it.unimi.unimiplaces.core.api.APIFactory;
 import it.unimi.unimiplaces.core.api.APIRequest;
 import it.unimi.unimiplaces.core.model.AvailableService;
 import it.unimi.unimiplaces.core.model.BaseEntity;
@@ -207,5 +208,15 @@ public class APIManagerTest{
         apiManager.floorMapAtURL(extendedDelegate, "http://svgurl");
         Mockito.verify(extendedDelegate).apiRequestStart();
         Mockito.verify(extendedDelegate).apiFloorMapAtURLEnd(svg);
+    }
+
+    @Test
+    public void testRoomTimetable(){
+        String json = "{\"events\":[{\"day\":\"2015-10-19\",\"from\":\"08:30:00\",\"short_description\":\"Desc1\",\"to\":\"10:30:00\"},{\"day\":\"2015-10-19\",\"from\":\"10:30:00\",\"short_description\":\"Desc2\",\"to\":\"12:30:00\"}]}";
+        List <BaseEntity> events = (new APIFactory()).makeRoomEventsFromJSON(json);
+        mockAsyncTask(APIRequest.APIRequestIdentifier.ROOM_TIMETABLE,json);
+        apiManager.timetableForRoom(extendedDelegate, "123","000");
+        Mockito.verify(extendedDelegate).apiRequestStart();
+        Mockito.verify(extendedDelegate).apiRoomTimeTableEnd(events);
     }
 }

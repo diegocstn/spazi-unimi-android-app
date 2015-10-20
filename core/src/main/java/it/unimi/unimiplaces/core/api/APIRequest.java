@@ -19,6 +19,7 @@ public class APIRequest {
         AVAILABLE_SERVICES,
         BUILDINGS_BY_SERVICES,
         ROOM_BY_ID,
+        ROOM_TIMETABLE,
         FLOOR_MAP
     }
 

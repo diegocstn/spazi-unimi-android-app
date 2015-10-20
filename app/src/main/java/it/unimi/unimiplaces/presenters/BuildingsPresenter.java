@@ -40,6 +40,7 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
         apiManager.availableServices(this, lang);
     }
 
+
     public void buildingsByAvailableService(AvailableService service){
         /* prevent API request for "ALL" key filter */
         if( service.key == SERVICES_ALL_KEY && this.model!=null ){
@@ -89,6 +90,9 @@ public class BuildingsPresenter implements APIDelegateInterfaceExtended, Present
     public void apiRequestStart() {
 
     }
+
+    @Override
+    public void apiRoomTimeTableEnd(List<BaseEntity> events) {}
 
     @Override
     public void apiServiceAvailableRequestEnd(List<BaseEntity> results) {

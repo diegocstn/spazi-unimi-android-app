@@ -76,6 +76,9 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterfaceExten
     }
 
     @Override
+    public void apiRoomTimeTableEnd(List<BaseEntity> events) {}
+
+    @Override
     public void init(String id) {
         this.roomID = id;
     }

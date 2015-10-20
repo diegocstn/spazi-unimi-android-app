@@ -161,6 +161,15 @@ public class APIManager {
                 HttpResponseCache.getInstalled().flush();
                 this.logCacheStats();
                 break;
+
+            case ROOM_TIMETABLE:
+                extendedDelegate    = (APIDelegateInterfaceExtended) this.delegate;
+                entities            = this.apiFactory.makeRoomEventsFromJSON(result);
+                if( entities == null ){
+                    extendedDelegate.apiRequestError();
+                }
+                extendedDelegate.apiRoomTimeTableEnd(entities);
+                break;
         }
     }
 
@@ -203,6 +212,12 @@ public class APIManager {
         Log.v(LOG_TAG,"Floor map at:"+URL);
         this.delegate = delegate;
         this.executeCachedAPIRequest(URL, APIRequest.APIRequestIdentifier.FLOOR_MAP);
+    }
+
+    public void timetableForRoom(APIDelegateInterfaceExtended delegate,String r_id,String b_id){
+        Log.v(LOG_TAG,"Room timetable for room: "+r_id+"@"+b_id);
+        this.delegate = delegate;
+        this.executeAPIRequest("rooms/timetable/"+b_id+"/"+r_id, APIRequest.APIRequestIdentifier.ROOM_TIMETABLE,false);
     }
 
 

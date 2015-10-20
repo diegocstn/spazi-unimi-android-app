@@ -11,4 +11,5 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 public interface APIDelegateInterfaceExtended extends APIDelegateInterface {
     void apiServiceAvailableRequestEnd(List<BaseEntity> results);
     void apiFloorMapAtURLEnd(String floormap);
+    void apiRoomTimeTableEnd(List<BaseEntity> events);
 }
