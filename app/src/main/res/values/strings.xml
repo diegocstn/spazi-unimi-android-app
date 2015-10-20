@@ -26,6 +26,7 @@
     <!-- Room detail -->
     <string name="room_detail_equipments_label">Equipments:</string>
     <string name="room_timetable_title">Weekly classes</string>
+    <string name="room_timetable_close">Close</string>
 
     <!-- Bookmarks -->
     <string name="bookmarks_no_results">Ops, you do not have any bookmark saved yet ;)</string>

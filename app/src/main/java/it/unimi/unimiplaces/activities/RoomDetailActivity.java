@@ -1,6 +1,7 @@
 package it.unimi.unimiplaces.activities;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -186,6 +187,12 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         RoomTimetableView view = new RoomTimetableView(this);
         view.setEventsList( roomEvents );
         builder.setView( view );
+        builder.setPositiveButton(R.string.room_timetable_close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                roomTimetableDialog.cancel();
+            }
+        });
 
         roomTimetableDialog = builder.create();
     }
