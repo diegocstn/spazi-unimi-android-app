@@ -39,6 +39,10 @@ public class RoomEvent extends BaseEntity{
         );
     }
 
+    public String getEventName(){
+        return this.short_description;
+    }
+
     public String getTime(){
         LocalTime fromTime  = LocalTime.parse(this.from, DateTimeFormatter.ofPattern("k:m:s"));
         LocalTime toTime    = LocalTime.parse(this.to, DateTimeFormatter.ofPattern("k:m:s"));
@@ -53,6 +57,10 @@ public class RoomEvent extends BaseEntity{
                 addLeadingZero(localDate.getDayOfMonth()),
                 addLeadingZero(localDate.getMonthValue()),
                 localDate.getYear());
+    }
+
+    public long getDateId(){
+        return Long.parseLong(this.day.substring(0,4)+this.day.substring(5,7)+this.day.substring(8,10));
     }
 
     @Override

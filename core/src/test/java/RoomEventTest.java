@@ -36,13 +36,13 @@ public class RoomEventTest {
         String json         = TestHelpers.readFixtureDataFromFile("room_event_single.json");
         RoomEvent roomEvent = (RoomEvent)(apiFactory.makeRoomEventsFromJSON(json)).get(0);
 
-        Assert.assertEquals(roomEvent.getTime(),"08:30 - 10:30");
+        Assert.assertEquals("08:30 - 10:30",roomEvent.getTime());
     }
 
     @Test
     public void testTimeNonLeadingZero(){
         RoomEvent roomEvent = new RoomEvent("Desc","2015-10-19","11:30:00","12:30:00");
-        Assert.assertEquals(roomEvent.getTime(),"11:30 - 12:30");
+        Assert.assertEquals("11:30 - 12:30",roomEvent.getTime());
     }
 
     @Test
@@ -50,7 +50,13 @@ public class RoomEventTest {
         String json         = TestHelpers.readFixtureDataFromFile("room_event_single.json");
         RoomEvent roomEvent = (RoomEvent)(apiFactory.makeRoomEventsFromJSON(json)).get(0);
 
-        Assert.assertEquals(roomEvent.getDate(),"MONDAY (19-10-2015)");
+        Assert.assertEquals("MONDAY (19-10-2015)",roomEvent.getDate());
     }
 
+    @Test
+    public void testDateID(){
+        String json         = TestHelpers.readFixtureDataFromFile("room_event_single.json");
+        RoomEvent roomEvent = (RoomEvent)(apiFactory.makeRoomEventsFromJSON(json)).get(0);
+        Assert.assertEquals(20151019,roomEvent.getDateId());
+    }
 }
