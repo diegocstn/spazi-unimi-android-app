@@ -98,6 +98,7 @@
                     android:src="@drawable/ic_map_black"
                     android:layout_toEndOf="@id/building_info_content"/>
                 <ImageButton
+                    android:id="@+id/room_events_button"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_marginLeft="15dp"

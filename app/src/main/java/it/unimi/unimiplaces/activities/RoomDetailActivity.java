@@ -1,5 +1,6 @@
 package it.unimi.unimiplaces.activities;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unimi.unimiplaces.APIManager;
@@ -17,10 +19,12 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.LocalizableEntity;
 import it.unimi.unimiplaces.core.model.Room;
+import it.unimi.unimiplaces.core.model.RoomEvent;
 import it.unimi.unimiplaces.presenters.RoomDetailPresenter;
 import it.unimi.unimiplaces.views.BookmarksNotificationBar;
 import it.unimi.unimiplaces.views.FloorMapView;
 import it.unimi.unimiplaces.views.RoomDetailViewInterface;
+import it.unimi.unimiplaces.views.RoomTimetableView;
 
 public class RoomDetailActivity extends AppDetailSectionActivity implements RoomDetailViewInterface{
 
@@ -37,7 +41,10 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     FloorMapView floorMapView;
     FloatingActionButton bookmarksFab;
     ImageButton routingButton;
+    ImageButton timetableButton;
     BookmarksNotificationBar bookmarksNotificationBar;
+
+    AlertDialog roomTimetableDialog;
 
 
     @Override
@@ -59,6 +66,7 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
 
         bookmarksFab            = (FloatingActionButton) findViewById(R.id.fab_add_remove_bookmarks);
         routingButton           = (ImageButton) findViewById(R.id.routing_button);
+        timetableButton         = (ImageButton) findViewById(R.id.room_events_button);
 
         routingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,16 +165,41 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
 
     @Override
     public void showRoomTimetableButton() {
+        this.timetableButton.setVisibility(View.VISIBLE);
 
+        this.timetableButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showRoomTimetable();
+            }
+        });
     }
 
     @Override
     public void hideRoomTimetableButton() {
-
+        this.timetableButton.setVisibility(View.GONE);
     }
 
     @Override
     public void setRoomTimetableEvents(List<BaseEntity> events) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.room_timetable_title));
+        List<RoomEvent> roomEvents = new ArrayList<>(events.size());
+        for (BaseEntity entity : events){
+            roomEvents.add((RoomEvent)entity);
+        }
 
+        roomTimetableDialog = builder.create();
+        RoomTimetableView view = new RoomTimetableView(this);
+        view.setEventsList( roomEvents );
+        builder.setView( view );
     }
+
+    private void showRoomTimetable(){
+        if( roomTimetableDialog==null ){
+            return;
+        }
+        roomTimetableDialog.show();
+    }
+
 }
