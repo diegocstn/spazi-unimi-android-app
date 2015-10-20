@@ -1,0 +1,25 @@
+{
+  "events":
+  [
+    {
+      "day":
+      "2015-10-19",
+      "from":
+      "08:30:00",
+      "short_description":
+      "Diritto commerciale (of2) Ediz: Cognomi M-Q",
+      "to":
+      "10:30:00"
+    },
+    {
+      "day":
+      "2015-10-19",
+      "from":
+      "10:30:00",
+      "short_description":
+      "Diritto costituzionale (of2) Ediz: Cognomi A-C",
+      "to":
+      "12:30:00"
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.Floor;
 import it.unimi.unimiplaces.core.model.Room;
+import it.unimi.unimiplaces.core.model.RoomEvent;
 
 /**
  * API object factory, provides an unique access point for BaseEntity objects creation
@@ -39,6 +40,10 @@ public class APIFactory {
 
     private static class BuildingsWrapper {
         public List<Building> buildings;
+    }
+
+    private static class RoomEventsWrapper{
+        public List<RoomEvent> events;
     }
 
     public List<BaseEntity> makeBuildingsFromJSON(String json){
@@ -90,6 +95,17 @@ public class APIFactory {
             System.out.println(e);
         }
         return floor;
+    }
+
+    public List<BaseEntity> makeRoomEventsFromJSON(String json){
+        List<? extends BaseEntity> events = null;
+        JsonAdapter<RoomEventsWrapper> jsonAdapter = moshiBuilder.adapter(RoomEventsWrapper.class);
+        try {
+            events = (jsonAdapter.fromJson(json)).events;
+        }catch (IOException e){
+            System.out.println(e);
+        }
+        return (List<BaseEntity>)events;
     }
 }
 
