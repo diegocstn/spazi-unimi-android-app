@@ -73,7 +73,7 @@ public class APIManager {
         // that the async task is processing in background
 
         if( !isNetworkConnected() ){
-            showNoNetworkAlerDialog();
+            showNoNetworkAlertDialog();
             return;
         }
 
@@ -95,7 +95,7 @@ public class APIManager {
     private void executeCachedAPIRequest(String fullEndpoint,APIRequest.APIRequestIdentifier identifier){
 
         if( !isNetworkConnected() ){
-            showNoNetworkAlerDialog();
+            showNoNetworkAlertDialog();
             return;
         }
 
@@ -236,7 +236,7 @@ public class APIManager {
     }
 
 
-    private void showNoNetworkAlerDialog(){
+    private void showNoNetworkAlertDialog(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setTitle(context.getString(R.string.no_network_title));
         alertDialogBuilder.setMessage(context.getString(R.string.no_network_message));
