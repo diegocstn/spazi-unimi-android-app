@@ -1,5 +1,9 @@
 package it.unimi.unimiplaces.views;
 
+import java.util.List;
+
+import it.unimi.unimiplaces.core.model.BaseEntity;
+
 /**
  * Room detail view interface
  */
@@ -15,4 +19,7 @@ public interface RoomDetailViewInterface {
     void setDisplayAddBookmarksButton(boolean show);
     void onSuccessBookmarkSaved();
     void onErrorBookmarkSaved();
+    void showRoomTimetableButton();
+    void hideRoomTimetableButton();
+    void setRoomTimetableEvents(List<BaseEntity> events);
 }

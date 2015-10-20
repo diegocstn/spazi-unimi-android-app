@@ -16,6 +16,7 @@ import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.Floor;
 import it.unimi.unimiplaces.core.model.Room;
+import it.unimi.unimiplaces.core.model.RoomEvent;
 import it.unimi.unimiplaces.presenters.RoomDetailPresenter;
 import it.unimi.unimiplaces.views.RoomDetailViewInterface;
 
@@ -169,17 +170,56 @@ public class RoomDetailPresenterTest {
                 presenter.apiRequestEnd(entities);
                 return null;
             }
-        }).when(apiManager).roomByRIDAndBID(presenter,"123","000");
+        }).when(apiManager).roomByRIDAndBID(presenter, "123", "000");
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 presenter.apiFloorMapAtURLEnd("<svg></svg>");
                 return null;
             }
-        }).when(apiManager).floorMapAtURL(presenter,"http://mapurl.com");
+        }).when(apiManager).floorMapAtURL(presenter, "http://mapurl.com");
 
         presenter.init("123", "000");
 
         Mockito.verify(view).setFloorMapForRoom("<svg></svg>");
+    }
+
+    @Test
+    public void checkRoomTimeTable(){
+        List<BaseEntity> entities = new ArrayList<>();
+        Room room                 = new Room("123","Aula 1","Aula informatica");
+        entities.add(room);
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                presenter.apiRoomTimeTableEnd(null);
+                return null;
+            }
+        }).when(apiManager).timetableForRoom(presenter, "123", "000");
+        presenter.init("123", "000");
+        Mockito.verify(view).hideRoomTimetableButton();
+    }
+
+    @Test
+    public void checkRoomTimeTableExists(){
+        List<BaseEntity> entities = new ArrayList<>();
+        Room room                 = new Room("123","Aula 1","Aula informatica");
+        entities.add(room);
+        Mockito.doAnswer(mockAPIAnswerWithData(entities)).when(apiManager)
+                .roomByRIDAndBID(presenter, "123", "000");
+
+        final List<BaseEntity> events = new ArrayList<>();
+        events.add(new RoomEvent("Lez1","2016-05-14","08:30:00","12:30:00"));
+        events.add(new RoomEvent("Lez2", "2016-05-14", "14:30:00", "17:30:00"));
+        Mockito.doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                presenter.apiRoomTimeTableEnd(events);
+                return null;
+            }
+        }).when(apiManager).timetableForRoom(presenter, "123", "000");
+        presenter.init("123", "000");
+        Mockito.verify(view).showRoomTimetableButton();
+        Mockito.verify(view).setRoomTimetableEvents(events);
     }
 }

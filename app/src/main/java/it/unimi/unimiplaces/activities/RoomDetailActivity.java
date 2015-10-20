@@ -7,10 +7,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.List;
+
 import it.unimi.unimiplaces.APIManager;
 import it.unimi.unimiplaces.BookmarksDataSource;
 import it.unimi.unimiplaces.BookmarksDb;
 import it.unimi.unimiplaces.R;
+import it.unimi.unimiplaces.core.model.BaseEntity;
 import it.unimi.unimiplaces.core.model.Building;
 import it.unimi.unimiplaces.core.model.LocalizableEntity;
 import it.unimi.unimiplaces.core.model.Room;
@@ -150,5 +153,20 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     @Override
     public void onErrorBookmarkSaved(){
         this.bookmarksNotificationBar.showErrorMessage();
+    }
+
+    @Override
+    public void showRoomTimetableButton() {
+
+    }
+
+    @Override
+    public void hideRoomTimetableButton() {
+
+    }
+
+    @Override
+    public void setRoomTimetableEvents(List<BaseEntity> events) {
+
     }
 }

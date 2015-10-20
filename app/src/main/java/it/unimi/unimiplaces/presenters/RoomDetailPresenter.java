@@ -15,6 +15,7 @@ import it.unimi.unimiplaces.views.RoomDetailViewInterface;
 public class RoomDetailPresenter implements Presenter, APIDelegateInterfaceExtended {
 
     private String roomID;
+    private String buildingID;
     private Room room;
     APIManager apiManager;
     RoomDetailViewInterface view;
@@ -76,7 +77,15 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterfaceExten
     }
 
     @Override
-    public void apiRoomTimeTableEnd(List<BaseEntity> events) {}
+    public void apiRoomTimeTableEnd(List<BaseEntity> events) {
+        if( events == null ){
+            this.view.hideRoomTimetableButton();
+            return;
+        }
+
+        this.view.setRoomTimetableEvents(events);
+        this.view.showRoomTimetableButton();
+    }
 
     @Override
     public void init(String id) {
@@ -84,10 +93,14 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterfaceExten
     }
 
     public void init(String roomID, String buildingID){
+        this.roomID         = roomID;
+        this.buildingID     = buildingID;
         this.apiManager.roomByRIDAndBID(this,roomID,buildingID);
         Room r = new Room(roomID,"","");
         r.setB_id(buildingID);
         this.view.setDisplayAddBookmarksButton(!this.bookmarksDataSource.entityIsBookmarked(r));
+
+        this.getRoomTimetable();
     }
 
     public void saveBookmark(){
@@ -97,6 +110,10 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterfaceExten
         }else{
             this.view.onErrorBookmarkSaved();
         }
+    }
+
+    private void getRoomTimetable(){
+        this.apiManager.timetableForRoom(this,this.roomID,this.buildingID);
     }
 
 
