@@ -78,6 +78,9 @@ public class RoomDetailPresenter implements Presenter, APIDelegateInterfaceExten
 
     @Override
     public void apiRoomTimeTableEnd(List<BaseEntity> events) {
+        if( events.size()==0 ){
+            return;
+        }
         this.view.setRoomTimetableEvents(events);
         this.view.showRoomTimetableButton();
     }
