@@ -192,7 +192,7 @@ public class RoomDetailPresenterTest {
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                presenter.apiRoomTimeTableEnd(null);
+                presenter.apiRoomTimeTableEnd(new ArrayList<BaseEntity>());
                 return null;
             }
         }).when(apiManager).timetableForRoom(presenter, "123", "000");
