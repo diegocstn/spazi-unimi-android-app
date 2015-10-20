@@ -34,7 +34,7 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     compile 'com.google.android.gms:play-services-maps:7.8.0'
     compile 'com.google.maps.android:android-maps-utils:0.4'
-    compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile project(':core')
 
