@@ -9,6 +9,8 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="no_results">Ops, no results :(</string>
     <string name="available_service_all">All</string>
+    <string name="no_network_title">No network</string>
+    <string name="no_network_message">Ops, you\'re off-line right now.. check your internet connection! </string>
 
     <!-- Main Menu -->
     <string name="nav_open">Open navigation menu</string>

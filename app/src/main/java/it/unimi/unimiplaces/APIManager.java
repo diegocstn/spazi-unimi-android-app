@@ -1,7 +1,10 @@
 package it.unimi.unimiplaces;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -68,6 +71,12 @@ public class APIManager {
     private void executeAPIRequest(String endpoint,APIRequest.APIRequestIdentifier identifier,boolean showProgress){
         // show progress dialog and alert the delegate object
         // that the async task is processing in background
+
+        if( !isNetworkConnected() ){
+            showNoNetworkAlerDialog();
+            return;
+        }
+
         if( showProgress ) {
             this.progressDialog.show();
         }
@@ -84,6 +93,12 @@ public class APIManager {
     }
 
     private void executeCachedAPIRequest(String fullEndpoint,APIRequest.APIRequestIdentifier identifier){
+
+        if( !isNetworkConnected() ){
+            showNoNetworkAlerDialog();
+            return;
+        }
+
         try {
             this.delegate.apiRequestStart();
             APIAsyncTask apiAsyncTask   = this.asyncTask.buildAPISyncTask(this);
@@ -205,7 +220,7 @@ public class APIManager {
     public void roomByRIDAndBID(APIDelegateInterface delegate, String r_id, String b_id){
         Log.v(LOG_TAG,"Room:"+r_id+"in building"+b_id+" API request");
         this.delegate = delegate;
-        this.executeAPIRequest("rooms/"+b_id+"/"+r_id+"/", APIRequest.APIRequestIdentifier.ROOM_BY_ID,true);
+        this.executeAPIRequest("rooms/" + b_id + "/" + r_id + "/", APIRequest.APIRequestIdentifier.ROOM_BY_ID, true);
     }
 
     public void floorMapAtURL(APIDelegateInterfaceExtended delegate,String URL){
@@ -217,15 +232,33 @@ public class APIManager {
     public void timetableForRoom(APIDelegateInterfaceExtended delegate,String r_id,String b_id){
         Log.v(LOG_TAG,"Room timetable for room: "+r_id+"@"+b_id);
         this.delegate = delegate;
-        this.executeAPIRequest("rooms/timetable/"+b_id+"/"+r_id, APIRequest.APIRequestIdentifier.ROOM_TIMETABLE,false);
+        this.executeAPIRequest("rooms/timetable/" + b_id + "/" + r_id, APIRequest.APIRequestIdentifier.ROOM_TIMETABLE, false);
     }
 
+
+    private void showNoNetworkAlerDialog(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder.setTitle(context.getString(R.string.no_network_title));
+        alertDialogBuilder.setMessage(context.getString(R.string.no_network_message));
+        alertDialogBuilder.create().show();
+    }
+
+    /**
+     * Check if a network connection is available
+     * @return true if there's an internet connection, false otherwise
+     */
+    private boolean isNetworkConnected(){
+        ConnectivityManager cm      = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork   = cm.getActiveNetworkInfo();
+        return activeNetwork !=null && activeNetwork.isConnectedOrConnecting();
+    }
 
     public static class APIManagerFactory{
         public static APIManager createAPIManager(Context context){
             return new APIManager(context,new APIAsyncTask());
         }
     }
+
 
     public static class APIAsyncTask extends AsyncTask<it.unimi.unimiplaces.core.api.APIRequest,Void,String>{
 
