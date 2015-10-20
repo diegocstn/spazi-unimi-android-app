@@ -3,8 +3,6 @@ package it.unimi.unimiplaces;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -35,16 +33,18 @@ public class APIManager {
     private ProgressDialog progressDialog;
     private APIDelegateInterface delegate;
     private APIAsyncTask asyncTask;
+    private NetworkManager networkManager;
 
     final static String LOG_TAG     = "APIMANAGER";
 
 
-    public APIManager(Context context, APIAsyncTask asyncTask){
+    public APIManager(Context context, APIAsyncTask asyncTask, NetworkManager networkManager){
         this.apiFactory     = new APIFactory();
         this.context        = context;
         this.progressDialog = new ProgressDialog( this.context , ProgressDialog.STYLE_SPINNER );
         this.progressDialog.setMessage(this.context.getString(R.string.progress_loading));
         this.asyncTask      = asyncTask;
+        this.networkManager = networkManager;
 
         this.installCache();
     }
@@ -247,15 +247,13 @@ public class APIManager {
      * Check if a network connection is available
      * @return true if there's an internet connection, false otherwise
      */
-    private boolean isNetworkConnected(){
-        ConnectivityManager cm      = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork   = cm.getActiveNetworkInfo();
-        return activeNetwork !=null && activeNetwork.isConnectedOrConnecting();
+    public boolean isNetworkConnected(){
+        return this.networkManager.isNetworkConnected();
     }
 
     public static class APIManagerFactory{
         public static APIManager createAPIManager(Context context){
-            return new APIManager(context,new APIAsyncTask());
+            return new APIManager(context,new APIAsyncTask(),new NetworkManager(context));
         }
     }
 

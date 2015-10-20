@@ -49,11 +49,13 @@ public class APIManagerTest{
     @Mock
     ProgressDialog dialog;
 
+    @Mock
+    NetworkManager networkManager;
+
     @Captor
     ArgumentCaptor<List<BaseEntity>> entities;
 
     APIManager apiManager;
-
 
     public void mockAsyncTask(APIRequest.APIRequestIdentifier identifier, final String mockedResponse){
         apiAsyncTask.request                = Mockito.mock(APIRequest.class);
@@ -71,9 +73,10 @@ public class APIManagerTest{
 
     @Before
     public void setUp(){
-        apiManager              = new APIManager(context,apiAsyncTask);
+        apiManager              = new APIManager(context,apiAsyncTask,networkManager);
         apiAsyncTask.apiManager = apiManager;
         Mockito.when(context.getString(R.string.progress_loading)).thenReturn("Loading");
+        Mockito.doReturn(true).when(networkManager).isNetworkConnected();
 
     }
 
