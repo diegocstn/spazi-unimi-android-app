@@ -197,7 +197,6 @@ public class RoomDetailPresenterTest {
             }
         }).when(apiManager).timetableForRoom(presenter, "123", "000");
         presenter.init("123", "000");
-        Mockito.verify(view).hideRoomTimetableButton();
     }
 
     @Test

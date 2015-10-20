@@ -20,6 +20,5 @@ public interface RoomDetailViewInterface {
     void onSuccessBookmarkSaved();
     void onErrorBookmarkSaved();
     void showRoomTimetableButton();
-    void hideRoomTimetableButton();
     void setRoomTimetableEvents(List<BaseEntity> events);
 }

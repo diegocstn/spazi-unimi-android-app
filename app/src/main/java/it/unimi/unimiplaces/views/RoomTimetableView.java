@@ -37,7 +37,7 @@ public class RoomTimetableView extends RelativeLayout {
     }
 
     private void init(){
-        inflate(getContext(),R.layout.room_events,this);
+        inflate(getContext(),R.layout.view_room_events,this);
         listView = (StickyListHeadersListView) findViewById(R.id.room_events_list);
 
     }
@@ -108,8 +108,8 @@ public class RoomTimetableView extends RelativeLayout {
             RoomEventViewHeaderHolder holder;
             if( convertView==null ){
                 holder = new RoomEventViewHeaderHolder();
-                convertView = inflater.inflate(R.layout.room_event_list_item_day,parent,false);
-                holder.eventDay    = (TextView) convertView.findViewById(R.id.room_event_day);
+                convertView         = inflater.inflate(R.layout.room_event_list_item_day,parent,false);
+                holder.eventDay     = (TextView) convertView.findViewById(R.id.room_event_day);
                 convertView.setTag(holder);
             }else{
                 holder = (RoomEventViewHeaderHolder) convertView.getTag();

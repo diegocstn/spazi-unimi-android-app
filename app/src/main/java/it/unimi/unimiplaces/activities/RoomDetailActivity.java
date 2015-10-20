@@ -176,11 +176,6 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
     }
 
     @Override
-    public void hideRoomTimetableButton() {
-        this.timetableButton.setVisibility(View.GONE);
-    }
-
-    @Override
     public void setRoomTimetableEvents(List<BaseEntity> events) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.room_timetable_title));
@@ -188,11 +183,11 @@ public class RoomDetailActivity extends AppDetailSectionActivity implements Room
         for (BaseEntity entity : events){
             roomEvents.add((RoomEvent)entity);
         }
-
-        roomTimetableDialog = builder.create();
         RoomTimetableView view = new RoomTimetableView(this);
         view.setEventsList( roomEvents );
         builder.setView( view );
+
+        roomTimetableDialog = builder.create();
     }
 
     private void showRoomTimetable(){

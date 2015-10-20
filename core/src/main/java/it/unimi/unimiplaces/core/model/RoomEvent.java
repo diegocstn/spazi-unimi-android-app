@@ -1,8 +1,9 @@
 package it.unimi.unimiplaces.core.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * RoomEvent
@@ -31,32 +32,33 @@ public class RoomEvent extends BaseEntity{
         }
     }
 
-    private String formatTime(LocalTime time){
-        return String.format("%s%s%s",
-                addLeadingZero(time.getHour()),
-                HOUR_DELIMITER,
-                addLeadingZero(time.getMinute())
-        );
-    }
 
     public String getEventName(){
         return this.short_description;
     }
 
     public String getTime(){
-        LocalTime fromTime  = LocalTime.parse(this.from, DateTimeFormatter.ofPattern("k:m:s"));
-        LocalTime toTime    = LocalTime.parse(this.to, DateTimeFormatter.ofPattern("k:m:s"));
-        return String.format("%s %s %s",formatTime(fromTime),HOURS_DELIMETER,formatTime(toTime));
+
+        Date timeFrom,timeTo;
+        DateFormat after = new SimpleDateFormat("kk:mm",Locale.US);
+        try {
+            timeFrom    = new SimpleDateFormat("kk:mm:ss",Locale.US).parse(this.from);
+            timeTo      = new SimpleDateFormat("kk:mm:ss",Locale.US).parse(this.to);
+            return String.format("%s %s %s",after.format(timeFrom),HOURS_DELIMETER,after.format(timeTo));
+        }catch (Exception e){
+            return  "";
+        }
     }
 
     public String getDate(){
-        LocalDate localDate = LocalDate.parse(this.day,DateTimeFormatter.ISO_LOCAL_DATE);
-        return String.format(
-                "%s (%s-%s-%d)",
-                localDate.getDayOfWeek(),
-                addLeadingZero(localDate.getDayOfMonth()),
-                addLeadingZero(localDate.getMonthValue()),
-                localDate.getYear());
+        Date date;
+        DateFormat after = new SimpleDateFormat("EEEE (dd-MM-yyyy)", Locale.US);
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd",Locale.US).parse(this.day);
+            return after.format(date);
+        }catch (Exception e) {
+            return "";
+        }
     }
 
     public long getDateId(){

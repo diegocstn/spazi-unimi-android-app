@@ -50,7 +50,7 @@ public class RoomEventTest {
         String json         = TestHelpers.readFixtureDataFromFile("room_event_single.json");
         RoomEvent roomEvent = (RoomEvent)(apiFactory.makeRoomEventsFromJSON(json)).get(0);
 
-        Assert.assertEquals("MONDAY (19-10-2015)",roomEvent.getDate());
+        Assert.assertEquals("Monday (19-10-2015)",roomEvent.getDate());
     }
 
     @Test
