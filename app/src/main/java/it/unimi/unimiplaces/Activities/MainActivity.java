@@ -16,6 +16,7 @@ import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.fragments.BookmarksFragment;
 import it.unimi.unimiplaces.fragments.BuildingsFragment;
 import it.unimi.unimiplaces.fragments.PlacesFragment;
+import it.unimi.unimiplaces.fragments.WhereAmIFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 newFragment = new PlacesFragment();
                 break;
             case R.id.nav_whereami:
+                newFragment = new WhereAmIFragment();
                 break;
         }
 
