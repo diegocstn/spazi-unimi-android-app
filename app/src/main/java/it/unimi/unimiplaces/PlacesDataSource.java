@@ -14,4 +14,11 @@ public class PlacesDataSource {
     public List<LookupTableEntry> getEntriesForKey(String key){
         return this.db.searchPlacesWithKey(key);
     }
+
+    public boolean buildingExists(String buildingId){
+        return true;
+    }
+    public boolean placeExists(String buildingId,String roomId){
+        return true;
+    }
 }
