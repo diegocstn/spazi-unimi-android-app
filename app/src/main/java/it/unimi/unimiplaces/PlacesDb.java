@@ -46,4 +46,16 @@ public class PlacesDb extends SQLiteAssetHelper{
         }
         return results;
     }
+
+    public boolean roomExists(String buildingId,String roomId){
+        String query = "SELECT id from lookup WHERE lookup.b_id=\""+buildingId+"\" AND lookup.r_id=\""+roomId+"\"";
+        Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
+        return cursor.getCount()>0;
+    }
+
+    public boolean buildingExists(String buildingId){
+        String query = "SELECT id from lookup WHERE lookup.b_id=\""+buildingId+"\"";
+        Cursor cursor = this.getReadableDatabase().rawQuery(query,null);
+        return cursor.getCount()>0;
+    }
 }

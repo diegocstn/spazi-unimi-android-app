@@ -16,9 +16,9 @@ public class PlacesDataSource {
     }
 
     public boolean buildingExists(String buildingId){
-        return true;
+        return this.db.buildingExists(buildingId);
     }
     public boolean placeExists(String buildingId,String roomId){
-        return true;
+        return this.db.roomExists(buildingId,roomId);
     }
 }
