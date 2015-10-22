@@ -2,6 +2,7 @@ package it.unimi.unimiplaces.activities;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 
 import it.unimi.unimiplaces.R;
 import it.unimi.unimiplaces.fragments.BookmarksFragment;
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
 
+        this.hideKeyboard();
+
         switch (menuItem.getItemId()){
             case R.id.nav_buildings:
                 newFragment = new BuildingsFragment();
@@ -101,6 +105,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         drawerLayout.closeDrawers();
+    }
+
+    private void hideKeyboard(){
+        InputMethodManager imm = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
     }
 
     @Override
