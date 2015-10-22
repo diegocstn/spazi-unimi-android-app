@@ -2,6 +2,7 @@ package it.unimi.unimiplaces.fragments;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,10 @@ import android.view.ViewGroup;
 
 import it.unimi.unimiplaces.PlacesDataSource;
 import it.unimi.unimiplaces.PlacesDb;
+import it.unimi.unimiplaces.activities.BuildingDetailActivity;
+import it.unimi.unimiplaces.activities.RoomDetailActivity;
+import it.unimi.unimiplaces.core.model.Building;
+import it.unimi.unimiplaces.core.model.Room;
 import it.unimi.unimiplaces.presenters.WhereAmIPresenter;
 import it.unimi.unimiplaces.views.WhereAmIViewInterface;
 import me.dm7.barcodescanner.zbar.Result;
@@ -34,8 +39,6 @@ public class WhereAmIFragment extends Fragment implements ZBarScannerView.Result
         presenter   = new WhereAmIPresenter(new PlacesDataSource(new PlacesDb(getActivity())),this);
         scannerView = new ZBarScannerView(getActivity());
         scannerView.setResultHandler(this);
-        scannerView.startCamera();
-        scannerView.setAutoFocus(true);
     }
 
     @Override
@@ -46,6 +49,13 @@ public class WhereAmIFragment extends Fragment implements ZBarScannerView.Result
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        scannerView.startCamera();
+        scannerView.setAutoFocus(true);
+    }
+
+    @Override
     public void onScanError() {
         Log.e(LOG_TAG, "Error");
     }
@@ -53,11 +63,18 @@ public class WhereAmIFragment extends Fragment implements ZBarScannerView.Result
     @Override
     public void onBuildingScanSuccess(String b_id) {
         Log.v(LOG_TAG, "Building: "+b_id);
+        Intent buildingIntent = new Intent(this.getActivity(),BuildingDetailActivity.class);
+        buildingIntent.putExtra(Building.MODEL_KEY,b_id);
+        startActivity(buildingIntent);
     }
 
     @Override
     public void onRoomScanSuccess(String b_id, String r_id) {
         Log.v(LOG_TAG, "Room: "+b_id+" "+r_id);
+        Intent roomIntent = new Intent(this.getActivity(),RoomDetailActivity.class);
+        roomIntent.putExtra(Building.MODEL_KEY, b_id);
+        roomIntent.putExtra(Room.MODEL_KEY,r_id);
+        startActivity(roomIntent);
     }
 
     @Override
