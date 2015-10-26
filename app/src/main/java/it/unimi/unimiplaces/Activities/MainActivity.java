@@ -1,5 +1,6 @@
 package it.unimi.unimiplaces.activities;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
-    private ActionBarDrawerToggle drawerToggle;
+    private CustomActionBarDrawerToggle drawerToggle;
     private MenuItem currentAppSection;
 
 
@@ -42,11 +43,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout    = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView  = (NavigationView) findViewById(R.id.drawer_navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-        drawerToggle    = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.nav_open,R.string.nav_close);
+        drawerToggle    = new CustomActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.nav_open,R.string.nav_close);
         drawerLayout.setDrawerListener(drawerToggle);
-
         currentAppSection = getDefaultCheckedMenuItem();
-        showFragmentForMenuItem(currentAppSection,true);
+        showFragmentForMenuItem(currentAppSection, true);
 
     }
 
@@ -141,4 +141,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
+
+    /**
+     * Custom ActionBarDrawerToggle just for hiding keyboard when the drawer
+     * will be opened
+     */
+    private class CustomActionBarDrawerToggle extends ActionBarDrawerToggle{
+        public CustomActionBarDrawerToggle(Activity activity, DrawerLayout drawerLayout, Toolbar toolbar, int openDrawerContentDescRes, int closeDrawerContentDescRes) {
+            super(activity, drawerLayout, toolbar, openDrawerContentDescRes, closeDrawerContentDescRes);
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+            super.onDrawerStateChanged(newState);
+            hideKeyboard();
+        }
+    }
+
+
+
 }
