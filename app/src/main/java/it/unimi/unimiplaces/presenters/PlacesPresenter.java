@@ -23,6 +23,12 @@ public class PlacesPresenter implements Presenter {
     }
 
     public void searchPlacesWithKey(String key){
+
+        if( key.equals("") || key.length()==0){
+            this.view.clearResults();
+            return;
+        }
+
         this.model = this.dataSource.getEntriesForKey(key);
 
         /* no results */

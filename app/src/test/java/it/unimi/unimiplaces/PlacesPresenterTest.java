@@ -72,4 +72,13 @@ public class PlacesPresenterTest {
         Mockito.verify(placesDataSource).getEntriesForKey(key);
         Mockito.verify(view).showNoResults();
     }
+
+    @Test
+    public void clearResults(){
+        String key = "";
+        presenter = new PlacesPresenter(placesDataSource,view);
+        presenter.searchPlacesWithKey(key);
+        Mockito.verify(placesDataSource,Mockito.never()).buildingExists(key);
+        Mockito.verify(view).clearResults();
+    }
 }

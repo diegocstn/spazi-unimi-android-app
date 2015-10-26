@@ -120,6 +120,12 @@ public class PlacesFragment extends Fragment implements PlacesViewInterface,Text
 
     }
 
+    @Override
+    public void clearResults() {
+        this.resultsAdapter.clear();
+        this.resultsAdapter.notifyDataSetChanged();
+    }
+
     private class PlacesListAdapter extends ArrayAdapter<LookupTableEntry> {
         private final Context context;
         private final List<LookupTableEntry> entries;

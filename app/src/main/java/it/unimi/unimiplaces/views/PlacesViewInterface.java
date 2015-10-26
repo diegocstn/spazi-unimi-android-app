@@ -9,5 +9,6 @@ import it.unimi.unimiplaces.LookupTableEntry;
  */
 public interface PlacesViewInterface {
     void showNoResults();
+    void clearResults();
     void setResults(List<LookupTableEntry> results);
 }
