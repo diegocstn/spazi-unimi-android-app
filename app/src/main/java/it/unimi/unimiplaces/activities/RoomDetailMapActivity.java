@@ -41,4 +41,6 @@ public class RoomDetailMapActivity extends AppDetailSectionActivity implements R
     public void placeRoomOnMap(List<BaseEntity> entities) {
         this.mapView.setModel(entities);
     }
+
+
 }

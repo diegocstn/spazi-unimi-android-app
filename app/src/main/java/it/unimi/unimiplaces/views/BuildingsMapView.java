@@ -2,6 +2,8 @@ package it.unimi.unimiplaces.views;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.InflateException;
@@ -156,7 +158,14 @@ public class BuildingsMapView extends RelativeLayout implements
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        this.parentPresenter.onDetailActionListener(markers.get(marker.getTitle()));
+        if( this.parentPresenter!=null ) {
+            this.parentPresenter.onDetailActionListener(markers.get(marker.getTitle()));
+        }else{
+            // open map app
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr="+marker.getPosition().latitude+","+marker.getPosition().longitude));
+            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+            this.context.startActivity(intent);
+        }
     }
 
     @Override
