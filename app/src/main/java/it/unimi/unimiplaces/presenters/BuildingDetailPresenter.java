@@ -36,9 +36,11 @@ public class BuildingDetailPresenter implements
         LinkedHashMap<String,List<String>> data = new LinkedHashMap<>();
         String[] rooms;
         for (Floor f:this.model.getFloors()){
-            if( f.roomsCount()>0 ){
-                rooms = f.getRoomsNamesList();
+            rooms = f.getRoomsNamesList();
+            if( rooms != null ){
                 data.put(f.floor_name,new ArrayList<>(Arrays.asList(rooms)));
+            }else{
+                data.put(f.floor_name,new ArrayList());
             }
         }
 

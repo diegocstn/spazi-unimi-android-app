@@ -22,6 +22,7 @@
 
     <!-- Building detail -->
     <string name="building_detail_Rooms_label">Rooms</string>
+    <string name="building_floors_expand">Expand</string>
 
     <!-- Room detail -->
     <string name="room_detail_equipments_label">Equipments:</string>

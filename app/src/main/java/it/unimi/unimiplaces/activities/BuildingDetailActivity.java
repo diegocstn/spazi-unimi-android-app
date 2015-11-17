@@ -37,6 +37,7 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
     ExpandableListView floorsDetailListView;
     FloatingActionButton bookmarksFab;
     BookmarksNotificationBar bookmarksNotificationBar;
+    LinkedHashMap<String, List<String>> floorsData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +87,11 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
 
     @Override
     public void setFloorsDetailModel(LinkedHashMap<String, List<String>> data) {
+        floorsData          = data;
         floorsDetailAdapter = new FloorsDetailAdapter(this,data);
         this.floorsDetailListView.setAdapter(floorsDetailAdapter);
         this.floorsDetailListView.setOnChildClickListener(this);
+        this.floorsDetailListView.setGroupIndicator(null);
     }
 
     @Override
@@ -124,7 +127,6 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
         this.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         return true;
     }
-
 
     /**
      * FloorsDetailAdapter
@@ -216,6 +218,13 @@ public class BuildingDetailActivity extends AppDetailSectionActivity implements
 
             groupTextView = (TextView) convertView.findViewById(R.id.building_detail_group);
             groupTextView.setText(groupText);
+
+            // hide or show disclosure icon
+            if( this.getChildrenCount(groupPosition)>0 ){
+                convertView.findViewById(R.id.building_detail_expand_arrow).setVisibility(View.VISIBLE);
+            }else{
+                convertView.findViewById(R.id.building_detail_expand_arrow).setVisibility(View.INVISIBLE);
+            }
 
             return convertView;
         }
